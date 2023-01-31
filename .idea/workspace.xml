@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90eb8193-1b84-4ba3-877d-8c55a0de8b1b" name="변경" comment="init">
-      <change afterPath="$PROJECT_DIR$/src/중복순열_DFS.java" afterDir="false" />
+    <list default="true" id="90eb8193-1b84-4ba3-877d-8c55a0de8b1b" name="변경" comment="순열">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/K번째수_BinarySearch_031.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +40,21 @@
     "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
-  <component name="RunManager" selected="애플리케이션.중복없는순열_DFS">
+  <component name="RunManager" selected="애플리케이션.중복조합">
+    <configuration name="중복없는조합" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="중복없는조합" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="중복조합" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="중복조합" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="K번째수_BinarySearch_031" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="K번째수_BinarySearch_031" />
       <module name="java_algorithm" />
@@ -66,6 +78,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="애플리케이션.중복조합" />
+        <item itemvalue="애플리케이션.중복없는조합" />
         <item itemvalue="애플리케이션.중복없는순열_DFS" />
         <item itemvalue="애플리케이션.중복순열_DFS" />
         <item itemvalue="애플리케이션.K번째수_BinarySearch_031" />
@@ -95,12 +109,20 @@
       <option name="project" value="LOCAL" />
       <updated>1675074800699</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="순열">
+      <created>1675133578644</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675133578644</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="순열" />
+    <option name="LAST_COMMIT_MESSAGE" value="순열" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
