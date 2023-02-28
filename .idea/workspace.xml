@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90eb8193-1b84-4ba3-877d-8c55a0de8b1b" name="변경" comment="조합">
+    <list default="true" id="90eb8193-1b84-4ba3-877d-8c55a0de8b1b" name="변경" comment="순위_프로그래머스">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,9 +26,12 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2L2eDdnikeppnNXvIjABWgXjKva" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
@@ -40,44 +43,93 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
-  <component name="RunManager" selected="애플리케이션.Main">
-    <configuration name="중복없는조합" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="중복없는조합" />
+  <component name="RunManager" selected="애플리케이션.무인도_프로그래머스">
+    <configuration name="사다리게임2_DFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="사다리게임2_DFS" />
       <module name="java_algorithm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="K번째수_BinarySearch_031" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="K번째수_BinarySearch_031" />
+    <configuration name="숫자N표현_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="숫자N표현_프로그래머스" />
       <module name="java_algorithm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="신고결과받기_프로그래머스 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="신고결과받기_프로그래머스" />
       <module name="java_algorithm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="중복조합" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="중복조합" />
+    <configuration name="인사고과_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="인사고과_프로그래머스" />
       <module name="java_algorithm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="중복순열_DFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="중복순열_DFS" />
+    <configuration name="무인도_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="무인도_프로그래머스" />
       <module name="java_algorithm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="중복없는순열_DFS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="중복없는순열_DFS" />
+    <configuration name="순위_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="순위_프로그래머스" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="숫자카드나누기_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="숫자카드나누기_프로그래머스" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="호텔대실_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="호텔대실_프로그래머스" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="조이스틱_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="조이스틱_프로그래머스" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="신고결과받기_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="신고결과받기_프로그래머스" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="시소짝궁_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="시소짝궁_프로그래머스" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="교점에별찍기_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="교점에별찍기_프로그래머스" />
+      <module name="java_algorithm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="올바른괄호갯수_프로그래머스" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="올바른괄호갯수_프로그래머스" />
       <module name="java_algorithm" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -85,10 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="애플리케이션.Main" />
-        <item itemvalue="애플리케이션.K번째수_BinarySearch_031" />
-        <item itemvalue="애플리케이션.중복없는조합" />
-        <item itemvalue="애플리케이션.중복순열_DFS" />
+        <item itemvalue="애플리케이션.무인도_프로그래머스" />
+        <item itemvalue="애플리케이션.신고결과받기_프로그래머스 (1)" />
+        <item itemvalue="애플리케이션.사다리게임2_DFS" />
+        <item itemvalue="애플리케이션.인사고과_프로그래머스" />
+        <item itemvalue="애플리케이션.숫자N표현_프로그래머스" />
       </list>
     </recent_temporary>
   </component>
@@ -101,59 +154,463 @@
       <option name="presentableId" value="Default" />
       <updated>1675073488988</updated>
     </task>
-    <task id="LOCAL-00001" summary="init">
-      <created>1675074337495</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+    <task id="LOCAL-00074" summary="원하는정수찾기_BinarySearch">
+      <created>1676553361694</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
       <option name="project" value="LOCAL" />
-      <updated>1675074337495</updated>
+      <updated>1676553361695</updated>
     </task>
-    <task id="LOCAL-00002" summary="init">
-      <created>1675074800699</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+    <task id="LOCAL-00075" summary="이진트리순회_BinaryTree">
+      <created>1676591865514</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
       <option name="project" value="LOCAL" />
-      <updated>1675074800699</updated>
+      <updated>1676591865514</updated>
     </task>
-    <task id="LOCAL-00003" summary="순열">
-      <created>1675133578644</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
+    <task id="LOCAL-00076" summary="이친수_DP">
+      <created>1676599302532</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
       <option name="project" value="LOCAL" />
-      <updated>1675133578644</updated>
+      <updated>1676599302532</updated>
     </task>
-    <task id="LOCAL-00004" summary="조합">
-      <created>1675138193472</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
+    <task id="LOCAL-00077" summary="이항계수1_조합">
+      <created>1676606712635</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
       <option name="project" value="LOCAL" />
-      <updated>1675138193472</updated>
+      <updated>1676606712635</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00078" summary="이항계수2_조합">
+      <created>1676614381657</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1676614381657</updated>
+    </task>
+    <task id="LOCAL-00079" summary="절댓값힙_PriorityQueue">
+      <created>1676624813423</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1676624813423</updated>
+    </task>
+    <task id="LOCAL-00080" summary="제곱이아닌수_에라토스테네스의체">
+      <created>1676676321675</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1676676321676</updated>
+    </task>
+    <task id="LOCAL-00081" summary="조약돌_조합">
+      <created>1676690518050</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1676690518050</updated>
+    </task>
+    <task id="LOCAL-00082" summary="좋은수_투포인터">
+      <created>1676699533970</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1676699533971</updated>
+    </task>
+    <task id="LOCAL-00083" summary="줄세우기_위상정렬">
+      <created>1676709397933</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1676709397933</updated>
+    </task>
+    <task id="LOCAL-00084" summary="집합표현_분리집합">
+      <created>1676713410762</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1676713410763</updated>
+    </task>
+    <task id="LOCAL-00085" summary="최단경로_다익스트라">
+      <created>1676776884295</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1676776884295</updated>
+    </task>
+    <task id="LOCAL-00086" summary="사다리게임_DFS">
+      <created>1676782363971</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1676782363971</updated>
+    </task>
+    <task id="LOCAL-00087" summary="최대공약수_유클리드호제법">
+      <created>1676789833391</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1676789833392</updated>
+    </task>
+    <task id="LOCAL-00088" summary="최소값2_SegmentTree">
+      <created>1676860013506</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1676860013507</updated>
+    </task>
+    <task id="LOCAL-00089" summary="최소공배수_유클리드호제법">
+      <created>1676866691827</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1676866691827</updated>
+    </task>
+    <task id="LOCAL-00090" summary="최소공통부분문자열_DP">
+      <created>1676887986482</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1676887986483</updated>
+    </task>
+    <task id="LOCAL-00091" summary="최소비용_플로이드워셜">
+      <created>1676895060130</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1676895060130</updated>
+    </task>
+    <task id="LOCAL-00092" summary="최소신장트리_MST">
+      <created>1676904303156</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1676904303156</updated>
+    </task>
+    <task id="LOCAL-00093" summary="최솟값구하기_Deque">
+      <created>1676937669513</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1676937669513</updated>
+    </task>
+    <task id="LOCAL-00094" summary="친구관계파악_DFS">
+      <created>1676943259028</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1676943259028</updated>
+    </task>
+    <task id="LOCAL-00095" summary="카드게임_Queue">
+      <created>1676960864483</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1676960864483</updated>
+    </task>
+    <task id="LOCAL-00096" summary="카드정렬하기_Greedy">
+      <created>1676968111583</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1676968111583</updated>
+    </task>
+    <task id="LOCAL-00097" summary="칵테일_유클리드호제법">
+      <created>1676983466056</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1676983466056</updated>
+    </task>
+    <task id="LOCAL-00098" summary="타일채우기_DP">
+      <created>1677024254848</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1677024254849</updated>
+    </task>
+    <task id="LOCAL-00099" summary="트리의지름_BFS">
+      <created>1677035385370</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1677035385371</updated>
+    </task>
+    <task id="LOCAL-00100" summary="특정거리의도시찾기_Graph">
+      <created>1677068058066</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1677068058066</updated>
+    </task>
+    <task id="LOCAL-00101" summary="전광판_소프티어">
+      <created>1677068419165</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1677068419165</updated>
+    </task>
+    <task id="LOCAL-00102" summary="비밀메뉴1_소프티어">
+      <created>1677068488103</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1677068488103</updated>
+    </task>
+    <task id="LOCAL-00103" summary="오름차순정렬_InsertionSort">
+      <created>1677114428383</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1677114428384</updated>
+    </task>
+    <task id="LOCAL-00104" summary="GBC_소프티어">
+      <created>1677126770948</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1677126770948</updated>
+    </task>
+    <task id="LOCAL-00105" summary="장애물인식_소프티어">
+      <created>1677140794106</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1677140794106</updated>
+    </task>
+    <task id="LOCAL-00106" summary="슈퍼컴퓨터클러스터_소프티어">
+      <created>1677148955686</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1677148955686</updated>
+    </task>
+    <task id="LOCAL-00107" summary="플레이페어암호_소프티어">
+      <created>1677167798333</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1677167798333</updated>
+    </task>
+    <task id="LOCAL-00108" summary="거리합구하기_소프티어">
+      <created>1677199425872</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1677199425872</updated>
+    </task>
+    <task id="LOCAL-00109" summary="비밀메뉴2_소프티어">
+      <created>1677209147813</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1677209147813</updated>
+    </task>
+    <task id="LOCAL-00110" summary="마이크로서버_소프티어">
+      <created>1677231129182</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1677231129182</updated>
+    </task>
+    <task id="LOCAL-00111" summary="이미지프로세싱_소프티어">
+      <created>1677254763931</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1677254763931</updated>
+    </task>
+    <task id="LOCAL-00112" summary="사칙연산_DP_프로그래머스">
+      <created>1677288589549</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1677288589549</updated>
+    </task>
+    <task id="LOCAL-00113" summary="숫자N표현_프로그래머스">
+      <created>1677313457790</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1677313457791</updated>
+    </task>
+    <task id="LOCAL-00114" summary="인사고과_프로그래머스">
+      <created>1677325038850</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1677325038850</updated>
+    </task>
+    <task id="LOCAL-00115" summary="올바른괄호갯수_프로그래머스">
+      <created>1677341267791</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1677341267791</updated>
+    </task>
+    <task id="LOCAL-00116" summary="교점에별찍기_프로그래머스">
+      <created>1677374026730</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1677374026730</updated>
+    </task>
+    <task id="LOCAL-00117" summary="시소짝궁_프로그래머스">
+      <created>1677398087905</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1677398087905</updated>
+    </task>
+    <task id="LOCAL-00118" summary="신고결과받기_프로그래머스">
+      <created>1677458413021</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1677458413021</updated>
+    </task>
+    <task id="LOCAL-00119" summary="조이스틱_프로그래머스">
+      <created>1677464513926</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1677464513927</updated>
+    </task>
+    <task id="LOCAL-00120" summary="호텔대실_프로그래머스">
+      <created>1677475134607</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1677475134607</updated>
+    </task>
+    <task id="LOCAL-00121" summary="숫자카드나누기_프로그래머스">
+      <created>1677495182734</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1677495182734</updated>
+    </task>
+    <task id="LOCAL-00122" summary="순위_프로그래머스">
+      <created>1677557331337</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1677557331338</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="init" />
-    <MESSAGE value="순열" />
-    <MESSAGE value="조합" />
-    <option name="LAST_COMMIT_MESSAGE" value="조합" />
+    <MESSAGE value="타일채우기_DP" />
+    <MESSAGE value="트리의지름_BFS" />
+    <MESSAGE value="특정거리의도시찾기_Graph" />
+    <MESSAGE value="전광판_소프티어" />
+    <MESSAGE value="비밀메뉴1_소프티어" />
+    <MESSAGE value="오름차순정렬_InsertionSort" />
+    <MESSAGE value="GBC_소프티어" />
+    <MESSAGE value="장애물인식_소프티어" />
+    <MESSAGE value="슈퍼컴퓨터클러스터_소프티어" />
+    <MESSAGE value="플레이페어암호_소프티어" />
+    <MESSAGE value="거리합구하기_소프티어" />
+    <MESSAGE value="비밀메뉴2_소프티어" />
+    <MESSAGE value="마이크로서버_소프티어" />
+    <MESSAGE value="이미지프로세싱_소프티어" />
+    <MESSAGE value="사칙연산_DP_프로그래머스" />
+    <MESSAGE value="숫자N표현_프로그래머스" />
+    <MESSAGE value="인사고과_프로그래머스" />
+    <MESSAGE value="올바른괄호갯수_프로그래머스" />
+    <MESSAGE value="교점에별찍기_프로그래머스" />
+    <MESSAGE value="시소짝궁_프로그래머스" />
+    <MESSAGE value="신고결과받기_프로그래머스" />
+    <MESSAGE value="조이스틱_프로그래머스" />
+    <MESSAGE value="호텔대실_프로그래머스" />
+    <MESSAGE value="숫자카드나누기_프로그래머스" />
+    <MESSAGE value="순위_프로그래머스" />
+    <option name="LAST_COMMIT_MESSAGE" value="순위_프로그래머스" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/중복없는순열_DFS.java</url>
-          <line>25</line>
-          <properties class="중복없는순열_DFS" method="dfs">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="4" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/소프티어_플레이페어_암호.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/미로찾기_BFS_027.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/src/섬다리_MST_065.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/문자열_소수판단_DFS.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/오일러피함수_정수론_041.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/외판원순회_DP_095.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/외판원순회_DP_095.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/원하는정수찾기_BinarySearch_029.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/가장길게증가하는수열_DP_096.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/이항계수2_조합_077.java</url>
+          <line>1</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/절댓값힙_PriorityQueue_014.java</url>
+          <line>4</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/제곱이아닌수_에라토스테네스의체_040.java</url>
+          <line>2</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/사다리게임_DFS.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/사다리게임2_DFS.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/신고결과받기_프로그래머스.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -163,6 +620,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/java_algorithm$ds.ic" NAME="ds 커버리지 결과" MODIFIED="1676537711061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Java_algorithm$Main.ic" NAME="Main 커버리지 결과" MODIFIED="1675254534944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
