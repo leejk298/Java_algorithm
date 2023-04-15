@@ -22,7 +22,7 @@ SXX
 XFX
 */
 
-public class 익명코딩테스트3번복기 {
+public class 코테복기3 {
     static int T, N, M;
     static char[][] map;
     static boolean[][] visited;
