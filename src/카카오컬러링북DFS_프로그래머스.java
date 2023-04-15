@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class 카카오컬러링북_프로그래머스 {
+public class 카카오컬러링북DFS_프로그래머스 {
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(Arrays.toString(solution.solution(6, 4,
