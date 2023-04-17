@@ -42,7 +42,7 @@ public class 코테복기2 {
         Stack<Integer> stack = new Stack<>();
 
         stack.push(list.get(0)[1]);
-        int sum = 0;
+        long sum = 0;
         for(int i = 1; i < N; i++) {
             int score = list.get(i)[1];
 

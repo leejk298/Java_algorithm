@@ -71,12 +71,12 @@ public class 단풍나무_구름Level {
 
         int index = 0;
         while(true) {
+            if(isEnd())	// 탈출
+                break;
+
             simulate();	// 단풍
 
             index++;	// 며칠
-
-            if(isEnd())	// 탈출
-                break;
         }
 
         System.out.print(index);
