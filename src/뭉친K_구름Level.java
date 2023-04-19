@@ -22,22 +22,20 @@ public class 뭉친K_구름Level {
             for(int j = 0; j < N; j++)
                 map[i][j] = sc.nextInt();   // 맵 저장
 
-        List<Integer> list = new ArrayList<>(); // 결과 리스트
-
+        int max = -1;
         K = map[x - 1][y - 1];  // 기준값 K
         for(int i = 0; i < N; i++) {    // 행
             for(int j = 0; j < N; j++) {    // 열
                 if(map[i][j] == K && !visited[i][j]) {  // 기준과 같고 방문하지않았으면
                     BFS(i, j);  // BFS 호출
-                    list.add(distance); // 결과 리스트에 크기 저장
+                    if(max < distance)
+                        max = distance;
                     distance = 0;   // 초기화
                 }
             }
         }
 
-        Collections.sort(list); // 오름차순 정렬
-
-        System.out.print(list.get(list.size() - 1) + 1);	// 자기 자신 포함하여 가장 큰 구름 출력
+        System.out.print(max);	// 자기 자신 포함하여 가장 큰 구름 출력
     }
 
     public static void BFS(int nx, int ny) {    // BFS
