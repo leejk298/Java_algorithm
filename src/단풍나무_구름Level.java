@@ -69,16 +69,16 @@ public class 단풍나무_구름Level {
 
         init();	// 초기화
 
-        int index = 0;
+        int day = 0;
         while(true) {
             if(isEnd())	// 탈출
                 break;
 
             simulate();	// 단풍
 
-            index++;	// 며칠
+            day++;	// 며칠
         }
 
-        System.out.print(index);
+        System.out.print(day);
     }
 }
