@@ -43,7 +43,7 @@ public class 탈출_백준 {
         }
     }
 
-    public static boolean isValidPos(int x, int y) {    // 좌표가 유효한지
+    public static boolean isNotValidPos(int x, int y) {    // 좌표가 유효한지
         return (x < 0 || x >= N || y < 0 || y >= M);
     }
 
@@ -58,7 +58,7 @@ public class 탈출_백준 {
                 for(int k = 0; k < 4; k++) {    // 4방향
                     int tmpX = nowX + dx[k], tmpY = nowY + dy[k];   // 다음 좌표
 
-                    if(isValidPos(tmpX, tmpY))  // 유효한지
+                    if(isNotValidPos(tmpX, tmpY))  // 유효한지
                         continue;
 
                     if(map[tmpX][tmpY] == '.') {    // . 이면
@@ -76,7 +76,7 @@ public class 탈출_백준 {
                 for(int k = 0; k < 4; k++) {    // 4방향
                     int tmpX = nowX + dx[k], tmpY = nowY + dy[k];   // 다음 좌표
 
-                    if(isValidPos(tmpX, tmpY))  // 유효한지
+                    if(isNotValidPos(tmpX, tmpY))  // 유효한지
                         continue;
 
                     if(map[tmpX][tmpY] == 'D') {    // D 이면, 도착이면
