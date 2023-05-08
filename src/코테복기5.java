@@ -1,12 +1,12 @@
 import java.io.*;
 import java.util.*;
 
-/**
+/*
  5 7 2
  1 3
  2 4
  */
-public class 코테복기4 {
+public class 코테복기5 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);    // 입력
 
@@ -35,14 +35,14 @@ public class 코테복기4 {
 
         long[][] sum = new long[K + 1][K + 1];  // 넓이
         long min = N * M, max = 0;  // 최대, 최소값
-        for(int i = 0; i <= K; i++) {
+        for(int i = 0; i <= K; i++) {   // 영역: K * K 개
             for(int j = 0; j <= K; j++) {
-                sum[i][j] = ga[i] * se[j];
+                sum[i][j] = ga[i] * se[j];  // 넓이
 
-                if(sum[i][j] > max)
+                if(sum[i][j] > max) // 최대
                     max = sum[i][j];
 
-                if(sum[i][j] < min)
+                if(sum[i][j] < min) // 최소
                     min = sum[i][j];
             }
         }
