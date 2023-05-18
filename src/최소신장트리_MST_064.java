@@ -28,7 +28,7 @@ public class 최소신장트리_MST_064 {
         }
 
         int res = 0; // 최소 비용
-        for (int i = 1; i < N; i++) { // N - 1 번
+        for (int i = 0; i < N - 1; i++) { // N - 1 번
             wEdge now = pq.poll(); // 하나 꺼내어
 
             if (find(now.S) != find(now.E)) { // 대표 노드가 다르면
