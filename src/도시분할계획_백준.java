@@ -63,10 +63,8 @@ public class 도시분할계획_백준 {
         a = find(a);
         b = find(b);
 
-        if(a < b)  // 큰 값으로 저장
+        if(a != b)
             parent[b] = a;
-        else
-            parent[a] = b;
     }
 
     public static int find(int a) { // find
