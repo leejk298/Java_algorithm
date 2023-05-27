@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class 코테복기1_0513 {
+public class 복습1번 {
     static int N;   // 크기
     static long M;  // 경계값
     static long[] P;    // 페어쌍배열
