@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class 코테복기2_0513 {
+public class 복습3번_1 {   // 내가 푼 방법
     static int N, M;    // 크기
     static int[] arr;   // 공정 배열
     static int[] S, T;  // 시작, 끝 배열
@@ -8,12 +8,12 @@ public class 코테복기2_0513 {
     public static void init() { // 초기화
         Scanner sc = new Scanner(System.in);    // 입력
 
-        N = sc.nextInt();   // 크기
-        M = sc.nextInt();
+        N = sc.nextInt();   // 공정 크기
+        M = sc.nextInt();   // 결과 크기
 
         // 초기화
         arr = new int[N + 1];
-        for(int i = 1; i <= N; i++)
+        for(int i = 1; i <= N; i++) // 1 부터
             arr[i] = sc.nextInt();
 
         S = new int[M];
@@ -41,8 +41,8 @@ public class 코테복기2_0513 {
 
     public static void main(String[] args) {
 
-        init(); // 초기화
+        init(); // 초기화, O(N) + O(M)
 
-        System.out.println(printCountSum());    // 총합 개수 출력
+        System.out.println(printCountSum());    // 총합 개수 출력, O(N * M) => M개의 구간이 전부 처음부터 끝까지면 N => 최적화 필요 => 누적합배열
     }
 }
