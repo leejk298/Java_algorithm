@@ -38,7 +38,7 @@ public class 복습3번_2 {   // 성능 최적화 방법
         for(int i = 0; i < M; i++) {    // 크기만큼
             int s = S[i], t = T[i]; // 구간
 
-            sum += sumArr[t] - sumArr[s - 1];   // 부분합
+            sum += sumArr[t] - sumArr[s - 1];   // 구간합
         }
 
         return sum; // 총 합 출력
