@@ -8,28 +8,28 @@ public class 입국심사_프로그래머스 {
 
     static class Solution {
         public long solution(int n, int[] times) {
-            long answer = 0;
 
-            Arrays.sort(times);
+            long answer = 0;    // 결과값
 
-            long l = 0;
-            long r = (long)n * times[times.length - 1];   // 최악의 경우
-            while(l <= r) {
-                long mid = (l + r) / 2;
-                long sum = 0;
+            Arrays.sort(times); // 오름차순 정렬, 이분 탐색하기 위해
 
-                for(int i = 0; i < times.length; i++)
-                    sum += mid / times[i];
+            long S = 0, E = (long)n * times[times.length - 1];  // 인덱스, E: 최악의 경우
 
-                if(sum < n)
-                    l = mid + 1;
-                else {
-                    r = mid - 1;
-                    answer = mid;
+            while(S <= E) { // 역전이 아니면 반복
+                long sum = 0, mid = (S + E) / 2;    // 합, 중앙값
+
+                for(int t : times)  // 순회
+                    sum += mid / t; // 해당 구간의 심사 가능 인원 수
+
+                if(sum < n) // 심사 수보다 작으면
+                    S = mid + 1;    // 시작 인덱스 갱신
+                else {  // 크면
+                    E = mid - 1;    // 끝 인덱스 갱신
+                    answer = mid;   // 전부 심사했으므로 결과값 저장
                 }
             }
 
-            return answer;
+            return answer;  // 역전이 일어나서 while 종료되면 결과값 출력
         }
     }
 }
