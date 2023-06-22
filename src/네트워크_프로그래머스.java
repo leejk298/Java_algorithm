@@ -5,27 +5,31 @@ public class 네트워크_프로그래머스 {
     }
 
     static class Solution {
-        static boolean visited[];
-        public int solution(int n, int[][] computers) {
-            int answer = 0;
-            visited = new boolean[computers.length];
+        public static void DFS(int v, boolean[] visited, int[][] computers) {   // DFS
 
-            for(int i = 0; i < computers.length; i++) {
-                if(!visited[i]) {
-                    DFS(i, computers);
-                    answer++;
+            visited[v] = true;  // 방문 여부 갱신
+
+            for(int i = 0; i < computers[v].length; i++) {  // 해당 노드에서
+                if(i == v)  // 출발지와 도착지가 같으면
+                    continue; // 건너뛰기
+                else if(computers[v][i] == 1 && !visited[i])    // 갈 수 있는 경우
+                    DFS(i, visited, computers); // DFS
+            }
+        }
+
+        public int solution(int n, int[][] computers) {
+
+            int answer = 0; // 결과값
+            boolean[] visited = new boolean[n]; // 방문 배열
+
+            for(int i = 0; i < n; i++) {    // 크기만큼
+                if(!visited[i]) {   // 방문하지 않았으면
+                    DFS(i, visited, computers); // DFS
+                    answer++;   // 연결요소 카운트
                 }
             }
 
-            return answer;
-        }
-
-        public void DFS(int v, int[][] computers) {
-            visited[v] = true;
-
-            for(int i = 0; i < computers.length; i++)
-                if(!visited[i] && computers[v][i] == 1)
-                    DFS(i, computers);
+            return answer;  // 총 연결요소 개수 리턴
         }
     }
 }
