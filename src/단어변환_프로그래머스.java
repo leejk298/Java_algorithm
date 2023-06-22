@@ -6,51 +6,56 @@ public class 단어변환_프로그래머스 {
     }
 
     static class Solution {
+        static int answer;  // 결과값, 백트래킹 후 저장해야 하므로 전역
         static boolean[] visited;   // 방문배열
-        static int answer;  // 변환 횟수
 
-        public int solution(String begin, String target, String[] words) {
-            answer = 0; // 초기화
+        public static void DFS(int depth, String b, String t, String[] w) { // 백트래킹
 
-            boolean flag = false;
-            for(String s : words)
-                if(s.equals(target))    // 변환가능한지
-                    flag = true;
+            // 베이스 케이스
+            if(b.equals(t)) {   // 같으면
+                answer = Math.min(answer, depth);   // 최소값 저장
 
-            if(!flag)   // 변환 X
-                return 0;
-
-            // 변환 O
-            visited = new boolean[words.length];
-
-            DFS(begin, target, words, 0);   // DFS
-
-            return answer;
-        }
-
-        static void DFS(String b, String t, String[] w, int res) {
-            if(b.equals(t)) {   // 베이스 케이스
-                answer = res;   // 횟수 저장
-
-                return;
+                return; // 함수 리턴, 완전 탐색 위해
             }
 
-            for(int i = 0; i < w.length; i++) { // 배열 크기만큼
-                if(!visited[i]) {   // 방문하지않았으면
-                    int count = 0;  // 횟수
+            // 재귀 케이스
+            for(int i = 0; i < w.length; i++) { // 문자열 크기만큼
 
-                    for(int j = 0; j < b.length(); j++) // 문자열 길이만큼
-                        if(w[i].charAt(j) == b.charAt(j))   // 같은 문자 카운트
-                            count++;
+                if(!visited[i]) {   // 방문한 적이 없으면
+                    int count = 0;  // 개수 카운트
 
-                    if(count == b.length() - 1) {   // 하나 빼고 다 같으면
-                        visited[i] = true;  // 해당 문자열로 DFS
-                        DFS(w[i], t, w, res + 1);   // 재귀
+                    for(int j = 0; j < b.length(); j++) // 해당 문자열 길이만큼
+                        if(w[i].charAt(j) == b.charAt(j))   // 전부 비교
+                            count++;    // 개수 카운트
 
-                        visited[i] = false; // 재귀함수 리턴되면 방문배열 초기화
+                    if(count == b.length() - 1) {   // 1개 말고 전부 같으면
+                        visited[i] = true;  // 해당 문자 방문
+                        DFS(depth + 1, w[i], t, w); // DFS
+
+                        visited[i] = false; // 리턴되면 다시 false, 방문 여부 갱신
                     }
                 }
             }
+        }
+
+        public int solution(String begin, String target, String[] words) {
+
+            answer = Integer.MAX_VALUE; // 최대값으로 초기화, 최소값 찾아야하므로
+
+            boolean flag = false;   // 비교하기 위해
+            for(String w : words)   // 입력 배열 순회
+                if(w.equals(target))    // 같은게 있으면
+                    flag = true;    // true
+
+            if(!flag)   // 없으면
+                return 0;   // 갈 수 없으므로 0 리턴
+
+            // true 인 경우
+            visited = new boolean[words.length];    // 방문배열 선언
+
+            DFS(0, begin, target, words);   // DFS
+
+            return answer;  // 최소 변환 횟수 출력
         }
     }
 }
