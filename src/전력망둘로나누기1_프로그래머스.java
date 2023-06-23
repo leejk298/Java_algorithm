@@ -38,6 +38,7 @@ public class 전력망둘로나누기1_프로그래머스 {
                 A[wires[i][1]].add(wires[i][0]);
             }
 
+            // 연결된 두 노드로 DFS 수행시켜 각각의 연결요소 개수를 파악해 가장 차이가 적은 것 출력
             for (int i = 0; i < wires.length; i++) {    // 크기만큼
                 visited = new boolean[n + 1];   // 방문배열 초기화
                 count = 0;  // 개수 초기화
