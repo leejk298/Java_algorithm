@@ -45,14 +45,11 @@ public class 랜선자르기_백준 {
             for (long i : arr)  // 배열 순회
                 count += i / mid;   // 잘린 개수 카운트
 
-            if (K < count) {   // 자를 개수보다 큰 경우, 덜 잘라야하므로
+            if (K <= count) {   // 자를 개수보다 큰 경우, 덜 잘라야하므로
                 S = mid + 1;    // 시작 인덱스 갱신
+                res = Math.max(res, mid);   // 다 자르긴 했으므로 최대값 저장
             } else if (K > count)   // 작은 경우, 더 잘라야하므로
                 E = mid - 1;    // 끝 인덱스 갱신
-            else {  // 같으면
-                res = mid;  // 결과값 저장
-                S = mid + 1;    // 최대 길이 구해야하므로, 시작 인덱스 갱신
-            }
         }
 
         System.out.println(res);    // 결과값 출력
