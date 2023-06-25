@@ -8,56 +8,58 @@ public class 가장먼노드_프로그래머스 {
     }
 
     static class Solution {
-        static List<Integer> arr[];
-        static boolean[] visited;
-        static int[] D;
+        static List<Integer>[] A;   // 인접리스트
+        static int[] visited;   // 방문배열
 
-        public int solution(int n, int[][] edge) {
-            int answer = 0;
-            arr = new ArrayList[n + 1];
-            visited = new boolean[n + 1];
-            D = new int[n + 1];
+        public static void BFS(int v) { // BFS
 
-            for(int i = 1; i <= n; i++)
-                arr[i] = new ArrayList<>();
+            Queue<Integer> queue = new LinkedList<>();  // 큐
 
-            for(int[] e : edge) {
-                arr[e[0]].add(e[1]);
-                arr[e[1]].add(e[0]);
-            }
+            queue.offer(v); // 시작점 삽입
+            visited[v] = 1; // 시작점 거리 1부터
 
-            for(int i = 1; i <= n; i++)
-                Collections.sort(arr[i]);
+            while(!queue.isEmpty()) {   // 큐가 비어있지 않으면
+                int now = queue.poll(); // 하나 꺼내어
 
-            BFS(1);
+                for(int i = 0; i < A[now].size(); i++) {    // 해당 노드의 인접리스트 순회
+                    int next = A[now].get(i);   // 다음 노드
 
-            Arrays.sort(D);
-            int max = D[n];
-
-            for(int i : D)
-                if(max == i)
-                    answer++;
-
-            return answer;
-        }
-
-        static void BFS(int v) {
-            Queue<Integer> queue = new LinkedList<>();
-
-            queue.add(v);
-            visited[v] = true;
-            D[v] = 1;
-
-            while(!queue.isEmpty()) {
-                int now = queue.poll();
-                for(int i : arr[now]) {
-                    if(!visited[i]) {
-                        visited[i] = true;
-                        D[i] = D[now] + 1;
-                        queue.add(i);
+                    if(visited[next] == 0) {    // 방문한 적이 없으면
+                        visited[next] = visited[now] + 1;   // 방문, 거리 + 1
+                        queue.offer(next);  // 큐에 삽입
                     }
                 }
             }
+        }
+
+        public int solution(int n, int[][] edge) {
+
+            // 초기화
+            int answer = 0;
+            A = new ArrayList[n + 1];
+            visited = new int[n + 1];
+
+            for(int i = 0; i <= n; i++) // 인접리스트
+                A[i] = new ArrayList<>();
+
+            for(int i = 0; i < edge.length; i++) {
+                A[edge[i][0]].add(edge[i][1]);  // 양방향
+                A[edge[i][1]].add(edge[i][0]);
+            }
+
+            for(int i = 0; i <= n; i++)
+                Collections.sort(A[i]); // 작은 노드 번호부터 순서대로 순회하기 위해
+
+            BFS(1); // 1번 노드로 BFS => 거리배열
+
+            Arrays.sort(visited);   // 방문겸 거리배열 정렬
+
+            int max = visited[n];   // 가장 먼 노드의 거리
+            for(int i : visited)    // 순회
+                if(i == max)    // 최대 거리이면
+                    answer++;   // 개수 카운트
+
+            return answer;  // 총 개수 리턴
         }
     }
 }
