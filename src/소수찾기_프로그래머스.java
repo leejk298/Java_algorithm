@@ -7,52 +7,59 @@ public class 소수찾기_프로그래머스 {
     }
 
     static class Solution {
-        public List<Integer> arr = new ArrayList<>();   // 숫자조합 저장배열, 중복 X
-        public boolean[] visited = new boolean[7];      // 길이 7, 방문배열
+        static boolean[] visited;   // 방문배열
+        static List<Integer> list;  // 결과리스트
 
-        public int solution(String numbers) {
-            int answer = 0;
+        public static void DFS(int length, String t, String s) {    // DFS
 
-            for(int i = 0; i < numbers.length(); i++)   // 숫자 조합 만들기
-                DFS(numbers, "", i + 1);    // 빈 문자열과 길이로
-
-            for(int i : arr)    // 숫자 조합 탐색
-                if(isPrime(i))  // 소수이면
-                    answer++;   // 개수 증가
-
-            return answer;
-        }
-
-        public void DFS(String str, String temp, int n) {
-            if(temp.length() == n) {    // 총 문자열 길이만큼 커지면
-                int num = Integer.parseInt(temp);   // 정수로 바꾸고
-
-                if(!arr.contains(num))  // 중복체크
-                    arr.add(num);
+            // 베이스 케이스
+            if (length == t.length()) {  // 길이가 똑같으면
+                if (!list.contains(Integer.parseInt(t))) // 결과리스트에 포함되어있지 않으면
+                    list.add(Integer.parseInt(t));  // 삽입
             }
 
-            // 문자열만큼 채워지지않은 경우
-            for(int i = 0; i < str.length(); i++) { // 길이만큼
-                if(!visited[i]) {   // 방문하지않았으면
-                    visited[i] = true;  // 갱신
-                    temp = temp + str.charAt(i);    // 해당 문자 붙이기
+            // 재귀 케이스: 길이가 다르면
+            for (int i = 0; i < s.length(); i++) {   // 입력 문자열 길이만큼
+                if (!visited[i]) {   // 방문하지 않았으면
+                    visited[i] = true;  // 방문
+                    t += s.charAt(i);   // 새로운 문자열 만들기
 
-                    DFS(str, temp, n);  // 새로 갱신된 문자열 temp로 DFS
-                    visited[i] = false; // 리턴되면 방문여부 갱신, 중복사용
-                    temp = temp.substring(0, temp.length() - 1);    // 0번 인덱스만 남김
+                    DFS(length, t, s);  // 새로 만든 문자열로 DFS
+
+                    visited[i] = false; // DFS 리턴되면, 해당 문자 방문 여부 갱신
+                    t = t.substring(0, t.length() - 1); // 마지막에 추가된 해당 문자 제거
                 }
             }
         }
 
-        public boolean isPrime(int n) { // 소수 판단
-            if(n < 2)   // 0, 1
-                return false;
+        public static boolean isPrime(int n) {  // 소수 판별
 
-            for(int i = 2; i <= Math.sqrt(n); i++)  // 제곱근까지만 탐색
-                if(n % i == 0)
-                    return false;
+            if (n < 2)   // 2보다 작으면
+                return false;   // false
 
-            return true;
+            // 2 이상이면
+            for (int i = 2; i <= Math.sqrt(n); i++) // 제곱근까지 비교하여
+                if (n % i == 0) // 하나라도 나누어 떨어지면
+                    return false;   // false
+
+            return true;    // 다 통과하면 true
+        }
+
+        public int solution(String numbers) {
+
+            // 초기화
+            int answer = 0; // 결과값
+            visited = new boolean[7];   // 최대 7자리이므로, 소수도 7자리까지 가능
+            list = new ArrayList<>();   // 결과리스트
+
+            for (int i = 0; i < numbers.length(); i++)  // 입력 문자열 길이만큼
+                DFS(i + 1, "", numbers);    // 길이 1부터 최대 길이까지, 빈 문자열 넘김
+
+            for (int i : list)  // 결과리스트 순회하여
+                if (isPrime(i)) // 하나씩 소수 판별
+                    answer++;   // 소수이면 개수 카운트
+
+            return answer;  // 개수 리턴
         }
     }
 }
