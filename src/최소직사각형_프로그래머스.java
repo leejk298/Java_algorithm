@@ -8,26 +8,29 @@ public class 최소직사각형_프로그래머스 {
 
     static class Solution {
         public int solution(int[][] sizes) {
-            int answer = 0;
-            List<Integer> maxList = new ArrayList<>();
-            List<Integer> minList = new ArrayList<>();
 
-            for(int[] arr : sizes) {
-                if(arr[0] > arr[1]) {
-                    maxList.add(arr[0]);
-                    minList.add(arr[1]);
+            // 초기화
+            int answer = 0; // 결과값
+            List<Integer> min = new ArrayList<>();  // 최소
+            List<Integer> max = new ArrayList<>();  // 최대
+
+            for(int[] s : sizes) {  // 입력배열 순회
+                if(s[0] < s[1]) {   // 비교
+                    min.add(s[0]);
+                    max.add(s[1]);
                 } else {
-                    maxList.add(arr[1]);
-                    minList.add(arr[0]);
+                    min.add(s[1]);
+                    max.add(s[0]);
                 }
             }
 
-            Collections.sort(maxList, Collections.reverseOrder());
-            Collections.sort(minList, Collections.reverseOrder());
+            // 내림차순 정렬
+            Collections.sort(min, Collections.reverseOrder());
+            Collections.sort(max, Collections.reverseOrder());
 
-            answer = maxList.get(0) * minList.get(0);
+            answer = min.get(0) * max.get(0);   // 제일 큰 넓이
 
-            return answer;
+            return answer;  // 결과 리턴
         }
     }
 }
