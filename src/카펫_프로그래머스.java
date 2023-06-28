@@ -8,25 +8,25 @@ public class 카펫_프로그래머스 {
 
     static class Solution {
         public int[] solution(int brown, int yellow) {
-            int[] answer = new int[2];
-            int sum = brown + yellow;
 
-            for(int i = 1; i <= sum; i++) {
-                int row = i;
-                int col = sum / row;
+            int[] answer = {};  // 결과배열
 
-                if(row > col)
-                    continue;
+            int sum = brown + yellow;   // 합
+            for(int i = 1; i <= sum; i++) { // 합만큼
+                int row = i;    // 세로
+                int col = sum / i;  // 가로
 
-                if((row - 2) * (col - 2) == yellow) {
-                    answer[0] = col;
-                    answer[1] = row;
+                if(row > col)   // 가로가 세로보다 길거나 같아야하므로
+                    continue;   // 가로가 더 짧으면 건너뛰기
 
-                    break;
+                if((row - 2) * (col - 2) == yellow) {   // 양 끝 가장자리 뺀 넓이
+                    answer = new int[] {col, row};  // 결과배열에 저장
+
+                    break;  // for 종료
                 }
             }
 
-            return answer;
+            return answer;  // 결과배열 리턴
         }
     }
 }
