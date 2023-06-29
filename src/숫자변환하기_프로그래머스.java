@@ -7,45 +7,29 @@ public class 숫자변환하기_프로그래머스 {
     }
 
     static class Solution {
-        public static Queue<Integer> queue = new LinkedList<>();
-        public static Set<Integer> set = new HashSet<>();
-
         public int solution(int x, int y, int n) {
-            int answer = 0;
 
-            queue.offer(x);
+            int[] dp = new int[y + 1];  // 초기화
+            for (int i = x; i < y + 1; i++) {   // x부터 y까지
+                if (i != x && dp[i] == 0) { // x를 제외하고, 메모이제이션 => 이미 갱신된 인덱스
+                    dp[i] = -1; // -1로 초기화
 
-            while(!queue.isEmpty()) {
-                int size = queue.size();
-
-                for(int i = 0; i < size; i++) {
-                    if(queue.peek() == y)
-                        return answer;
-
-                    conversion(queue.poll(), y, n);
+                    continue;
                 }
 
-                answer++;
+                // 유효한 범위면 => y보다 작거나 같으면
+                if (i * 2 <= y)
+                    dp[i * 2] = (dp[i * 2] == 0) ? dp[i] + 1 : Math.min(dp[i] + 1, dp[i * 2]);
+
+                if (i * 3 <= y)
+                    dp[i * 3] = (dp[i * 3] == 0) ? dp[i] + 1 : Math.min(dp[i] + 1, dp[i * 3]);
+
+                if (i + n <= y)
+                    dp[i + n] = (dp[i + n] == 0) ? dp[i] + 1 : Math.min(dp[i] + 1, dp[i + n]);
+
             }
 
-            return -1;
-        }
-
-        public static void conversion(int x, int y, int n) {
-            if(x + n <= y) {
-                set.add(x + n);
-                queue.offer(x + n);
-            }
-
-            if(x * 2 <= y) {
-                set.add(x * 2);
-                queue.offer(x * 2);
-            }
-
-            if(x * 3 <= y) {
-                set.add(x * 3);
-                queue.offer(x * 3);
-            }
+            return dp[y];
         }
     }
 }
