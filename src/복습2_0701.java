@@ -24,11 +24,11 @@ public class 복습2_0701 {
         o = new Order[names.length];
         answer = new int[names.length];
 
-        for(int i = 0; i < o.length; i++) { // 크기만큼
+        for (int i = 0; i < o.length; i++) { // 크기만큼
             int index = i + 1;  // 인덱스
             String name = names[i]; // 이름
-            int d = (int)Math.pow(homes[i][0], 2) + (int)Math.pow(homes[i][1], 2);  // 거리
-            int g = (int)grades[i]; // 성적
+            int d = (int) Math.pow(homes[i][0], 2) + (int) Math.pow(homes[i][1], 2);  // 거리
+            int g = (int) grades[i]; // 성적
 
             o[i] = new Order(index, g, d, name);    // 객체 생성
         }
@@ -38,8 +38,8 @@ public class 복습2_0701 {
 
         // 학점 -> 거리 -> 이름(사전순)
         Arrays.sort(o, (o1, o2) -> {    // 정렬
-            if(o1.grade == o2.grade) {  // 학점이 같으면
-                if(o1.distance == o2.distance) {    // 거리가 같으면
+            if (o1.grade == o2.grade) {  // 학점이 같으면
+                if (o1.distance == o2.distance) {    // 거리가 같으면
                     return o1.name.compareTo(o2.name);  // 이름: 사전순
                 }
 
@@ -52,7 +52,7 @@ public class 복습2_0701 {
         }); // sort()
 
         int rank = 1;   // 순위 1부터
-        for(int i = 0; i < o.length; i++)   // 크기만큼
+        for (int i = 0; i < o.length; i++)   // 크기만큼
             answer[o[i].index - 1] = rank++;    // 해당하는 인덱스에 순위 저장
     }
 
@@ -67,9 +67,9 @@ public class 복습2_0701 {
 
     public static void main(String[] args) {
 
-        String[] names = new String[] {"lee", "kim", "park"};
-        int[][] homes = new int[][] {{1, 4}, {2, 3}, {3, 2}};
-        double[] grades = new double[] {4.2, 3.9, 3.2};
+        String[] names = new String[]{"lee", "kim", "park"};
+        int[][] homes = new int[][]{{1, 4}, {2, 3}, {3, 2}};
+        double[] grades = new double[]{4.2, 3.9, 3.2};
 
         System.out.println(Arrays.toString(solution(names, homes, grades)));
     }
