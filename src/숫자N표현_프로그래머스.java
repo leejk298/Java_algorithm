@@ -7,15 +7,16 @@ public class 숫자N표현_프로그래머스 {
     }
 
     static class Solution {
-        public static int num;
+        static int num; // 숫자
 
         public int solution(int N, int number) {
-            List<Set<Integer>> arr = new ArrayList<>();
+
+            List<Set<Integer>> arr = new ArrayList<>(); // 집합 리스트
 
             for(int i = 0; i < 9; i++)  // 8까지만, 0번은 편의상
-                arr.add(new HashSet<>());
+                arr.add(new HashSet<>());   // 리스트 구현
 
-            arr.get(1).add(N);
+            arr.get(1).add(N);  // 인덱스 1 저장
 
             for(int i = 2; i < 9; i++) {    // 2부터
                 Set<Integer> set = arr.get(i);
