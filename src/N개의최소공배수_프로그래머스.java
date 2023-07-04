@@ -6,10 +6,11 @@ public class N개의최소공배수_프로그래머스 {
 
     static class Solution {
         public int solution(int[] arr) {
-            int answer = 0;
+
+            int answer = 0; // 결과값
 
             if(arr.length == 1) // 원소 한 개면
-                return arr[0];
+                return arr[0];  // 그대로 리턴
 
             int gcd = GCD(arr[0], arr[1]);  // 최대공약수
             answer = (arr[0] * arr[1]) / gcd;   // 최소공배수
