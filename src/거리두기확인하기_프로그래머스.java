@@ -21,19 +21,17 @@ public class 거리두기확인하기_프로그래머스 {
         }
 
         public int checkDistance(String[] s) {
-            for(int i = 0; i < s.length; i++) { // 행
-                for(int j = 0; j < s[i].length(); j++) { // 열
-                    if(s[i].charAt(j) == 'P') { // 'P'이면
+
+            for(int i = 0; i < s.length; i++)  // 행
+                for(int j = 0; j < s[i].length(); j++)  // 열
+                    if(s[i].charAt(j) == 'P')  // 'P'이면
                         if(!BFS(i, j, s))   // BFS 수행 후 거짓이면 0
                             return 0;
-                    }
-                }
-            }
-
+            // 전부 참이면 1
             return 1;
         }
 
-        public boolean BFS(int x, int y, String[] s) {
+        public boolean BFS(int x, int y, String[] s) { // BFS
             Queue<int[]> queue = new LinkedList<>();    // 큐
             boolean[][] visited = new boolean[s.length][s.length];  // 방문배열
 
