@@ -17,6 +17,7 @@ public class 트리의부모찾기_백준 {
     static int[] parent;    // 부모배열
 
     public static void init() { // 초기화
+
         Scanner sc = new Scanner(System.in);    // 입력
 
         N = sc.nextInt();   // 노드 개수
@@ -39,6 +40,7 @@ public class 트리의부모찾기_백준 {
     }
 
     public static void BFS(int v) { // BFS
+
         Queue<Integer> queue = new LinkedList<>();  // 큐
 
         queue.offer(v); // 루트노드 삽입
