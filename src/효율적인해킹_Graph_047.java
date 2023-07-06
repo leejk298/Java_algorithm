@@ -2,16 +2,21 @@ import java.util.*;
 import java.io.*;
 
 public class 효율적인해킹_Graph_047 {
-    public static void main(String[] args) throws IOException {
+    static int N, M;
+    static ArrayList<Integer>[] A;
+    static boolean[] visited;
+    static int[] res;
+
+    public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
-        int N = Integer.parseInt(st.nextToken()); // 노드
-        int M = Integer.parseInt(st.nextToken()); // 에지
+        N = Integer.parseInt(st.nextToken()); // 노드
+        M = Integer.parseInt(st.nextToken()); // 에지
 
-        ArrayList<Integer> A[] = new ArrayList[N + 1]; // 인접리스트
-        boolean visited[]; // 방문배열
-        int res[] = new int[N + 1]; // 결과배열
+        A = new ArrayList[N + 1]; // 인접리스트
+        res = new int[N + 1]; // 결과배열
 
         for (int i = 1; i <= N; i++) // 노드 개수만큼
             A[i] = new ArrayList<Integer>(); // 인접리스트 구현
@@ -24,23 +29,9 @@ public class 효율적인해킹_Graph_047 {
 
             A[S].add(E); // 인접리스트 추가
         }
-
-        for (int i = 1; i <= N; i++) { // 노드 개수만큼
-            visited = new boolean[N + 1]; // 방문배열 초기화
-            BFS(i, visited, A, res); // BFS
-        }
-
-        int maxVal = 0; // 최대값
-
-        for (int i = 1; i <= N; i++) // 노드 개수만큼
-            maxVal = Math.max(maxVal, res[i]); // 최대값 찾아서
-
-        for (int i = 1; i <= N; i++) // 노드 개수만큼
-            if (res[i] == maxVal) // 최대값을 가진 노드이면
-                System.out.print(i + " "); // 출력
     }
 
-    private static void BFS(int v, boolean[] visited, ArrayList<Integer>[] A, int[] res) { // BFS
+    public static void BFS(int v, boolean[] visited, ArrayList<Integer>[] A, int[] res) { // BFS
 
         Queue<Integer> queue = new LinkedList<Integer>(); // 큐 구현
 
@@ -59,5 +50,28 @@ public class 효율적인해킹_Graph_047 {
                 }
             }
         }
+    }
+
+    public static void printMaxCount() {    // 최대 개수 출력
+        int maxVal = 0; // 최대값
+
+        for (int i = 1; i <= N; i++) // 노드 개수만큼
+            maxVal = Math.max(maxVal, res[i]); // 최대값 찾아서
+
+        for (int i = 1; i <= N; i++) // 노드 개수만큼
+            if (res[i] == maxVal) // 최대값을 가진 노드이면
+                System.out.print(i + " "); // 출력
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        init(); // 초기화
+
+        for (int i = 1; i <= N; i++) { // 노드 개수만큼
+            visited = new boolean[N + 1]; // 방문배열 초기화
+            BFS(i, visited, A, res); // BFS
+        }
+
+        printMaxCount();    // 최대 개수 출력
     }
 }
