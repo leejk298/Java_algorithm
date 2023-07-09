@@ -8,22 +8,23 @@ public class 구명보트_프로그래머스 {
 
     static class Solution {
         public int solution(int[] people, int limit) {
-            int answer = 0;
 
-            Arrays.sort(people);
+            int answer = 0; // 결과값
 
-            int i = 0, j = people.length - 1;
-            while(i <= j) {
-                if(people[i] + people[j] <= limit) {
+            Arrays.sort(people);    // 오름차순 정렬
+
+            int i = 0, j = people.length - 1;   // 인덱스 설정
+            while(i <= j) { // 역전이 아니면 반복
+                if(people[i] + people[j] <= limit) {    // 조건에 만족하면
                     i++;
                     j--;
-                } else
+                } else  // 아니면
                     j--;
 
-                answer++;
+                answer++;   // 개수 카운트
             }
 
-            return answer;
+            return answer;  // 총 개수 리턴
         }
     }
 }
