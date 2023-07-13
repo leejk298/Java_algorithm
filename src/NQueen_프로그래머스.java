@@ -10,15 +10,30 @@ public class NQueen_프로그래머스 {
         static int answer;  // 결과
 
         public int solution(int n) {
+
             answer = 0;     // 초기화
             arr = new int[n];
 
-            BT(0, n);   // 백트래킹
+            DFS(0, n);   // 백트래킹
 
             return answer;  // 결과 리턴
         }
 
-        public static void BT(int depth, int n) {   // 백트래킹
+        public static boolean isValid(int num) {
+
+            for(int i = 0; i < num; i++) {  // 열
+                if(arr[i] == arr[num])  // 같은 행 존재하면 x
+                    return false;
+
+                if(Math.abs(num - i) == Math.abs(arr[num] - arr[i])) // 대각선
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static void DFS(int depth, int n) {   // 백트래킹
+
             if(depth == n) {    // n이 되면
                 answer++;
                 return;
@@ -29,19 +44,8 @@ public class NQueen_프로그래머스 {
                 arr[depth] = i; // 좌표
 
                 if(isValid(depth))  // 유효한지 체크
-                    BT(depth + 1, n);   // 유효하면 다음 열로
+                    DFS(depth + 1, n);   // 유효하면 다음 열로
             }
-        }
-
-        public static boolean isValid(int num) {
-            for(int i = 0; i < num; i++) {  // 열
-                if(arr[i] == arr[num])  // 같은 행 존재하면 x
-                    return false;
-                if(Math.abs(num - i) == Math.abs(arr[num] - arr[i])) // 대각선
-                    return false;
-            }
-
-            return true;
         }
     }
 }
