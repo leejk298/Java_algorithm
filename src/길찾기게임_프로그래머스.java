@@ -12,6 +12,7 @@ public class 길찾기게임_프로그래머스 {
         static int[][] answer;  // 결과배열
 
         public int[][] solution(int[][] nodeinfo) {
+
             answer = new int[2][nodeinfo.length];   // 결과배열 선언
             Node[] node = new Node[nodeinfo.length];    // 노드
 
@@ -42,6 +43,7 @@ public class 길찾기게임_프로그래머스 {
         }
 
         public void preOrder(Node root) {   // 전위 순회: 자 왼 오
+
             if(root == null)    // 베이스 케이스
                 return;
 
@@ -52,6 +54,7 @@ public class 길찾기게임_프로그래머스 {
         }
 
         public void postOrder(Node root) {  // 후위 순회: 왼 오 자
+
             if(root == null)    // 베이스 케이스
                 return;
 
@@ -62,6 +65,7 @@ public class 길찾기게임_프로그래머스 {
         }
 
         public void insertNode(Node parent, Node child) {   // 트리 만들기
+
             if(parent.x > child.x) {    // x값 작으면
                 if(parent.l == null)    // 왼쪽이 제일 작음
                     parent.l = child;
