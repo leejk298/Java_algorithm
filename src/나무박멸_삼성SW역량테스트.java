@@ -19,24 +19,8 @@ public class 나무박멸_삼성SW역량테스트 {
     static int[] dy = { 0, 0, -1, 1 };
     static int res;	// 결과
 
-    public static void main(String[] args) {
-
-        init();		// 1. 초기 설정
-
-        for(int i = 0; i < M; i++) {
-            grow();		// 2. 성장
-
-            breed(); 	// 3. 번식
-
-            after1year();	// 4. 제초제 기간
-
-            remove();	// 5. 제초
-        }
-
-        System.out.println(res);	// 결과 출력
-    }
-
     public static void init() { // 초기화
+
         Scanner sc = new Scanner(System.in);
 
         N = sc.nextInt();	// N
@@ -55,7 +39,7 @@ public class 나무박멸_삼성SW역량테스트 {
     }
 
     public static boolean notValidPos(int x, int y) {	// 좌표 유효한지
-        return !(x >= 1 && x <= N && y >= 1 && y <= N);
+        return (x < 1 || x > N || y < 1 || y > N);
     }
 
     public static void grow() {		// 성장
@@ -82,6 +66,7 @@ public class 나무박멸_삼성SW역량테스트 {
     }
 
     public static void breed() {	// 번식
+
         copy = new int[N + 1][N + 1];	// 복사 배열
         // 초기화
         for(int i = 1; i <= N; i++)
@@ -121,6 +106,7 @@ public class 나무박멸_삼성SW역량테스트 {
                 }
             }
         }
+
         // 동시에 삽입하기 위해
         for(int i = 1; i <= N; i++)
             for(int j = 1; j <= N; j++)
@@ -136,6 +122,7 @@ public class 나무박멸_삼성SW역량테스트 {
     }
 
     public static void remove() {	// 제초
+
         int[] kx = {-1, -1, 1, 1};	// 대각선
         int[] ky = {-1, 1, -1, 1};
 
@@ -205,5 +192,23 @@ public class 나무박멸_삼성SW역량테스트 {
                 check[tmpX][tmpY] = C;	// 제초제 뿌리고
             }
         }
+    }
+
+    public static void main(String[] args) {
+
+        init();		// 1. 초기 설정
+
+        for(int i = 0; i < M; i++) {
+
+            grow();		// 2. 성장
+
+            breed(); 	// 3. 번식
+
+            after1year();	// 4. 제초제 기간
+
+            remove();	// 5. 제초
+        }
+
+        System.out.println(res);	// 결과 출력
     }
 }
