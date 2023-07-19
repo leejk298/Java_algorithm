@@ -50,7 +50,7 @@ public class 트리순회_백준 {
             return; // 리턴
 
         // 재귀 케이스
-        System.out.println((char) (v + 'A'));   // 자
+        System.out.print((char) (v + 'A'));   // 자
         preOrder(tree[v][0]);    // 왼
         preOrder(tree[v][1]);    // 오
     }
@@ -63,7 +63,7 @@ public class 트리순회_백준 {
 
         // 재귀 케이스
         inOrder(tree[v][0]);    // 왼
-        System.out.println(v);   // 자
+        System.out.print((char) (v + 'A'));   // 자
         inOrder(tree[v][1]);    // 오
     }
 
@@ -76,7 +76,7 @@ public class 트리순회_백준 {
         // 재귀 케이스
         postOrder(tree[v][0]);  // 왼
         postOrder(tree[v][1]);  // 오
-        System.out.println(v);   // 자
+        System.out.print((char) (v + 'A'));   // 자
     }
 
     public static void main(String[] args) throws IOException {
