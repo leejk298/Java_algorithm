@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /*
@@ -16,45 +19,58 @@ import java.util.*;
 
 public class 네트워크연결_백준 {
     static int N, M;    // 크기
-    static int[] parent;    // 부모배열, 대표노드
-    static PriorityQueue<Edge> pq;  // 우선순위 큐, 엣지리스트
+    static int[] parent;    // 대표배열
+    static boolean[] visited;   // 방문배열
+    static PriorityQueue<Edge> pq;  // 우선순위 큐
 
-    static class Edge implements Comparable<Edge> { // 엣지 클래스 => Comparable 인터페이스 구현 => compareTo() 메소드 재정의
-        int S, E, W;    // 멤버변수
+    static class Edge implements Comparable<Edge> { // 엣지클래스, 가중치 오름차순 정렬 => 우선순위 큐
+        int S, E, W;    // 시작, 도착, 가중치
 
-        public Edge(int S, int E, int W) {  // 생성자
+        public Edge(int S, int E, int W) {  // 파라미터 생성자
             this.S = S;
             this.E = E;
             this.W = W;
         }
 
         @Override
-        public int compareTo(Edge e) {  // 메소드 재정의
+        public int compareTo(Edge e) {  // 오버라이딩
             return this.W - e.W;    // 오름차순 정렬
         }
     }
 
-    public static void init() { // 초기화
+    public static void init() throws IOException {  // 초기화
 
-        Scanner sc = new Scanner(System.in);    // 입력
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
 
-        N = sc.nextInt();   // 정점
-        M = sc.nextInt();   // 엣지
+        N = Integer.parseInt(bf.readLine());    // 정점 개수
+        M = Integer.parseInt(bf.readLine());    // 엣지 개수
 
         // 초기화
-        parent = new int[N + 1];
-        pq = new PriorityQueue<>();
+        pq = new PriorityQueue<>(); // 우선순위 큐
+        parent = new int[N + 1];    // 대표배열
+        visited = new boolean[N + 1];   // 방문배열
 
-        for(int i = 1; i <= N; i++) // 대표노드 설정
-            parent[i] = i;
+        for(int i = 1; i <= N; i++) // 정점 개수만큼
+            parent[i] = i;  // 대표배열 저장
 
         for(int i = 0; i < M; i++) {    // 엣지 개수만큼
-            int s = sc.nextInt();   // 시작
-            int e = sc.nextInt();   // 끝
-            int w = sc.nextInt();   // 가중치
+            StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-            pq.offer(new Edge(s, e, w));    // 우선순위 큐에 삽입, 엣지 클래스
+            int S = Integer.parseInt(st.nextToken());   // 시작
+            int E = Integer.parseInt(st.nextToken());   // 도착
+            int W = Integer.parseInt(st.nextToken());   // 가중치
+
+            pq.offer(new Edge(S, E, W));    // 우선순위 큐에 삽입, 가중치 오름차순으로 정렬
         }
+    }
+
+    public static int find(int a) { // find
+
+        if(a == parent[a])  // 대표노드가 그대로이면
+            return a;   // 그대로 리턴
+
+        // 다르면 대표노드 타고 가서 해당 대표노드도 갱신
+        return parent[a] = find(parent[a]); // 갱신 후 리턴
     }
 
     public static void union(int a, int b) {    // 합집합
@@ -62,40 +78,30 @@ public class 네트워크연결_백준 {
         a = find(a);    // 대표노드 찾기
         b = find(b);
 
-        if(a < b)   // 대표노드 갱신
-            parent[b] = a;
-        else
-            parent[a] = b;
+        if(a != b)  // 다르면
+            parent[b] = a;  // 합집합
     }
 
-    public static int find(int a) { // find
+    public static void Kruskal() {  // 크루스칼, MST 알고리즘
 
-        if(a == parent[a])  // 같으면 그대로
-            return a;
-
-        return parent[a] = find(parent[a]); // 다르면 갱신
-    }
-
-    public static int printMinWeight() {    // 최소 비용 출력
-
-        int min = 0;    // 최소값
+        int res = 0;    // 최소비용
 
         while(!pq.isEmpty()) {  // 우선순위 큐가 비어있지 않으면
             Edge now = pq.poll();   // 하나 꺼내어
 
-            if(find(now.S) != find(now.E)) {    // 대표노드가 같지않으면, 사이클 X
+            if(find(now.S) != find(now.E)) {    // 서로 다르면
                 union(now.S, now.E);    // 합집합
-                min += now.W;   // 가중치 합
+                res += now.W;   // 최소비용 갱신
             }
         }
 
-        return min; // 최소값 리턴
+        System.out.println(res);    // 최소비용 출력
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         init(); // 초기화
 
-        System.out.println(printMinWeight());   // 최소 비용 출력
+        Kruskal();  // 크루스칼, MST 알고리즘
     }
 }
