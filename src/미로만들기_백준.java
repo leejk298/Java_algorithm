@@ -40,7 +40,6 @@ public class 미로만들기_백준 {
     }
 
     public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
-
         return (x < 0 || x >= N || y < 0 || y >= N);
     }
 
@@ -62,11 +61,10 @@ public class 미로만들기_백준 {
                     continue;
 
                 if(D[nowX][nowY] < D[tmpX][tmpY]) { // 현재 비용이 더 작으면
-                    if(map[tmpX][tmpY] == 1) {  // 다음 좌표가 흰 방이면
+                    if(map[tmpX][tmpY] == 1)  // 다음 좌표가 흰 방이면
                         D[tmpX][tmpY] = D[nowX][nowY];  // 그대로
-                    } else {    // 검은 방이면
+                    else   // 검은 방이면
                         D[tmpX][tmpY] = D[nowX][nowY] + 1;  // 비용 1 추가
-                    }
 
                     queue.offer(new int[] {tmpX, tmpY});    // 다음 좌표 큐에 삽입
                 }
