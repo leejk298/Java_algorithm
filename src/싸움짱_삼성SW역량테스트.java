@@ -2,13 +2,13 @@ import java.util.*;
 
 
 public class 싸움짱_삼성SW역량테스트 {
-    public static final Player EMPTY = new Player(-1, -1, -1, -1, -1, -1);
-    public static int N, M, K;
-    public static ArrayList<Integer>[][] gun; // 각 칸마다 놓여있는 총 목록을 관리합니다.
-    public static Player[] players;
+    public static final Player EMPTY = new Player(-1, -1, -1, -1, -1, -1);  // 초기화
+    public static int N, M, K;  // 크기
+    public static ArrayList<Integer>[][] gun; // 각 칸마다 놓여있는 목록 리스트
+    public static Player[] players; // 플레이어 리스트
     public static int[] dx = new int[]{-1, 0, 1,  0}; // ↑, →, ↓, ←
     public static int[] dy = new int[]{ 0, 1, 0, -1};
-    public static int[] points;
+    public static int[] points; // 점수
 
     static class Player {	// 플레이어 클래스
         int num, x, y, d, s, a;
@@ -50,13 +50,15 @@ public class 싸움짱_삼성SW역량테스트 {
         return (x >= 0 && x < N && y >= 0 && y < N);
     }
 
-    public static void init() {
-        Scanner sc = new Scanner(System.in);
+    public static void init() { // 초기화
+
+        Scanner sc = new Scanner(System.in);    // 입력
 
         N = sc.nextInt();	// 격자 크기
         M = sc.nextInt();	// 플레이어 수
         K = sc.nextInt();	// 라운드
 
+        // 초기화
         gun = new ArrayList[N][N];
         for(int i = 0; i < N; i++) {	// 격자
             for(int j = 0; j < N; j++) {
@@ -68,6 +70,7 @@ public class 싸움짱_삼성SW역량테스트 {
             }
         }
 
+        // 초기화
         players = new Player[M];
         points = new int[M];
         for(int i = 0; i < M; i++) {	// 플레이어
@@ -83,6 +86,7 @@ public class 싸움짱_삼성SW역량테스트 {
     // 현재 (x, y)위치에서 방향 d를 보고 있을 때
     // 그 다음 위치와 방향을 찾아줍니다.
     public static Tuple getNext(int x, int y, int d) {
+
         int tmpX = x + dx[d], tmpY = y + dy[d];	// 다음 위치
 
         if(!validPos(tmpX, tmpY)) {	// 유효한지
@@ -97,6 +101,7 @@ public class 싸움짱_삼성SW역량테스트 {
     }
 
     public static Player findPlayer(Pair pos) {
+
         for(int i = 0; i < M; i++) {	// 플레이어 정보
             // 해당 좌표에
             int x = players[i].x, y = players[i].y;
@@ -110,6 +115,7 @@ public class 싸움짱_삼성SW역량테스트 {
 
     // Player p의 정보를 갱신해줍니다.
     public static void update(Player p) {	// 위치 이동
+
         int num = p.num;	// 인덱스
 
         // 해당 인덱스로 전역변수 접근
@@ -126,6 +132,7 @@ public class 싸움짱_삼성SW역량테스트 {
 
     // 플레이어 p를 위치 pos로 이동
     public static void move(Player p, Pair pos) {
+
         int num = p.num, x = p.x, y = p.y, d = p.d, s = p.s, a = p.a;
         int nx = pos.x, ny = pos.y;
 
@@ -141,6 +148,7 @@ public class 싸움짱_삼성SW역량테스트 {
     // 진 사람의 움직임을 진행합니다.
     // 결투에서 패배한 위치는 pos입니다.
     public static void loserMove(Player p) {
+
         int num = p.num, x = p.x, y = p.y, d = p.d, s = p.s, a = p.a;
 
         // 먼저 현재 위치에 총을 내려놓게 됩니다.
@@ -152,6 +160,7 @@ public class 싸움짱_삼성SW역량테스트 {
         // 회전하다가
         // 비어있는 최초의 곳으로 이동합니다.
         for(int i = 0; i < 4; i++) {
+
             int ndir = (d + i) % 4;
             int nx = x + dx[ndir], ny = y + dy[ndir];
             if(validPos(nx, ny) && findPlayer(new Pair(nx, ny)) == EMPTY) {
@@ -164,6 +173,7 @@ public class 싸움짱_삼성SW역량테스트 {
 
     // p2과 p2가 pos에서 만나 결투를 진행합니다.
     public static void duel(Player p1, Player p2, Pair pos) { // 결투
+
         int num1 = p1.num, d1 = p1.d, s1 = p1.s, a1 = p1.a;
         int num2 = p2.num, d2 = p2.d, s2 = p2.s, a2 = p2.a;
 
@@ -184,6 +194,7 @@ public class 싸움짱_삼성SW역량테스트 {
     }
 
     public static void simulate() {	// 시뮬레이션
+
         // 1번 플레이어부터 시작
         for(int i = 0; i < M; i++) {	// 플레이어 정보
             int num = players[i].num;
