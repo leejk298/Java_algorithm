@@ -30,6 +30,7 @@ public class 특정거리의도시_백준 {
     }
 
     public static void init() { // 초기화
+
         Scanner sc = new Scanner(System.in);    // 입력
 
         N = sc.nextInt();   // 노드개수
@@ -56,6 +57,7 @@ public class 특정거리의도시_백준 {
     }
 
     public static void Dijkstra(int v) {    // 다익스트라
+
         PriorityQueue<Node> pq = new PriorityQueue<>(); // 우선순위 큐
 
         D[v] = 0;   // 시작점 0 으로 초기화
