@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 /*
 6 4
@@ -15,19 +16,23 @@ public class 토마토_백준 {
     static int[] dy = {0, 0, -1, 1};
     static Queue<int[]> queue;  // 큐
 
-    public static void init() { // 초기화
-        Scanner sc = new Scanner(System.in);    // 입력
+    public static void init() throws IOException { // 초기화
 
-        M = sc.nextInt();   // 열
-        N = sc.nextInt();   // 행
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
+
+        M = Integer.parseInt(st.nextToken());   // 열
+        N = Integer.parseInt(st.nextToken());   // 행
 
         // 초기화
         map = new int[N][M];
         queue = new LinkedList<>();
 
         for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(bf.readLine());
+
             for (int j = 0; j < M; j++) {
-                map[i][j] = sc.nextInt();   // 맵 저장
+                map[i][j] = Integer.parseInt(st.nextToken());   // 맵 저장
 
                 if (map[i][j] == 1) // 1이면
                     queue.offer(new int[]{i, j});   // 큐에 삽입
@@ -60,6 +65,7 @@ public class 토마토_백준 {
     }
 
     public static int checkTomato() {   // 토마토 며칠 걸리는지
+
         int answer = 0; // 일
 
         for(int i = 0; i < N; i++) {    // 행
@@ -74,7 +80,7 @@ public class 토마토_백준 {
         return answer - 1;  // 1부터 시작이므로 -1 해주므로 1일 때 0 잡을 수 있음
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         init(); // 초기화
 
