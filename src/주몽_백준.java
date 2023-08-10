@@ -8,26 +8,30 @@ import java.io.*;
  */
 
 public class 주몽_백준 {
+    static int N, M;
+    static int[] arr;
 
-    public static void main(String[] args) throws IOException {
+    public static void init() throws IOException {
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        int N = Integer.parseInt(st.nextToken());   // 크기
+        N = Integer.parseInt(st.nextToken());   // 크기
 
         st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
-        int M = Integer.parseInt(st.nextToken());   // 총 합
+        M = Integer.parseInt(st.nextToken());   // 총 합
 
-        int[] arr = new int[N]; // 초기화
+        arr = new int[N]; // 초기화
 
         st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
         for(int i = 0; i < N; i++)  // 크기만큼
             arr[i] = Integer.parseInt(st.nextToken());  // 입력배열 저장
+    }
 
-        Arrays.sort(arr);   // 오름차순 정렬
+    public static void findMaxCount() {
 
         int i = 0, j = N - 1, count = 0;    // 양 끝 인덱스, 개수
+
         while(i < j) {  // 역전이 아니면
             if(arr[i] + arr[j] < M) // 총 합보다 작으면
                 i++;    // 커져야함
@@ -41,5 +45,14 @@ public class 주몽_백준 {
         }
 
         System.out.println(count);  // 총 개수 출력
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        init();
+
+        Arrays.sort(arr);   // 오름차순 정렬
+
+        findMaxCount();
     }
 }
