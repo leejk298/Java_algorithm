@@ -21,7 +21,7 @@ public class N과M2_백준 {
         arr = new int[M];
     }
 
-    public static void BackTracking(int num, int depth) {   // 백트래킹
+    public static void BackTracking(int num, int depth) {   // DFS, 백트래킹
 
         if(depth == M) {    // 베이스케이스, 도달하면
             for(int i : arr)    // 하나씩 출력
@@ -29,14 +29,14 @@ public class N과M2_백준 {
 
             System.out.println();   // 개행문자 출력
 
-            return; // 함수 리턴
+            return; // 함수 리턴, 완전탐색 하기 위해
         }
 
         for(int i = num; i < N; i++) {  // 숫자 크기만큼
             if(!visited[i]) {   // 방문하지 않았으면
                 visited[i] = true;  // 방문여부 갱신
                 arr[depth] = i + 1; // 결과배열에 저장
-                BackTracking(i + 1, depth + 1); // 재귀콜
+                BackTracking(i + 1, depth + 1); // 재귀콜, 오름차순, 중복제거
                 visited[i] = false; // 리턴되면 해당 숫자 방문여부 갱신
             }
         }
@@ -46,6 +46,6 @@ public class N과M2_백준 {
 
         init(); // 초기화
 
-        BackTracking(0, 0); // 백트래킹
+        BackTracking(0, 0); // DFS, 백트래킹
     }
 }
