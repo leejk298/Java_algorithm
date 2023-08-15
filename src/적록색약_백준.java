@@ -11,20 +11,20 @@ RRRRR
  */
 
 public class 적록색약_백준 {
-    static int N;   // 크기
+    static int N, num1, num2;   // 크기
     static char[][] map;    // 맵
     static boolean[][] visited; // 방문배열
     static int[] dx = {-1, 1, 0, 0};    // 4방향
     static int[] dy = {0, 0, -1, 1};
 
     public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
         N = Integer.parseInt(st.nextToken());   // 크기
 
         map = new char[N][N];   // 초기화
-
         for (int i = 0; i < N; i++) {   // 행
             char[] ch = bf.readLine().toCharArray(); // 문자 배열
 
@@ -39,6 +39,7 @@ public class 적록색약_백준 {
     }
 
     public static void BFS(int x, int y, boolean flag) {    // BFS
+
         Queue<int[]> queue = new LinkedList<>();    // 큐
 
         queue.offer(new int[]{x, y});   // 시작점 추가
@@ -71,12 +72,11 @@ public class 적록색약_백준 {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void countNotRedGreen() { // 적록색약이 아닌 사람
 
-        init(); // 초기화
-
-        int num1 = 0;
+        num1 = 0;
         visited = new boolean[N][N]; // 방문배열 초기화
+
         for(int i = 0; i < N; i++) {    // 행
             for(int j = 0; j < N; j++) {    // 열
                 if(map[i][j] == 'R' && !visited[i][j]) {    // R
@@ -95,9 +95,13 @@ public class 적록색약_백준 {
                 }
             }
         }
+    }
 
-        int num2 = 0;
+    public static void countRedGreen() {    // 적록색약인 사람
+
+        num2 = 0;
         visited = new boolean[N][N];
+
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++) {
                 if((map[i][j] == 'R' || map[i][j] == 'G') && !visited[i][j]) {  // R 혹은 G
@@ -111,6 +115,15 @@ public class 적록색약_백준 {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        init(); // 초기화
+
+        countNotRedGreen(); // 적록색약이 아닌 사람
+
+        countRedGreen();    // 적록색약인 사람
 
         System.out.print(num1 + " " + num2);    // 개수 출력
     }
