@@ -45,6 +45,7 @@ public class 너비우선탐색2_백준 {
     }
 
     public static void BFS(int v) { // BFS
+
         Queue<Integer> queue = new LinkedList<>();  // 큐
 
         queue.offer(v); // 시작점 삽입
