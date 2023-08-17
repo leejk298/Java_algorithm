@@ -28,8 +28,8 @@ public class 경로찾기_백준 {
     }
 
     public static void FloydWarshall() {    // 플로이드워셜
-        // N이 최대 100이므로 가능
 
+        // N이 최대 100이므로 가능
         for(int k = 0; k < N; k++)  // 경유지 K에 대해
             for(int i = 0; i < N; i++)  // 시작점에서
                 for(int j = 0; j < N; j++)  // 도착점으로
