@@ -7,7 +7,6 @@ import java.util.*;
 public class 게임_백준 {
 
     public static long winPercent(long x, long y) {    // 승률 구하기
-
         return y * 100 / x;   // 100을 곱하면 int 범위 넘어갈 수 있으므로 long 형변환
     }
 
@@ -22,7 +21,6 @@ public class 게임_백준 {
 
         if (Z >= 99)    // 99 이상이면
             System.out.println(-1); // 바뀔 수 없으므로 -1 출력
-
         else {  // 99 미만이면
             long S = 1, E = X;  // 인덱스 설정, E: 최악의 경우 => 최대 판 수
             long res = 0;    // 결과값
