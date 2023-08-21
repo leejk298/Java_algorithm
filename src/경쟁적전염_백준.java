@@ -28,6 +28,7 @@ public class 경쟁적전염_백준 {
     }
 
     public static void init() { // 초기화
+
         Scanner sc = new Scanner(System.in);    // 입력
 
         N = sc.nextInt();   // 크기
@@ -51,6 +52,13 @@ public class 경쟁적전염_백준 {
         S = sc.nextInt();   // 시간
         r = sc.nextInt();   // 좌표
         c = sc.nextInt();
+
+        Collections.sort(list, (o1, o2) -> {    // 바이러스 정렬
+            return o1.virus - o2.virus;
+        });
+
+        for(Node node : list)   // 큐에 삽입
+            queue.offer(node);
     }
 
     public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
@@ -58,6 +66,7 @@ public class 경쟁적전염_백준 {
     }
 
     public static void BFS() {  // BFS
+
         while(!queue.isEmpty()) {   // 큐가 비어있지않으면
             Node now = queue.poll();    // 하나 꺼내어
 
@@ -82,13 +91,6 @@ public class 경쟁적전염_백준 {
     public static void main(String[] args) {
 
         init(); // 초기화
-
-        Collections.sort(list, (o1, o2) -> {    // 바이러스 정렬
-            return o1.virus - o2.virus;
-        });
-
-        for(Node node : list)   // 큐에 삽입
-            queue.offer(node);
 
         BFS();  // BFS
 
