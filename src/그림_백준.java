@@ -41,7 +41,6 @@ public class 그림_백준 {
     }
 
     public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
-
         return (x < 0 || x >= N || y < 0 || y >= M);
     }
     
