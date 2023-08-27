@@ -12,30 +12,42 @@ import java.util.*;
  */
 
 public class 벽부수고이동2_백준 {
-    static int N, M, K, D;  // 크기, 거리
-    static int[][] map; // 맵
-    static boolean[][][] visited;   // 방문배열, 벽 부수는 것도 고려
+    static int N, M, K, res;    // 크기, 결과값
+    static int[][] map; // 입력배열
+    static boolean[][][] visited;   // 방문배열, Z: 부술 수 있는 횟수
     static int[] dx = {-1, 1, 0, 0};    // 4방향
-    static int[] dy = {0, 0, -1, 1};
+    static int[] dy = {0, 0, -1 ,1};
+
+    static class Node { // 내부 클래스
+        int x, y, z, d; // 좌표, 부술 수 있는 횟수, 거리: 거리배열로 표현할 수 없음 => 겹침 => 객체로 표현
+
+        public Node (int x, int y, int z, int d) {  // 파라미터 생성자
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.d = d;
+        }
+    }
 
     public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
         N = Integer.parseInt(st.nextToken());   // 행
         M = Integer.parseInt(st.nextToken());   // 열
-        K = Integer.parseInt(st.nextToken());   // 부술수 있는 횟수
+        K = Integer.parseInt(st.nextToken());   // 부술 수 있는 횟수
+        res = Integer.MAX_VALUE;    // 최대값으로 초기화
 
         // 초기화
         map = new int[N][M];
-        visited = new boolean[N][M][K + 1]; // K번 가능
+        visited = new boolean[N][M][K + 1]; // 횟수만큼 표현하기 위해: K + 1
 
         for(int i = 0; i < N; i++) {    // 행
-            String str = bf.readLine(); // 한 줄 스트링
+            char[] ch = bf.readLine().toCharArray();    // 문자배열
 
-            for(int j = 0; j < M; j++) {    // 열
-                map[i][j] = str.charAt(j) - '0';    // 정수형으로 변환하여 저장
-            }
+            for(int j = 0; j < M; j++)  // 열
+                map[i][j] = ch[j] - '0';    // 입력배열 저장
         }
     }
 
@@ -43,64 +55,50 @@ public class 벽부수고이동2_백준 {
         return (x < 0 || x >= N || y < 0 || y >= M);
     }
 
-    public static boolean BFS() {   // BFS
+    public static boolean BFS(int x, int y, int z) {    // BFS
+
         Queue<Node> queue = new LinkedList<>(); // 큐
 
-        queue.offer(new Node(0, 0, 1, 0));  // 거리 1부터, 시작점 삽입
-        visited[0][0][0] = true;    // 방문여부 갱신, 벽 부수는거 0
+        queue.offer(new Node(x, y, z, 1));  // 시작점, 부순 횟수 0, 거리 1인 Node 객체 큐에 삽입
+        visited[x][y][z] = true;    // 시작점부터 방문
 
         while(!queue.isEmpty()) {   // 큐가 비어있지 않으면
             Node now = queue.poll();    // 하나 꺼내어
 
-            int nowX = now.x, nowY = now.y, nowD = now.d, nowW = now.w;
+            int nowX = now.x, nowY = now.y, nowZ = now.z, nowD = now.d; // 현재 노드
 
-            if(nowX == N - 1 && nowY == M - 1) {    // 도착이면
-                D = nowD;   // 최단거리 저장
+            if(nowX == N - 1 && nowY == M - 1) {    // 도착점에 도달하면
+                res = Math.min(res, nowD); // 결과값 저장
 
-                return true;    // true 리턴
+                return true;    // true
             }
 
             for(int i = 0; i < 4; i++) {    // 4방향
                 int tmpX = nowX + dx[i], tmpY = nowY + dy[i];   // 다음 좌표
 
-                if(isNotValidPos(tmpX, tmpY))   // 유효한지
+                if(isNotValidPos(tmpX, tmpY) || visited[tmpX][tmpY][nowZ])  // 유효한지
                     continue;
 
-                if(map[tmpX][tmpY] == 1) {  // 벽, 1인 경우
-                    if(nowW < K && !visited[tmpX][tmpY][nowW + 1]) {    // K 번까지 가능
-                        visited[tmpX][tmpY][nowW + 1] = true;   // 방문여부 갱신
-                        queue.offer(new Node(tmpX, tmpY, nowD + 1, nowW + 1));   // 큐에 삽입
-                    }
-                } else {    // 0
-                    if(!visited[tmpX][tmpY][nowW]) {    // 벽 부수기 x
-                        visited[tmpX][tmpY][nowW] = true;
-                        queue.offer(new Node(tmpX, tmpY, nowD + 1, nowW));
-                    }
+                if(map[tmpX][tmpY] == 0) {  // 벽이 아니면
+                    visited[tmpX][tmpY][nowZ] = true;   // 방문
+                    queue.offer(new Node(tmpX, tmpY, nowZ, nowD + 1));  // 거리 + 1 갱신 후 큐에 삽입
+                } else if(nowZ < K && !visited[tmpX][tmpY][nowZ + 1]) { // 벽이고 부술 수 있으면서 방문 가능하면
+                    visited[tmpX][tmpY][nowZ + 1] = true;   // 방문
+                    queue.offer(new Node(tmpX, tmpY, nowZ + 1, nowD + 1));  // 횟수 + 1, 거리 + 1 갱신 후 큐에 삽입
                 }
             }
         }
 
-        return false;   // 여기로 오면 도달 x 이므로 false 리턴
-    }
-
-    static class Node { // 내부 클래스로 구현, Node
-        int x, y, d, w; // 좌표, 거리, 부수는 횟수
-
-        public Node(int x, int y, int d, int w) {
-            this.x = x;
-            this.y = y;
-            this.d = d;
-            this.w = w;
-        }
+        return false;   // 여기에 도달하면 도착점에 가지 못하는 것이므로 false
     }
 
     public static void main(String[] args) throws IOException {
 
-        init(); // 초기화
+       init();  // 초기화
 
-        if(BFS())   // 도달하면
-            System.out.print(D);    // 최단거리 출력
-        else    // 도달하지 못하면
-            System.out.print(-1);   // -1 출력
+       if(BFS(0, 0, 0)) // BFS, 도달 가능하면
+           System.out.println(res); // 결과값 출력
+       else // 도달 불가능하면
+           System.out.println(-1);  // -1 출력
     }
 }
