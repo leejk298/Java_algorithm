@@ -20,7 +20,6 @@ import java.util.*;
 public class 네트워크연결_백준 {
     static int N, M;    // 크기
     static PriorityQueue<Edge> pq;  // 우선순위 큐, 엣지클래스 (크루스칼 - MST) <-> 노드클래스 (다익스트라 - 최단경로)
-    static boolean[] visited;   // 방문배열
     static int[] parent;    // 부모배열
 
     static class Edge implements Comparable<Edge> { // 엣지클래스, 우선순위 큐 => Comparable 클래스 구현 => compareTo() 메소드 재정의
@@ -49,7 +48,6 @@ public class 네트워크연결_백준 {
 
         // 초기화
         pq = new PriorityQueue<>();
-        visited = new boolean[N + 1];
         parent = new int[N + 1];
 
         for(int i = 1; i <= N; i++) // 정점 개수만큼
