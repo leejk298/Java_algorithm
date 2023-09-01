@@ -21,6 +21,7 @@ public class 양_백준 {
     static int[] dy = {0, 0, -1, 1};
 
     public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
@@ -61,6 +62,7 @@ public class 양_백준 {
     }
 
     public static int[] countSheepAndWolf() {   // 양, 늑대 개수 카운트
+
         int countS = 0, countW = 0; // 총 개수
 
         for(int i = 0; i < N; i++) {    // 행
