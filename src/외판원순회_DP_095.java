@@ -7,29 +7,29 @@ public class 외판원순회_DP_095 {
     static int W[][]; // 비용
     static int D[][]; // 점화식
 
-    public static void main(String[] args) throws IOException {
+    public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
 
         N = Integer.parseInt(bf.readLine()); // 개수
+        INF = 1000000 * N + 1; // 초기화
 
         W = new int[N][N]; // 초기화
-        for (int i = 0; i < N; i++) {
-            StringTokenizer st = new StringTokenizer(bf.readLine());
+        for (int i = 0; i < N; i++) {   // 행
+            StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-            for (int j = 0; j < N; j++)
-                W[i][j] = Integer.parseInt(st.nextToken());
+            for (int j = 0; j < N; j++) //열
+                W[i][j] = Integer.parseInt(st.nextToken()); // 입력배열 저장
         }
 
-        INF = 1000000 * N + 1; // 초기화
         D = new int[N][1 << N]; // 1 << N = 10000(2) = 16
         for (int i = 0; i < N; i++) // 초기화
             for (int j = 0; j < (1 << N); j++)
                 D[i][j] = INF;
-
-        System.out.println(tsp(0, 1)); // 0번 도시부터 시작, 00001 => 1번 도시 방문
     }
 
-    private static int tsp(int c, int v) { // 최소비용 찾기
+    public static int tsp(int c, int v) { // 최소비용 찾기
+
         if (v == (1 << N) - 1) // 전부 방문 하면 01111(2) = 15 = 16 - 1
             return W[c][0] == 0 ? INF : W[c][0]; // 0이면 시작도시로 못돌아오는 것, 0이 아니면 그대로 값 리턴
 
@@ -42,5 +42,12 @@ public class 외판원순회_DP_095 {
                 D[c][v] = Math.min(D[c][v], tsp(i, (v | (1 << i))) + W[c][i]); // 재귀콜
 
         return D[c][v]; // 최소비용 리턴
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        init(); // 초기화
+
+        System.out.println(tsp(0, 1)); // 0번 도시부터 시작, 00001 => 1번 도시 방문
     }
 }
