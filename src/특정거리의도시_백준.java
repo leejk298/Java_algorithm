@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 /*
 4 4 2 1
@@ -9,103 +10,81 @@ import java.util.*;
  */
 
 public class 특정거리의도시_백준 {
-    static int N, M, K, X;  // 크기, 특정거리, 시작점
-    static int[] D; // 거리배열
-    static List<Node>[] A;  // 인접리스트
-    static boolean[] visited;   // 방문배열
+    static int N, M, K, X;  // 크기, 거리, 시작도시
+    static List<Integer>[] A;   // 인접리스트
+    static int[] visited;   // 방문배열
 
-    // Node 클래스 => Comparable 인터페이스 구현 => compareTo() 메소드재정의
-    static class Node implements Comparable<Node> { // 내부클래스
-        int num, w;
+    public static void init() throws IOException {  // 초기화
 
-        public Node(int num, int w) {
-            this.num = num;
-            this.w = w;
-        }
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        @Override
-        public int compareTo(Node v) {  // 재정의
-            return this.w - v.w;
-        }
-    }
-
-    public static void init() { // 초기화
-
-        Scanner sc = new Scanner(System.in);    // 입력
-
-        N = sc.nextInt();   // 노드개수
-        M = sc.nextInt();   // 엣지개수
-        K = sc.nextInt();   // 특정거리
-        X = sc.nextInt();   // 시작위치
+        N = Integer.parseInt(st.nextToken());   // 정점 개수
+        M = Integer.parseInt(st.nextToken());   // 엣지 개수
+        K = Integer.parseInt(st.nextToken());   // 특정 거리
+        X = Integer.parseInt(st.nextToken());   // 시작 도시
 
         // 초기화
-        D = new int[N + 1];
-        visited = new boolean[N + 1];
         A = new ArrayList[N + 1];
+        visited = new int[N + 1];
 
-        for(int i = 1; i <= N; i++) {   // 1부터 N까지
+        for(int i = 1; i <= N; i++) {   // 정점 개수만큼
             A[i] = new ArrayList<>();   // 인접리스트 구현
-            D[i] = 300001;  // 최대값으로 초기화
+            visited[i] = -1;    // -1로 초기화 => 거리가 1로 동일하므로 방문배열로 구현
         }
 
-        for(int i = 0; i < M; i++) {    // 엣지개수만큼
-            int S = sc.nextInt();   // 시작
-            int E = sc.nextInt();   // 끝
+        for(int i = 0; i < M; i++) {    // 엣지 개수만큼
+            st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-            A[S].add(new Node(E, 1));   // 인접리스트 저장
+            int start = Integer.parseInt(st.nextToken());   // 시작
+            int end = Integer.parseInt(st.nextToken());     // 도착
+
+            A[start].add(end);  // 인접리스트 저장
         }
     }
 
-    public static void Dijkstra(int v) {    // 다익스트라
+    public static void BFS(int v) { // BFS
 
-        PriorityQueue<Node> pq = new PriorityQueue<>(); // 우선순위 큐
+        Queue<Integer> queue = new LinkedList<>();  // 큐
 
-        D[v] = 0;   // 시작점 0 으로 초기화
-        pq.offer(new Node(v, 0));   // 큐에 삽입
+        queue.offer(v); // 시작점 큐에 삽입
+        visited[v] = 0; // 거리 0부터 시작
 
-        while(!pq.isEmpty()) {  // 비어있지 않으면
-            Node now = pq.poll();   // 하나 꺼내어
-            int nowNode = now.num;  // 노드
+        while(!queue.isEmpty()) {   // 큐가 비어있지 않으면
+            int now = queue.poll(); // 하나 꺼내어
 
-            if(!visited[nowNode])   // 방문하지 않았으면
-                visited[nowNode] = true;    // 방문여부 갱신
+            for(int i = 0; i < A[now].size(); i++) {    // 인접리스트 개수만큼
+                int next = A[now].get(i);   // 다음 도시
 
-            for(int i = 0; i < A[nowNode].size(); i++) {    // 인접리스트 크기만큼
-                Node next = A[nowNode].get(i);  // 하나씩 순회하여
-
-                int nextNode = next.num;    // 다음 노드
-                int w = next.w; // 거리
-
-                if(!visited[nextNode] && D[nextNode] > D[nowNode] + w) {    // 방문하지않았고, 최단경로이면
-                    D[nextNode] = D[nowNode] + w;   // 값 갱신
-                    pq.offer(new Node(nextNode, D[nextNode]));  // 큐에 삽입
+                if(visited[next] == -1) {   // 방문한 적이 없으면
+                    visited[next] = visited[now] + 1;   // 방문, 거리 + 1
+                    queue.offer(next);  // 큐에 삽입
                 }
             }
         }
     }
 
-    public static void print() {    // 출력
+    public static void printCity() {    // 도시 출력
 
-        List<Integer> list = new ArrayList<>(); // 결과리스트
+        boolean flag = false;   // 특정 거리에 있는 도시 여부
 
-        for (int i = 1; i <= N; i++)    // 노드개수만큼
-            if (D[i] == K)  // 특정거리이면
-                list.add(i);    // 추가
-
-        if (list.size() == 0)   // 추가된 노드가 없으면
-            System.out.println(-1); // -1 출력
-        else {  // 있으면
-            for (int i : list)  // 하나씩
-                System.out.println(i);  // 출력
+        for(int i = 1; i <= N; i++) {   //  정점 개수만큼
+            if(visited[i] == K) {   // 특정 거리에 도시가 있다면
+                System.out.println(i);  // 해당 도시 출력
+                flag = true;    // true
+            }
         }
+
+        if(!flag)   // 없다면
+            System.out.println(-1); // -1 출력
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         init(); // 초기화
 
-        Dijkstra(X);    // 다익스트라
+        BFS(X); // 시작점으로 BFS
 
-        print();    // 출력
+        printCity();    // 특정 거리에 있는 도시 출력
     }
 }
