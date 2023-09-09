@@ -9,13 +9,14 @@ import java.util.*;
  */
 
 public class 영상처리_백준 {
-    static int N, M, T, count;  // 개수
+    static int N, M, T;  // 개수
     static int[][] map; // 맵
     static boolean[][] visited; // 방문배열
     static int[] dx = {-1, 1, 0, 0};    // 4방향
     static int[] dy = {0, 0, -1, 1};
 
     public static void init() { // 초기화
+
         Scanner sc = new Scanner(System.in);    // 입력
 
         N = sc.nextInt();   // 행
@@ -46,6 +47,7 @@ public class 영상처리_백준 {
     }
 
     public static void BFS(int x, int y) {  // BFS
+
         Queue<int[]> queue = new LinkedList<>();    // 큐
 
         queue.offer(new int[]{x, y});   // 시작점 삽입
@@ -70,7 +72,8 @@ public class 영상처리_백준 {
     }
 
     public static int findPixel() {    // 픽셀 개수 찾기
-        count = 0;  // 개수
+
+        int count = 0;  // 개수
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
