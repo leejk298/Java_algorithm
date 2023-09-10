@@ -11,8 +11,7 @@ import java.io.*;
 
 public class 욕심쟁이판다_백준 {
     static int N;  // 크기
-    static int[][] map; // 맵
-    static int[][] dp;  // DP 배열
+    static int[][] map, dp; // 입력, dp 배열
     static int[] dx = {-1, 1, 0, 0};    // 4방향
     static int[] dy = {0, 0, -1, 1};
 
@@ -62,6 +61,7 @@ public class 욕심쟁이판다_백준 {
     public static int printMaxShift() { // 최대값 출력
 
         int max = 0;    // 최대값
+
         for (int i = 0; i < N; i++)  // 행
             for (int j = 0; j < N; j++)  // 열
                 max = Math.max(max, DFS(i, j)); // 최대값, DFS
