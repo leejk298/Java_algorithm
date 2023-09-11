@@ -128,10 +128,8 @@ public class 빙산_백준 {
             countZero();    // 주변의 0 개수에 맞게 제거
 
             if (findNum() != 1) {    // 빙산 개수가 1개가 아니면
-                if (findNum() == 0) {    // 0개이면, 다 없어진 경우
+                if (findNum() == 0)    // 0개이면 다 없어진 경우이므로
                     year = 0;   // 0
-                }
-
                 break;  // 반복문 종료
             }
         }
