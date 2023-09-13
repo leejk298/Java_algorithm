@@ -9,6 +9,7 @@ public class 가장길게증가하는수열_DP_096 {
     static int res[]; // 결과
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
 
         N = Integer.parseInt(bf.readLine()); // 개수
@@ -18,12 +19,14 @@ public class 가장길게증가하는수열_DP_096 {
         res = new int[N + 1];
 
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
+
         for (int i = 1; i <= N; i++) // 개수만큼
             A[i] = Integer.parseInt(st.nextToken()); // 수열 저장
 
         int index; // 위치
         B[++maxLength] = A[1]; // 한 개 받고
         D[1] = 1; // 길이 1 저장
+
         for (int i = 2; i <= N; i++) { // 2부터 N까지
             if (B[maxLength] < A[i]) { // 다음 수열의 크기가 크면
                 B[++maxLength] = A[i]; // 맞는 위치 배열에 저장
@@ -39,6 +42,7 @@ public class 가장길게증가하는수열_DP_096 {
 
         index = maxLength; // 인덱스 설정
         int x = B[maxLength] + 1; // 최대값 설정
+
         for (int i = N; i >= 1; i--) { // 뒤에서 부터
             if (D[i] == index && A[i] < x) { // 맞는 위치이고 최대값보다 작으면
                 res[index] = A[i]; // 해당 값을 결과배열에 저장
@@ -53,10 +57,12 @@ public class 가장길게증가하는수열_DP_096 {
     }
 
     private static int binarySearch(int l, int r, int now) { // 이진 탐색
+
         int mid; // 중간값
 
         while (l < r) { // 역전이 일어나지않을 때까지 반복
             mid = (l + r) / 2;
+
             if (B[mid] < now) // 중간값보다 크면
                 l = mid + 1; // left 갱신 => GT
             else // 중간값보다 작으면
