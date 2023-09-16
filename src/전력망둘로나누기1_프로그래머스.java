@@ -26,9 +26,9 @@ public class 전력망둘로나누기1_프로그래머스 {
         }
 
         public int solution(int n, int[][] wires) {
-
             // 초기화
             answer = n - 2; // 최대 개수는 n - 2 => 자신 빼면
+
             A = new ArrayList[n + 1];   // 인접리스트
             for (int i = 1; i <= n; i++)
                 A[i] = new ArrayList<>();
@@ -42,11 +42,13 @@ public class 전력망둘로나누기1_프로그래머스 {
             for (int i = 0; i < wires.length; i++) {    // 크기만큼
                 visited = new boolean[n + 1];   // 방문배열 초기화
                 count = 0;  // 개수 초기화
+
                 DFS(wires[i][0], wires[i][1]);  // DFS
                 int count1 = count; // 개수1 저장
 
                 visited = new boolean[n + 1];
                 count = 0;
+
                 DFS(wires[i][1], wires[i][0]);
                 int count2 = count; // 개수2 저장
 
