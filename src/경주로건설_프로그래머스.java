@@ -14,6 +14,7 @@ public class 경주로건설_프로그래머스 {
         static int[] dy = {0, 0, -1, 1};
 
         public static void BFS(int x, int y, int dir, int c) {  // BFS
+
             Queue<Node> queue = new LinkedList<>(); // 큐
 
             queue.offer(new Node(x, y, dir, c));    // 시작점 추가
