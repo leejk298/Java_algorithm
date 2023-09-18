@@ -12,6 +12,7 @@ public class 거리두기확인하기_프로그래머스 {
         static int[] dy = {0, 0, -1, 1};
 
         public int[] solution(String[][] places) {
+
             int[] answer = new int[places.length];  // 결과배열
 
             for(int i = 0; i < places.length; i++)
@@ -32,6 +33,7 @@ public class 거리두기확인하기_프로그래머스 {
         }
 
         public boolean BFS(int x, int y, String[] s) { // BFS
+
             Queue<int[]> queue = new LinkedList<>();    // 큐
             boolean[][] visited = new boolean[s.length][s.length];  // 방문배열
 
