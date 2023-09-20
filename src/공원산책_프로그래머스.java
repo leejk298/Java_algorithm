@@ -14,11 +14,13 @@ public class 공원산책_프로그래머스 {
         static int[] answer;
 
         public int[] solution(String[] park, String[] routes) {
+
             answer = new int[2];
+
             col = park[0].length();
             row = park.length;
-            map = new char[row][col];
 
+            map = new char[row][col];
             for(int i = 0; i < park.length; i++) {
                 for(int j = 0; j < park[0].length(); j++) {
                     char ch = park[i].charAt(j);
@@ -44,10 +46,11 @@ public class 공원산책_프로그래머스 {
         }
 
         static int[] getNum(String str) {
+
             String[] arr = str.split(" ");
             String op = arr[0];
-            int num = Integer.parseInt(arr[1]);
 
+            int num = Integer.parseInt(arr[1]);
             int tmpX = 0, tmpY = 0;
 
             switch(op) {
@@ -83,6 +86,7 @@ public class 공원산책_프로그래머스 {
         }
 
         static boolean isOutOfMap(int[] pos) {
+
             int r = pos[0];
             int c = pos[1];
 
@@ -90,6 +94,7 @@ public class 공원산책_프로그래머스 {
         }
 
         static boolean isNotMoveable(int[] pos, String op) {
+
             int r = answer[0];
             int c = answer[1];
             int tmpX = pos[0];
