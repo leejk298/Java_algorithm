@@ -15,7 +15,6 @@ public class 미로탈출_프로그래머스 {
         static int[] S, L, E;   // 좌표
 
         public static void init(String[] maps) {    // 초기화
-
             // 초기화
             map = new char[maps.length][maps[0].length()];
             visited = new boolean[maps.length][maps[0].length()];
@@ -23,7 +22,6 @@ public class 미로탈출_프로그래머스 {
 
             for (int i = 0; i < maps.length; i++) {  // 행
                 for (int j = 0; j < maps[i].length(); j++) { // 열
-
                     map[i][j] = maps[i].charAt(j);  // 입력배열 저장
 
                     if (map[i][j] == 'S')    // 시작 좌표
@@ -37,7 +35,6 @@ public class 미로탈출_프로그래머스 {
         }
 
         public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
-
             return (x < 0 || x >= map.length || y < 0 || y >= map[0].length);
         }
 
@@ -80,11 +77,10 @@ public class 미로탈출_프로그래머스 {
             init(maps); // 초기화
 
             answer += BFS(S, L);    // BFS
-
             if (answer != -1) { // 레버에 도달했으면
                 visited = new boolean[maps.length][maps[0].length()];   // 방문배열 초기화, 이전 경로로 돌아가야되는 경우도 있으므로
-                int num = BFS(L, E);    // BFS, 도착 좌표까지 비용
 
+                int num = BFS(L, E);    // BFS, 도착 좌표까지 비용
                 if (num == -1)  // 도달하지 못했으면
                     answer = -1;    // -1
                 else    // 도달하면
