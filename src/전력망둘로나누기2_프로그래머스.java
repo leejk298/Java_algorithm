@@ -21,7 +21,6 @@ public class 전력망둘로나누기2_프로그래머스 {
 
             while(!queue.isEmpty()) {   // 큐가 비어있지 않으면
                 int now = queue.poll(); // 하나 꺼내어
-
                 for(int i = 0; i < A[now].size(); i++) {    // 해당 노드의 인접리스트 개수만큼
                     int next = A[now].get(i);   // 다음 노드
 
@@ -37,7 +36,6 @@ public class 전력망둘로나누기2_프로그래머스 {
         }
 
         public int solution(int n, int[][] wires) {
-
             // 초기화
             int answer = n - 2; // 결과값, 최대 n - 2: 자신빼면
             A = new ArrayList[n + 1];   // 인접리스트
