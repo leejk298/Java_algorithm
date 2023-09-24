@@ -9,6 +9,7 @@ public class 로또순위_프로그래머스 {
 
     static class Solution {
         public int[] solution(int[] lottos, int[] win_nums) {
+
             int[] answer = new int[2];
 
             int count0 = 0, check = 0;
@@ -16,9 +17,11 @@ public class 로또순위_프로그래머스 {
                 for(int j = 0; j < win_nums.length; j++) {
                     if(lottos[i] == 0) {
                         count0++;
+
                         break;
                     } else if(lottos[i] == win_nums[j]) {
                         check++;
+
                         break;
                     }
                 }
