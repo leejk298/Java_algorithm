@@ -15,19 +15,21 @@ public class 카카오컬러링북BFS_프로그래머스 {
         static int[] dy = {0, 0, -1, 1};
 
         public int[] solution(int m, int n, int[][] picture) {
+
             numberOfArea = 0;
             maxSizeOfOneArea = 0;
             N = m;
             M = n;
+
             map = picture;
             visited = new boolean[N][M];
-
             List<Integer> list = new ArrayList<>();
 
             for(int i = 0; i < N; i++) {
                 for(int j = 0; j < M; j++) {
                     if(map[i][j] != 0 && !visited[i][j]) {
                         BFS(i, j);
+
                         numberOfArea++;
                         list.add(maxSizeOfOneArea);
                         maxSizeOfOneArea = 0;
@@ -45,6 +47,7 @@ public class 카카오컬러링북BFS_프로그래머스 {
         }
 
         public static void BFS(int x, int y) {
+
             Queue<int[]> queue = new LinkedList<>();
 
             queue.offer(new int[] {x, y});
