@@ -8,6 +8,7 @@ public class 이중우선순위큐_프로그래머스 {
 
     static class Solution {
         public int[] solution(String[] operations) {
+
             int[] answer = new int[2];
             PriorityQueue<Integer> minHeap = new PriorityQueue<>();
             PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
@@ -15,8 +16,8 @@ public class 이중우선순위큐_프로그래머스 {
             for(String s : operations) {
                 StringTokenizer st = new StringTokenizer(s);
                 String op = st.nextToken();
-                int num = Integer.parseInt(st.nextToken());
 
+                int num = Integer.parseInt(st.nextToken());
                 if(op.equals("I")) {
                     minHeap.offer(num);
                     maxHeap.offer(num);
