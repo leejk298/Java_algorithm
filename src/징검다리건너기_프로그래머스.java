@@ -6,9 +6,10 @@ public class 징검다리건너기_프로그래머스 {
 
     static class Solution {
         public int solution(int[] stones, int k) {
-            int answer = 0;
-            int min = 1, max = 200000000;   // 최소, 최대 인원수
 
+            int answer = 0;
+
+            int min = 1, max = 200000000;   // 최소, 최대 인원수
             while(min <= max) { // 역전이 아니면
                 int mid = (min + max) / 2;  // 중앙값
 
@@ -23,8 +24,8 @@ public class 징검다리건너기_프로그래머스 {
         }
 
         boolean Across(int[] stones, int k, int mid) {  // 이진 탐색
-            int count = 0;  // 건너뛰는 칸 수
 
+            int count = 0;  // 건너뛰는 칸 수
             for(int s : stones) {
                 if(s - mid < 0) {   // 가능하지않으면
                     count++;    // 건너뛰도록
