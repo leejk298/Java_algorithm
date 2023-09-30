@@ -11,7 +11,6 @@ public class 여행경로_프로그래머스 {
         static List<String> allRoute;   // 모든 여행 경로
 
         public static void DFS(int count, String b, String route, String[][] s) {   // 백트래킹
-
             // 베이스 케이스
             if(count == s.length) { // 전부 경유했으면
                 allRoute.add(route);    // 경로 추가
@@ -31,12 +30,10 @@ public class 여행경로_프로그래머스 {
         }
 
         public String[] solution(String[][] tickets) {
-
-            String[] answer = {};   // 결과배열
-
             // 초기화
-            visited = new boolean[tickets.length];
-            allRoute = new ArrayList<>();
+            String[] answer;   // 결과배열
+            visited = new boolean[tickets.length];  // 방문배열
+            allRoute = new ArrayList<>();   // 결과리스트
 
             DFS(0, "ICN", "ICN", tickets);  // DFS, "ICN"부터 시작, 경로를 문자열로 관리
 
