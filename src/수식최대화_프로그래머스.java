@@ -10,8 +10,8 @@ public class 수식최대화_프로그래머스 {
         private static List<Long> nums = new ArrayList<>(); // 숫자
         private static List<Character> opers = new ArrayList<>();   // 연산자
         private static long answer = 0; // 결과
-
         public long solution(String expression) {
+
             char[] operators = {'*', '+', '-'}; // 연산자 초기화
             char[] op = new char[3];    // 우선순위
             boolean[] visited = new boolean[3]; // 중복없는 순열 만들기위해, 방문배열
@@ -20,13 +20,14 @@ public class 수식최대화_프로그래머스 {
 
             DFS(0, operators, op, visited); // 순열 만들기
 
-            return answer;
+            return answer;  // 결과 리턴
         }
 
         public void stringToNumAndOp(String s) {
-            String num = "";
 
-            for(int i = 0; i < s.length(); i++) {
+            String num = "";    // 문자열
+
+            for(int i = 0; i < s.length(); i++) {   // 길이만큼
                 if(s.charAt(i) >= '0' && s.charAt(i) <= '9')   // 숫자
                     num += s.charAt(i); // 문자열 붙이기
                 else {  // 연산자
@@ -40,23 +41,27 @@ public class 수식최대화_프로그래머스 {
         }
 
         public void DFS(int depth, char[] operators, char[] op, boolean[] visited) {
+            // 베이스케이스
             if(depth == 3)  // 순서가 정해지면
                 calcString(op); // 문자열 계산
 
-            for(int i = 0; i < 3; i++) {
+            // 재귀케이스
+            for(int i = 0; i < 3; i++) {    // 3만큼
                 if(!visited[i]) {   // 방문하지않았으면
                     visited[i] = true;  // 방문
                     op[depth] = operators[i];   // 해당 연산자 순열에 추가
 
                     DFS(depth + 1, operators, op, visited); // 재귀콜, 중복 x
+
                     visited[i] = false; // 리턴 후 해당 연산자 방문여부 초기화
                 }
             }
         }
 
         public void calcString(char[] op) {
+
             List<Long> tmpNums = new ArrayList<>(nums);     // 임시 리스트, 계산을 위해
-            List<Character> tmpOpers = new ArrayList<>(opers);
+            List<Character> tmpOpers = new ArrayList<>(opers);  // 연산자
 
             for(int i = 0; i < 3; i ++) {   // +, -, *
                 for(int j = 0; j < tmpOpers.size(); j++) {  // 연산자 개수
@@ -71,7 +76,8 @@ public class 수식최대화_프로그래머스 {
         }
 
         public long calcNum(long a, long b, char c) {   // 숫자 계산
-            switch(c) {
+
+            switch(c) { // 문자
                 case '+' :
                     return a + b;
                 case '-' :
