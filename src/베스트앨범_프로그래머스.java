@@ -23,7 +23,6 @@ public class 베스트앨범_프로그래머스 {
         public int[] solution(String[] genres, int[] plays) {
 
             Map<String, Integer> hashMap = new HashMap<>(); // 해시맵
-
             for(int i = 0; i < genres.length; i++)  // 크기만큼
                 hashMap.put(genres[i], hashMap.getOrDefault(genres[i], 0) + plays[i]);  // 장르별로 저장
 
@@ -62,6 +61,7 @@ public class 베스트앨범_프로그래머스 {
 
             int size = result.size();   // 결과리스트 크기
             int[] answer = new int[size];   // 결과배열 선언
+
             for(int i = 0; i < size; i++)   // 크기만큼
                 answer[i] = result.get(i).index;    // 인덱스 저장
 
