@@ -9,8 +9,24 @@ public class 섬연결하기_프로그래머스 {
 
     static class Solution {
         static int[] parent;    // 대표노드
+        public static void union(int a, int b) {   // 합집합
 
+            a = find(a);
+            b = find(b);
+
+            if(a != b)
+                parent[b] = a;
+        }
+
+        public static int find(int a) {    // find
+
+            if(a == parent[a])
+                return a;
+            // 다르면
+            return parent[a] = find(parent[a]); // 대표 노드로 찾기
+        }
         public int solution(int n, int[][] costs) {
+
             int answer = 0; // 결과
             int len = costs.length; // 길이
 
@@ -28,26 +44,12 @@ public class 섬연결하기_프로그래머스 {
             for(int i = 0; i < len; i++) {
                 if(find(costs[i][0]) != find(costs[i][1])) {
                     answer += costs[i][2];
+
                     union(costs[i][0], costs[i][1]);
                 }
             }
 
             return answer;
-        }
-
-        private static void union(int a, int b) {   // 합집합
-            a = find(a);
-            b = find(b);
-
-            if(a != b)
-                parent[b] = a;
-        }
-
-        private static int find(int a) {    // find
-            if(a == parent[a])
-                return a;
-            // 다르면
-            return parent[a] = find(parent[a]); // 대표 노드로 찾기
         }
     }
 }
