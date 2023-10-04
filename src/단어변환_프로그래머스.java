@@ -8,9 +8,7 @@ public class 단어변환_프로그래머스 {
     static class Solution {
         static int answer;  // 결과값, 백트래킹 후 저장해야 하므로 전역
         static boolean[] visited;   // 방문배열
-
         public static void DFS(int depth, String b, String t, String[] w) { // 백트래킹
-
             // 베이스 케이스
             if(b.equals(t)) {   // 같으면
                 answer = Math.min(answer, depth);   // 최소값 저장
