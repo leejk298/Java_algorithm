@@ -7,37 +7,41 @@ public class 쿼드압축_프로그래머스 {
     }
 
     static class Solution {
-        private static int[] answer;
+        static int[] answer;    // 결과
 
         public int[] solution(int[][] arr) {
-            answer = new int[2];
-            int initSize = arr.length;
 
-            DivideAndConquer(0, 0, arr, initSize);
+            answer = new int[2];    // 초기화
+            int initSize = arr.length;  // 길이
 
-            return answer;
+            DFS(0, 0, arr, initSize);  // DFS, 브루트포스
+
+            return answer;  // 결과 리턴
         }
 
-        public static void DivideAndConquer(int x, int y, int[][] arr, int size) {
-            if(checkZeroOrOne(x, y, arr, size)) {
-                answer[arr[x][y]]++;
+        public static void DFS(int x, int y, int[][] arr, int size) {   // DFS
+            // 베이스케이스
+            if(checkZeroOrOne(x, y, arr, size)) {   // 다 같으면
+                answer[arr[x][y]]++;    // 추가
 
-                return;
+                return; // 완전 탐색하기 위해 함수 리턴
             }
 
-            DivideAndConquer(x, y, arr, size / 2);
-            DivideAndConquer(x + size / 2, y, arr, size / 2);
-            DivideAndConquer(x, y + size / 2, arr, size / 2);
-            DivideAndConquer(x + size / 2, y + size / 2, arr, size / 2);
+            // 재귀케이스
+            DFS(x, y, arr, size / 2);   // 1
+            DFS(x + size / 2, y, arr, size / 2);    // 2
+            DFS(x, y + size / 2, arr, size / 2);    // 3
+            DFS(x + size / 2, y + size / 2, arr, size / 2); // 4
         }
 
-        public static boolean checkZeroOrOne(int x, int y, int[][] arr, int size) {
-            for(int i = x; i < x + size; i++)
-                for(int j = y; j < y + size; j++)
-                    if(arr[x][y] != arr[i][j])
-                        return false;
+        public static boolean checkZeroOrOne(int x, int y, int[][] arr, int size) { // 유효한지
 
-            return true;
+            for(int i = x; i < x + size; i++)   // 행
+                for(int j = y; j < y + size; j++)   // 열
+                    if(arr[x][y] != arr[i][j])  // 서로 다르면
+                        return false;   // false
+
+            return true; // 전부 다 같으면 true
         }
     }
 }
