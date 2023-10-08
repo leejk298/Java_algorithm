@@ -23,6 +23,7 @@ public class 불량사용자_프로그래머스 {
         }
 
         public void DFS(int depth, HashSet<String> set) {
+
             if(depth == bannedIds.length) { // 베이스케이스, 탐색 끝나면
                 answer.add(set);
 
@@ -44,6 +45,7 @@ public class 불량사용자_프로그래머스 {
         }
 
         public boolean checkId(String user, String ban) {   // 체크
+
             if(user.length() != ban.length())   // 길이부터 다르면 다른 것
                 return false;
 
