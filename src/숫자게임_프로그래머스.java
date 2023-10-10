@@ -9,17 +9,18 @@ public class 숫자게임_프로그래머스 {
 
     static class Solution {
         public int solution(int[] A, int[] B) {
-            int answer = 0;
+
+            int answer = 0; // 결과값
 
             PriorityQueue<Integer> aQueue = new PriorityQueue<>(Collections.reverseOrder());    // 우선 순위 큐
             PriorityQueue<Integer> bQueue = new PriorityQueue<>(Collections.reverseOrder());    // 내림차순 정렬
 
-            for(int i = 0; i < A.length; i++) {
+            for(int i = 0; i < A.length; i++) { // 길이만큼
                 aQueue.offer(A[i]); // 삽입
                 bQueue.offer(B[i]);
             }
 
-            while(!aQueue.isEmpty()) {
+            while(!aQueue.isEmpty()) {  // 비어있지 않으면
                 int aNum = aQueue.poll();   // A는 꺼내고
                 int bNum = bQueue.peek();   // B는 보기만
 
