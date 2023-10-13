@@ -7,22 +7,24 @@ public class 양궁대회_프로그래머스 {
     }
 
     static class Solution {
-        static int maxDepth;
+        static int maxDepth;    // 최대 깊이
         static int[] maxLinfo;
         static int[] aInfo;
         static int maxScoreDiff;
 
         public int[] solution(int n, int[] info) {
+            // 초기화
             maxDepth = n;
             aInfo = info;
             int[] lInfo = new int[11];
 
-            DFS(0, 0, lInfo);
+            DFS(0, 0, lInfo);   // DFS
 
             return maxScoreDiff > 0 ? maxLinfo : new int[] {-1};
         }
 
         public static void DFS(int depth, int index, int[] lInfo) {
+            // 베이스케이스
             if(depth == maxDepth) {
                 int lScore = 0, aScore = 0;
 
@@ -34,7 +36,6 @@ public class 양궁대회_프로그래머스 {
                 }
 
                 int scoreDiff = lScore - aScore;
-
                 if(scoreDiff > maxScoreDiff) {
                     maxScoreDiff = scoreDiff;
                     maxLinfo = lInfo;
@@ -51,6 +52,7 @@ public class 양궁대회_프로그래머스 {
                 return;
             }
 
+            // 재귀케이스
             for(int i = index; i < 11; i++) {
                 int[] nextLinfo = new int[11];
 
