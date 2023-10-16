@@ -9,56 +9,62 @@ a t c i s w
 public class 암호만들기_백준 {
     static int N, M;    // 크기
     static char[] ch, res;  // 입력, 결과배열
+    static boolean[] visited;   // 방문배열
 
     public static void init() throws IOException {  // 초기화
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        N = Integer.parseInt(st.nextToken());   // 결과배열 크기
-        M = Integer.parseInt(st.nextToken());   // 입력배열 크기
+        N = Integer.parseInt(st.nextToken());   // 크기
+        M = Integer.parseInt(st.nextToken());
 
         // 초기화
         ch = new char[M];
         res = new char[N];
+        visited = new boolean[M];
 
-        String[] str = bf.readLine().split(" ");    // 공백 기준으로 문자열 나누기
-        for(int i = 0; i < M; i++)  // 입력배열 크기만큼
-            ch[i] = str[i].charAt(0);   // 문자열 -> 문자 형변환
+        String[] str = bf.readLine().split(" ");    // 공백 기준으로 문자열 배열에 저장
+        for(int i = 0; i < M; i++)  // 크기만큼
+            ch[i] = str[i].charAt(0);   // 문자로 변환 후 저장
 
-        Arrays.sort(ch);    // 사전순 정렬
+        Arrays.sort(ch);    // 알파벳 순으로 정렬
     }
 
     public static boolean isValidPassword(char[] res) { // 암호가 가능한지
 
         int mo = 0, ja = 0; // 모음, 자음 개수
 
-        for(char c : res) { // 결과배열 순회하여
-            if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')    // 모음
-                mo++;
-            else    // 자음
+        for(char c : res) { // 문자 배열 순회
+            if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')    // 모음이면
+                mo++;   // 개수 카운트
+            else    // 자음이면
                 ja++;
         }
 
-        if(mo >= 1 && ja >= 2)  // 모음 1개 이상이면서 자음 2개 이상이면
+        if(mo >= 1 && ja >= 2)  // 조건에 맞으면
             return true;    // true
 
         return false;   // 아니면 false
     }
 
-    public static void DFS(int depth, int index) {  // DFS, 브루트포스
+    public static void DFS(int depth, int index) {  // DFS, 백트래킹: 브루트포스에서 조건을 추가해 의미없는 반복 x
+        // 베이스케이스
+        if(depth == N) {    // N개가 되면
+            if(isValidPassword(res))    // 문자배열이 암호가 가능한지
+                System.out.println(res);    // 가능하면 출력
 
-        if(depth == N) {    // 길이만큼 도달하면
-            if(isValidPassword(res))    // 암호가 가능하면
-                System.out.println(res);    // 출력
-
-            return; // 완전 탐색하기 위해 함수 리턴
+            return; // 함수 리턴: 완전 탐색
         }
 
-        // 도달하지 않았으면
-        for(int i = index; i < M; i++) {    // 입력배열 크기만큼
-            res[depth] = ch[i]; // 결과배열 저장
-            DFS(depth + 1, i + 1);  // 재귀콜, 문자열 길이 + 1, 인덱스 + 1 (중복 x)
+        // 재귀케이스: N개가 아니면
+        for(int i = index; i < M; i++) {    // 해당하는 index 부터 M 까지
+            if(!visited[i]) {   // 방문한 적이 없으면
+                visited[i] = true;  // 방문
+                res[depth] = ch[i]; // 결과 문자열에 저장
+                DFS(depth + 1, i + 1);  // DFS
+                visited[i] = false; // 함수 리턴되면 해당 index 방문 여부 갱신
+            }
         }
     }
 
