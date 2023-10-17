@@ -9,25 +9,21 @@ public class 자동완성_프로그래머스 {
     }
 
     static class Solution {
-
         public class Node { // Node 클래스
-
             // 멤버 변수로 해시맵과 자식개수를 가짐
             private HashMap<Character, Node> childNodes = new HashMap<>();
             private int count;
         }
 
         public class Trie { // Trie 클래스
-
             // 멤버 변수로 Node 클래스의 객체 root노드를 가짐
             Node root;
-
             // 멤버 함수 3개
             public Trie() { // 생성자
                 root = new Node();
             }
-
             public void insert(String word) {   // 삽입
+
                 Node nowNode = this.root;   // 루트노드에 연결
 
                 for(int i = 0; i < word.length(); i++) {    // 단어 길이만큼
@@ -37,6 +33,7 @@ public class 자동완성_프로그래머스 {
             }
 
             public int getCount(String word) {  // 개수 세기
+
                 int nowCount = 0;   // 자식개수
                 Node nowNode = this.root;   // 루트노드에 연결
 
@@ -47,18 +44,17 @@ public class 자동완성_프로그래머스 {
 
                     if(node.count == 1) // 자식이 없으면, 리프노드이면
                         return nowCount;    // 총 깊이 출력
-
                     // 자식이 있으면
                     nowNode = node; // 자식노드에 연결
                 }
-
                 // 반복문 종료되면 단어 길이만큼 검색해야하므로
                 return nowCount;    // 총 깊이 출력
             }
         }
 
         public int solution(String[] words) {
-            int answer = 0;
+
+            int answer = 0; // 결과값
 
             Trie trie = new Trie(); // Trie 클래스 객체 생성
 
@@ -68,7 +64,7 @@ public class 자동완성_프로그래머스 {
             for(String w : words)   // 순회
                 answer += trie.getCount(w); // 개수 카운트
 
-            return answer;  // 총 개수 출력
+            return answer;  // 결과값 출력
         }
     }
 }
