@@ -8,8 +8,8 @@ public class 트리중간값_프로그래머스 {
 
     static class Solution {
         public int solution(int n, int[][] edges) {
-            ArrayList<Integer> list[] = new ArrayList[n + 1];
 
+            ArrayList<Integer> list[] = new ArrayList[n + 1];
             for(int i = 1; i <= n; i++)
                 list[i] = new ArrayList<>();
 
@@ -19,7 +19,6 @@ public class 트리중간값_프로그래머스 {
             }
 
             int s = 1, max = 0, count = 0;
-
             int[] result = BFS(list, s, n);
             for(int i = 2; i <= n; i++)
                 if(result[i] > result[s])
@@ -27,6 +26,7 @@ public class 트리중간값_프로그래머스 {
 
             result = BFS(list, s, n);
             s = 1;
+
             for(int i = 2; i <= n; i++)
                 if(result[i] > result[s])
                     s = i;
@@ -44,6 +44,7 @@ public class 트리중간값_프로그래머스 {
             max = 0;
             count = 0;
             result = BFS(list, s, n);
+
             for(int i : result)
                 max = Math.max(max, i);
 
@@ -58,9 +59,9 @@ public class 트리중간값_프로그래머스 {
         }
 
         static int[] BFS(ArrayList<Integer> list[], int s, int n) {
+
             boolean[] visited = new boolean[n + 1];
             int[] D = new int[n + 1];
-
             LinkedList<Integer> queue = new LinkedList<>();
 
             queue.add(s);
