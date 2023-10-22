@@ -9,6 +9,7 @@ public class 주차요금계산_프로그래머스 {
 
     static class Solution {
         public int[] solution(int[] fees, String[] records) {
+
             Map<String, Integer> parkMap = new HashMap<>(); // 주차
             Map<String, Integer> feeMap = new HashMap<>();  // 요금
 
@@ -16,13 +17,12 @@ public class 주차요금계산_프로그래머스 {
                 String[] strArr = str.split(" ");   // 공백기준 문자열 배열
                 String s = strArr[0];   // 시간
                 String[] t = s.split(":");
-                int time = Integer.parseInt(t[0]) * 60 + Integer.parseInt(t[1]);
 
+                int time = Integer.parseInt(t[0]) * 60 + Integer.parseInt(t[1]);
                 if(strArr[2].equals("IN")) {    // IN
                     parkMap.put(strArr[1], time);   // (차량, 시간) 저장
                 } else {    // OUT
                     int difTime = time - parkMap.get(strArr[1]);    // 시간 차이
-
                     feeMap.put(strArr[1], feeMap.getOrDefault(strArr[1], 0) + difTime); // (차량, 시간 차이) 저장
                     parkMap.put(strArr[1], -1);  // 주차 정보 삭제
                 }
@@ -32,7 +32,6 @@ public class 주차요금계산_프로그래머스 {
                 for(String s : parkMap.keySet()) {  // 하나씩 순회
                     if(parkMap.get(s) != -1) {
                         int difTime = 23 * 60 + 59 - parkMap.get(s);    // 23:59
-
                         feeMap.put(s, feeMap.getOrDefault(s, 0) + difTime);
                         parkMap.put(s, -1);
                     }
