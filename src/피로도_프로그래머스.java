@@ -16,14 +16,12 @@ public class 피로도_프로그래머스 {
                 if(d[i][0] <= k && !visited[i]) {   // 필요 피로도보다 크거나 같고 방문한 적이 없으면
                     visited[i] = true;  // 방문
                     DFS(count + 1, k - d[i][1], d); // DFS, 횟수 1개 카운트
-
                     visited[i] = false; // 리턴되면 방문 여부 갱신
                 }
             }
         }
 
         public int solution(int k, int[][] dungeons) {
-
             // 초기화
             answer = -1;
             visited = new boolean[dungeons.length];
