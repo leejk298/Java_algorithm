@@ -7,6 +7,7 @@ public class 중복조합 {
     public static int res[]; // 결과배열
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
 
         N = sc.nextInt();
@@ -14,14 +15,14 @@ public class 중복조합 {
         A = new int[N];
         res = new int[M];
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++)
             A[i] = sc.nextInt();
-        }
 
         dfs(0, 0); // v: 뽑을 개수 count, w: 뽑을 숫자 => A[index]
     }
 
     private static void dfs(int v, int w) {   // dfs
+
         if (v == M) {   // 뽑을 개수와 같으면
             for (int i : res) { // 배열 res 를 i로 순회하면서
                 System.out.print(i);  // 출력
