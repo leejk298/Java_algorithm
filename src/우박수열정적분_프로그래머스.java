@@ -5,11 +5,34 @@ public class 우박수열정적분_프로그래머스 {
         Solution solution = new Solution();
         System.out.println(Arrays.toString(solution.solution(5, new int[][] {{0, 0}, {0, -1}, {2, -3}, {3, -3}})));
     }
-
     static class Solution {
-        public double[] solution(int k, int[][] ranges) {
-            double[] answer = new double[ranges.length];
+        public static int getPos(int n) {  // 좌표
+            if(n % 2 == 0)
+                n /= 2;
+            else
+                n = n * 3 + 1;
 
+            return n;
+        }
+
+        public static int cnt(int k) { // 횟수
+            int count = 0;
+
+            while(k != 1) {
+                if(k % 2 == 0)
+                    k /= 2;
+                else
+                    k = k * 3 + 1;
+
+                count++;
+            }
+
+            return count;
+        }
+
+        public double[] solution(int k, int[][] ranges) {
+
+            double[] answer = new double[ranges.length];
             int count = cnt(k); // 횟수
             int[] pos = new int[count + 1]; // 좌표
             double[] sum = new double[count + 1];   // 누적합
@@ -35,30 +58,6 @@ public class 우박수열정적분_프로그래머스 {
             }
 
             return answer;
-        }
-
-        static int getPos(int n) {  // 좌표
-            if(n % 2 == 0)
-                n /= 2;
-            else
-                n = n * 3 + 1;
-
-            return n;
-        }
-
-        static int cnt(int k) { // 횟수
-            int count = 0;
-
-            while(k != 1) {
-                if(k % 2 == 0)
-                    k /= 2;
-                else
-                    k = k * 3 + 1;
-
-                count++;
-            }
-
-            return count;
         }
     }
 }
