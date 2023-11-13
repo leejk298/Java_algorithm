@@ -13,6 +13,7 @@ public class 부대복귀_프로그래머스 {
         static final int MaxDistance = Integer.MAX_VALUE;   // 초기 거리값
 
         public static void Dijkstra(int v) {    // 다익스트라
+
             Queue<Integer> queue = new LinkedList<>();  // 큐, 우선순위큐가 아닌이유는 거리가 1로 동일하기 때문에
 
             queue.offer(v); // 시작점 추가
@@ -33,6 +34,7 @@ public class 부대복귀_프로그래머스 {
         }
 
         public int[] solution(int n, int[][] roads, int[] sources, int destination) {
+
             // 초기화
             D = new int[n + 1];
             A = new ArrayList[n + 1];
