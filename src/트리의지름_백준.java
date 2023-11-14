@@ -17,13 +17,12 @@ import java.io.*;
  */
 
 public class 트리의지름_백준 {
-    static int N, D, furthestNode;  // 크기, 지름, 가장 먼 노드
+    static int N, D, lastNode;  // 크기, 지름, 가장 먼 노드
     static List<Node>[] A;  // 인접리스트
     static boolean[] visited;   // 방문배열
 
     static class Node { // 노드 클래스
         int v, w;   // 정점, 가중치
-
         public Node(int v, int w) { // 파라미터 생성자
             this.v = v;
             this.w = w;
@@ -36,14 +35,14 @@ public class 트리의지름_백준 {
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
         N = Integer.parseInt(st.nextToken());   // 크기
-        D = 0;  // 지름 0으로 초기화
+        D = 0;  // 지름
 
         // 초기화
-        A = new List[N + 1];
+        A = new ArrayList[N + 1];
         for(int i = 1; i <= N; i++) // 크기만큼
             A[i] = new ArrayList<>();   // 인접리스트 구현
 
-        for(int i = 1; i < N; i++) {    // N - 1 만큼
+        for(int i = 1; i < N; i++) {    // N - 1
             st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
             int S = Integer.parseInt(st.nextToken());   // 시작
@@ -64,27 +63,27 @@ public class 트리의지름_백준 {
         // 재귀케이스
         visited[v] = true;  // 방문한 적이 없으면 방문
 
-        if(D < w) { // 최대값
-            D = w;  // 최대값 갱신
-            furthestNode = v;   // 가장 먼 노드 저장
+        if(D < w) { // 최대지름
+            D = w;
+            lastNode = v;   // 가장 먼 노드
         }
 
         for(int i = 0; i < A[v].size(); i++) {  // 인접리스트 크기만큼
-            Node next = A[v].get(i);    // 다음 노드
+            Node next = A[v].get(i);    // 다음 정점
 
             if(!visited[next.v])    // 방문한 적이 없으면
-                DFS(next.v, w + next.w);    // DFS, 재귀콜
+                DFS(next.v, w + next.w);    // DFS
         }
     }
 
     public static void printLength() {  // 지름 출력
 
-        if(N > 1) { // 정점 개수가 1보다 크면
+        if(N > 1) { // 크기가 1보다 크면
             visited = new boolean[N + 1];   // 방문배열 초기화
-            DFS(1, 0);  // DFS, 1번 노드부터 가장 먼 노드 구하기
+            DFS(1, 0);  // DFS, 1번 노드로
 
             visited = new boolean[N + 1];   // 방문배열 초기화
-            DFS(furthestNode, 0);   // DFS, 가장 먼 노드로 가장 먼 거리 구하기
+            DFS(lastNode, 0);   // DFS, 가장 먼 노드로
         }
 
         System.out.println(D);  // 지름 출력
