@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 /*
 1 1 1
@@ -34,16 +35,18 @@ public class 신나는함수실행_백준 {
         return dp[a][b][c] = w(a - 1, b, c) + w(a - 1, b - 1, c) + w(a - 1, b, c - 1) - w(a - 1, b - 1, c - 1);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        Scanner sc = new Scanner(System.in);    // 입력
-
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));    // 입력 버퍼
+        StringTokenizer st;
         dp = new int[21][21][21];   // 초기ㅗ하
 
         while (true) {
-            a = sc.nextInt();
-            b = sc.nextInt();
-            c = sc.nextInt();
+            st = new StringTokenizer(bf.readLine());
+
+            a = Integer.parseInt(st.nextToken());
+            b = Integer.parseInt(st.nextToken());
+            c = Integer.parseInt(st.nextToken());
 
             if (a == -1 && b == -1 && c == -1)  // 전부 -1이면 while 종료
                 break;
