@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 /*
 7 12
@@ -19,82 +20,88 @@ import java.util.*;
 public class 도시분할계획_백준 {
     static int N, M;    // 크기
     static PriorityQueue<Edge> pq;  // 우선순위 큐
-    static int[] parent;    // 대표노드
+    static int[] parent;    // 부모배열
 
-    static class Edge implements Comparable<Edge> { // 엣지 클래스, 가중치 오름차순 정렬
-        int s, e, w;    // 멤버변수
+    static class Edge implements Comparable<Edge> { // 내부클래스
+        int S, E, W;    // 멤버변수
 
-        public Edge(int s, int e, int w) {  // 생성자
-            this.s = s;
-            this.e = e;
-            this.w = w;
+        public Edge(int S, int E, int W) {  // 파라미터 생성자
+            this.S = S; // 시작
+            this.E = E; // 도착
+            this.W = W; // 가중치
         }
 
         @Override
-        public int compareTo(Edge e) {  // 오버라이딩
-            return this.w - e.w;    // 오름차순 정렬
+        public int compareTo(Edge e) {  // 오름차순 정렬
+            return this.W - e.W;    // 가중치
         }
     }
 
-    public static void init() { // 초기화
+    public static void init() throws IOException {  // 초기화
 
-        Scanner sc = new Scanner(System.in);    // 입력
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        N = sc.nextInt();   // 노드
-        M = sc.nextInt();   // 엣지
+        N = Integer.parseInt(st.nextToken());   // 정점 개수
+        M = Integer.parseInt(st.nextToken());   // 엣지 개수
 
         // 초기화
-        parent = new int[N + 1];
         pq = new PriorityQueue<>();
+        parent = new int[N + 1];
 
-        for(int i = 1; i <= N; i++) // 대표노드 설정
-            parent[i] = i;
+        for (int i = 1; i <= N; i++)    // 정점 개수만큼
+            parent[i] = i;  // 부모배열 저장
 
-        for(int i = 0; i < M; i++) {    // 엣지 개수만큼
-            int s = sc.nextInt();   // 시작
-            int e = sc.nextInt();   // 끝
-            int w = sc.nextInt();   // 가중치
+        for (int i = 0; i < M; i++) {   // 엣지 개수만큼
+            st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
+            int s = Integer.parseInt(st.nextToken());   // 시작
+            int e = Integer.parseInt(st.nextToken());   // 도착
+            int w = Integer.parseInt(st.nextToken());   // 가중치
 
             pq.offer(new Edge(s, e, w));    // 우선순위 큐에 삽입
         }
     }
 
-    public static void union(int a, int b) {    // 합집합
-        a = find(a);
-        b = find(b);
+    public static int find(int a) { // 대표노드 찾기
 
-        if(a != b)
-            parent[b] = a;
-    }
+        if (a == parent[a]) // 초기값과 같으면
+            return a;   // 그대로 리턴
 
-    public static int find(int a) { // find
-        if(a == parent[a])
-            return a;
-
+        // 다르면 부모배열도 갱신 후 리턴
         return parent[a] = find(parent[a]);
     }
 
-    public static void printKruskal() { // 크루스칼
+    public static void union(int a, int b) {    // 합집합
 
-        int sum = 0, count = 0;
+        a = find(a);    // 대표노드 찾기
+        b = find(b);
 
-        while(count < N - 2) { // N - 2번 실행 => 대표노드가 다른 경우에만 증가시켜야 하므로 개수 카운트
-            Edge now = pq.poll(); // 하나 꺼내어
+        if (a != b) // 다르면
+            parent[b] = a;  // 합집합
+    }
 
-            if (find(now.s) != find(now.e)) { // 대표 노드가 다르면
-                union(now.s, now.e); // 합집합
-                sum += now.w; // 비용 갱신
+    public static void Kruskal() {  // 크루스칼, MST 알고리즘
+
+        int count = 0, res = 0; // 개수, 결과값 초기화
+
+        while (count < N - 2) { // N - 2
+            Edge now = pq.poll();   // 하나 꺼내어
+
+            if (find(now.S) != find(now.E)) {   // 다르면
+                union(now.S, now.E);    // 합집합
+                res += now.W;   // 결과값 갱신
                 count++;    // 개수 카운트
             }
         }
 
-        System.out.println(sum);   // 합 출력
+        System.out.println(res);    // 결과값 출력
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         init(); // 초기화
 
-        printKruskal(); // 분할 최소값 출력
+        Kruskal();   // 크루스칼 알고리즘
     }
 }
