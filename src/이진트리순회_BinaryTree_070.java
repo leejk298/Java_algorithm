@@ -3,7 +3,37 @@ import java.util.*;
 public class 이진트리순회_BinaryTree_070 {
     static int tree[][];
 
+    public static void preOrder(int now) { // 전위 순회
+        // 베이스 케이스
+        if (now == -1) // 자식이 없으면 return
+            return;
+
+        // 재귀 케이스
+        System.out.print((char) (now + 'A')); // 자신 출력
+        preOrder(tree[now][0]); // 왼쪽 자식, 재귀콜
+        preOrder(tree[now][1]); // 오른쪽 자식, 재귀콜
+    }
+
+    public static void inOrder(int now) { // 중위 순회
+        if (now == -1)
+            return;
+
+        inOrder(tree[now][0]); // 왼
+        System.out.print((char) (now + 'A')); // 자
+        inOrder(tree[now][1]); // 오
+    }
+
+    public static void postOrder(int now) { // 후위 순회
+        if (now == -1)
+            return;
+
+        postOrder(tree[now][0]); // 왼
+        postOrder(tree[now][1]); // 오
+        System.out.print((char) (now + 'A')); // 자
+    }
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in); // 입력
 
         int N = sc.nextInt(); // 노드 개수
@@ -37,34 +67,5 @@ public class 이진트리순회_BinaryTree_070 {
 
         postOrder(0); // 후위 순회 => 왼 오 자
         System.out.println();
-    }
-
-    private static void preOrder(int now) { // 전위 순회
-        // 베이스 케이스
-        if (now == -1) // 자식이 없으면 return
-            return;
-
-        // 재귀 케이스
-        System.out.print((char) (now + 'A')); // 자신 출력
-        preOrder(tree[now][0]); // 왼쪽 자식, 재귀콜
-        preOrder(tree[now][1]); // 오른쪽 자식, 재귀콜
-    }
-
-    private static void inOrder(int now) { // 중위 순회
-        if (now == -1)
-            return;
-
-        inOrder(tree[now][0]); // 왼
-        System.out.print((char) (now + 'A')); // 자
-        inOrder(tree[now][1]); // 오
-    }
-
-    private static void postOrder(int now) { // 후위 순회
-        if (now == -1)
-            return;
-
-        postOrder(tree[now][0]); // 왼
-        postOrder(tree[now][1]); // 오
-        System.out.print((char) (now + 'A')); // 자
     }
 }
