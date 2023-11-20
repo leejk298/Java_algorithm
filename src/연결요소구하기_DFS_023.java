@@ -2,7 +2,21 @@ import java.io.*;
 import java.util.*;
 
 public class 연결요소구하기_DFS_023 {
+    public static void DFS(ArrayList<Integer>[] A, boolean[] visited, int V) { // DFS: O(N + M) 성능
+
+        if (visited[V]) // 방문한 노드이면 돌아감 -> 베이스케이스
+            return;
+
+        // 방문안한 노드이면 -> 재귀케이스
+        visited[V] = true; // 방문했다고 설정
+
+        for (int i : A[V]) // 해당노드의 인접리스트를 순회하면서
+            if (!visited[i]) // 인접리스트가 방문안한 노드이면
+                DFS(A, visited, i); // DFS 호출 -> 재귀함수 LIFO
+    }
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
@@ -36,17 +50,5 @@ public class 연결요소구하기_DFS_023 {
         }
 
         System.out.println(cnt); // 출력
-    }
-
-    private static void DFS(ArrayList<Integer>[] A, boolean[] visited, int V) { // DFS: O(N + M) 성능
-        if (visited[V]) // 방문한 노드이면 돌아감 -> 베이스케이스
-            return;
-
-        // 방문안한 노드이면
-        visited[V] = true; // 방문했다고 설정
-
-        for (int i : A[V]) // 해당노드의 인접리스트를 순회하면서
-            if (!visited[i]) // 인접리스트가 방문안한 노드이면
-                DFS(A, visited, i); // DFS 호출 -> 재귀함수 LIFO
     }
 }
