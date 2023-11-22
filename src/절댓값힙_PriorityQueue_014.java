@@ -1,10 +1,9 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.PriorityQueue;
+import java.io.*;
+import java.util.*;
 
 public class 절댓값힙_PriorityQueue_014 {
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 버퍼
         int N = Integer.parseInt(bf.readLine()); // 크기, 한 줄 스트링 정수로 파싱
 
@@ -33,9 +32,7 @@ public class 절댓값힙_PriorityQueue_014 {
                     System.out.println("0"); // 0 출력
                 else // 비어있지 않으면
                     System.out.println(myQueue.poll()); // 큐의 front 위치의 값 (절대값 힙 - 루트 값) 출력
-            }
-
-            else // 0이 아니면
+            } else // 0이 아니면
                 myQueue.add(req); // 큐의 rear 위치에 삽입
         }
     }
