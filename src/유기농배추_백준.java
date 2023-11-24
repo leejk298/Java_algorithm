@@ -32,6 +32,7 @@ public class 유기농배추_백준 {
     static int[] dy = {0, 0, -1, 1};
 
     private static void init(Scanner sc) {  // 초기화
+
         N = sc.nextInt();   // 행
         M = sc.nextInt();   // 열
         K = sc.nextInt();   // 개수
@@ -53,6 +54,7 @@ public class 유기농배추_백준 {
     }
 
     public static void BFS(int x, int y) {  // BFS
+
         Queue<int[]> queue = new LinkedList<>();    // 큐
 
         queue.offer(new int[]{x, y});   // 시작점 삽입
@@ -79,6 +81,7 @@ public class 유기농배추_백준 {
     public static void findCount() {    // 개수 찾기
 
         int count = 0;  // 개수
+
         for (int i = 0; i < N; i++) {   // 행
             for (int j = 0; j < M; j++) {   // 열
                 if (map[i][j] == 1 && !visited[i][j]) { // 1이고 방문한 적이 없ㅇ므ㅕㄴ
@@ -92,6 +95,7 @@ public class 유기농배추_백준 {
     }
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);    // 입력
 
         T = sc.nextInt();   // 테스트 개수
