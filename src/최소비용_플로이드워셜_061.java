@@ -3,11 +3,12 @@ import java.io.*;
 
 public class 최소비용_플로이드워셜_061 {
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
+        StringTokenizer st;
 
         int N = Integer.parseInt(bf.readLine()); // 노드
         int M = Integer.parseInt(bf.readLine()); // 엣지
-
         int A[][] = new int[N + 1][N + 1]; // 인접행렬 => 플로이드워셜은 N 이 작아야 쓸 수 있으므로
 
         for (int i = 1; i <= N; i++) { // 노드 개수만큼
@@ -20,7 +21,7 @@ public class 최소비용_플로이드워셜_061 {
         }
 
         for (int i = 0; i < M; i++) { // 엣지 개수만큼
-            StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
+            st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
             int S = Integer.parseInt(st.nextToken()); // 시작
             int E = Integer.parseInt(st.nextToken()); // 끝
