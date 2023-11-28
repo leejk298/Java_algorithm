@@ -22,6 +22,7 @@ public class 양무리세기_백준 {
     static int[] dy = {0, 0, -1, 1};
 
     public static void init(BufferedReader bf) throws IOException { // 초기화
+
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
         N = Integer.parseInt(st.nextToken());   // 행
@@ -46,6 +47,7 @@ public class 양무리세기_백준 {
     }
 
     public static void BFS(int x, int y) {  // BFS
+
         Queue<int[]> queue = new LinkedList<>();    // 큐
 
         queue.offer(new int[] {x, y});  // 시작점 삽입
@@ -70,6 +72,7 @@ public class 양무리세기_백준 {
     }
 
     public static int checkSheep() {    // 양 무리 세기
+
         int count = 0;  // 개수
 
         for(int i = 0; i < N; i++) {    // 행
@@ -85,10 +88,12 @@ public class 양무리세기_백준 {
     }
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
         K = Integer.parseInt(st.nextToken());   // 테스트 횟수
+
         for(int i = 0; i < K; i++) {    // 횟수만큼
 
             init(bf);   // 초기화
