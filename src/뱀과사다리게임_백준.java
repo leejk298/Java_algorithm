@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.*;
 
 /*
@@ -19,12 +20,13 @@ public class 뱀과사다리게임_백준 {
     static int[] map;   // 맵
     static int[] visited;   // 방문배열
 
-    public static void init() { // 초기화
+    public static void init() throws IOException { // 초기화
 
-        Scanner sc = new Scanner(System.in);    // 입력
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(bf.readLine());
 
-        N = sc.nextInt();   // 사다리
-        M = sc.nextInt();   // 뱀
+        N = Integer.parseInt(st.nextToken());   // 사다리
+        M = Integer.parseInt(st.nextToken());
 
         // 초기화, 1 ~ 100
         map = new int[101];
@@ -34,15 +36,19 @@ public class 뱀과사다리게임_백준 {
             map[i] = i; // 각 숫자로 맵 저장
 
         for(int i = 0; i < N; i++) {    // 사다리 개수만큼
-            int s = sc.nextInt();   // 작은 값
-            int e = sc.nextInt();   // 큰 값
+            st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
+            int s = Integer.parseInt(st.nextToken());   // 시작
+            int e = Integer.parseInt(st.nextToken());   // 도착
 
             map[s] = e; // 이동 저장
         }
 
         for(int i = 0; i < M; i++) {    // 뱀 개수만큼
-            int s = sc.nextInt();   // 큰 값
-            int e = sc.nextInt();   // 작은 값
+            st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
+            int s = Integer.parseInt(st.nextToken());   // 큰 값
+            int e = Integer.parseInt(st.nextToken());   // 작은 값
 
             map[s] = e; // 이동 저장
         }
@@ -78,7 +84,7 @@ public class 뱀과사다리게임_백준 {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         init(); // 초기화
 
