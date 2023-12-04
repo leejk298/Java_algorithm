@@ -1,7 +1,25 @@
 import java.util.*;
 
 public class 여행계획_분리집합_051 {
+    public static int find(int i, int[] parent) { // find
+
+        if (i == parent[i]) // 대표노드이면
+            return i;
+
+        return parent[i] = find(parent[i], parent); // 재귀, 리턴 시 현재노드에서 발견한 대표노드를 모든 노드의 대표노드로 갱신
+    }
+
+    public static void union(int i, int j, int[] parent) { // union
+
+        i = find(i, parent);
+        j = find(j, parent);
+
+        if (i != j) // 다르면
+            parent[j] = i; // 연결
+    }
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in); // 입력
 
         int N = sc.nextInt(); // 여행 도시 개수
@@ -34,20 +52,5 @@ public class 여행계획_분리집합_051 {
         }
 
         System.out.println("YES");
-    }
-
-    private static int find(int i, int[] parent) { // find
-        if (i == parent[i]) // 대표노드이면
-            return i;
-
-        return parent[i] = find(parent[i], parent); // 재귀, 리턴 시 현재노드에서 발견한 대표노드를 모든 노드의 대표노드로 갱신
-    }
-
-    private static void union(int i, int j, int[] parent) { // union
-        i = find(i, parent);
-        j = find(j, parent);
-
-        if (i != j) // 다르면
-            parent[j] = i; // 연결
     }
 }
