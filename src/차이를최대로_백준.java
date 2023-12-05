@@ -31,8 +31,10 @@ public class 차이를최대로_백준 {
 
     public static void DFS(int depth) { // DFS, 브루트포스
 
+        // 베이스케이스
         if(depth == N) {    // 크기와 같으면
             int sum = 0;    // 총 합
+
             for(int i = 0; i < N - 1; i++)
                 sum += Math.abs(A[i] - A[i + 1]);   // 총 합 저장
 
@@ -41,7 +43,7 @@ public class 차이를최대로_백준 {
             return; // 함수 리턴, 완전 탐색하기 위해
         }
 
-        // 크기와 다르면
+        // 재귀케이스: 크기와 다르면
         for(int i = 0; i < N; i++) {    // 크기만큼
             if(!visited[i]) {   // 방문한 적이 없으면
                 visited[i] = true;  // 방문
