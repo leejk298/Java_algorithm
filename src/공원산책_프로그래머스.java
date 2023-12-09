@@ -8,52 +8,20 @@ public class 공원산책_프로그래머스 {
     }
 
     static class Solution {
-        static char[][] map;
-        static int row;
-        static int col;
-        static int[] answer;
+        static char[][] map;    // 입력배열
+        static int row; // 행
+        static int col; // 열
+        static int[] answer;    // 결과배열
 
-        public int[] solution(String[] park, String[] routes) {
+        public static int[] getNum(String str) {   // 숫자 찾기
 
-            answer = new int[2];
-
-            col = park[0].length();
-            row = park.length;
-
-            map = new char[row][col];
-            for(int i = 0; i < park.length; i++) {
-                for(int j = 0; j < park[0].length(); j++) {
-                    char ch = park[i].charAt(j);
-                    map[i][j] = ch;
-
-                    if(ch == 'S') {
-                        answer[0] = i;
-                        answer[1] = j;
-                    }
-                }
-            }
-
-            for(String str : routes) {
-                int[] num = getNum(str);
-
-                if(num == null)
-                    continue;
-
-                answer = num;
-            }
-
-            return answer;
-        }
-
-        static int[] getNum(String str) {
-
-            String[] arr = str.split(" ");
+            String[] arr = str.split(" ");  // 공백기준으로 문자열 배열로 나누기
             String op = arr[0];
 
             int num = Integer.parseInt(arr[1]);
             int tmpX = 0, tmpY = 0;
 
-            switch(op) {
+            switch (op) {
                 case "N":
                     tmpX = answer[0] - num;
                     tmpY = answer[1];
@@ -79,13 +47,13 @@ public class 공원산책_프로그래머스 {
                     break;
             }
 
-            if(isOutOfMap(new int[] {tmpX, tmpY}) || isNotMoveable(new int[] {tmpX, tmpY}, op))
+            if (isOutOfMap(new int[]{tmpX, tmpY}) || isNotMoveable(new int[]{tmpX, tmpY}, op))
                 return null;
 
-            return new int[] {tmpX, tmpY};
+            return new int[]{tmpX, tmpY};
         }
 
-        static boolean isOutOfMap(int[] pos) {
+        public static boolean isOutOfMap(int[] pos) {  // 좌표값이 유효한지
 
             int r = pos[0];
             int c = pos[1];
@@ -93,7 +61,7 @@ public class 공원산책_프로그래머스 {
             return r < 0 || r >= row || c < 0 || c >= col;
         }
 
-        static boolean isNotMoveable(int[] pos, String op) {
+        public static boolean isNotMoveable(int[] pos, String op) {    // 이동 가능한지
 
             int r = answer[0];
             int c = answer[1];
@@ -132,6 +100,38 @@ public class 공원산책_프로그래머스 {
             }
 
             return false;
+        }
+
+        public int[] solution(String[] park, String[] routes) {
+
+            // 초기화
+            answer = new int[2];
+            col = park[0].length();
+            row = park.length;
+            map = new char[row][col];
+
+            for (int i = 0; i < park.length; i++) {  // 행
+                for (int j = 0; j < park[0].length(); j++) { // 열
+                    char ch = park[i].charAt(j);    // 문자
+                    map[i][j] = ch; // 저장
+
+                    if (ch == 'S') { // S이면
+                        answer[0] = i;
+                        answer[1] = j;
+                    }
+                }
+            }
+
+            for (String str : routes) {  // 문자열 배열 순회
+                int[] num = getNum(str);    // 숫자 배열
+
+                if (num == null) // null
+                    continue;   // 건너뛰기
+
+                answer = num;   // 저장
+            }
+
+            return answer;  // 결과배열 리턴
         }
     }
 }
