@@ -3,6 +3,7 @@ import java.io.*;
 
 public class 게임개발_위상정렬_054 {
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
