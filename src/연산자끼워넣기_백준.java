@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class 연산자끼워넣기_백준 {
-    static int max = Integer.MIN_VALUE; // 최대값
-    static int min = Integer.MAX_VALUE; // 최소값
-    static int[] number;    // 피연산자
-    static int[] operator = new int[4]; // 연산자
-    static int N;   // 크기
+    static int max; // 최대값
+    static int min; // 최소값
+    static int[] number;  // 피연산자
+    static int[] operator; // 연산자
+    static int N;  // 크기
 
     public static void init() { // 초기화
 
@@ -15,6 +15,10 @@ public class 연산자끼워넣기_백준 {
 
         // 초기화
         number = new int[N];
+        max = Integer.MIN_VALUE;
+        min = Integer.MAX_VALUE;
+        operator = new int[4];
+
         for (int i = 0; i < N; i++)
             number[i] = sc.nextInt();   // 피연산자 저장
 
