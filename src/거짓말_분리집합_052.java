@@ -2,12 +2,30 @@ import java.util.*;
 import java.io.*;
 
 public class 거짓말_분리집합_052 {
-    public static int parent[]; // 집합
-    public static int trueP[]; // 진실을 아는 사람
-    public static ArrayList<Integer>[] party; // 파티
-    public static int res; // 결과
+    static int parent[]; // 집합
+    static int trueP[]; // 진실을 아는 사람
+    static ArrayList<Integer>[] party; // 파티
+    static int res; // 결과
+
+    public static int find(int a) { // find
+
+        if (a == parent[a])
+            return a;
+
+        return parent[a] = find(parent[a]); // 리턴 시 현재노드에서 발견한 대표노드를 모든 노드의 대표노드로 갱신
+    }
+
+    public static void union(int a, int b) { // union
+
+        a = find(a);
+        b = find(b);
+
+        if (a != b)
+            parent[b] = a;
+    }
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
@@ -62,20 +80,5 @@ public class 거짓말_분리집합_052 {
         }
 
         System.out.println(res); // 값 출력
-    }
-
-    private static int find(int a) { // find
-        if (a == parent[a])
-            return a;
-
-        return parent[a] = find(parent[a]); // 리턴 시 현재노드에서 발견한 대표노드를 모든 노드의 대표노드로 갱신
-    }
-
-    private static void union(int a, int b) { // union
-        a = find(a);
-        b = find(b);
-
-        if (a != b)
-            parent[b] = a;
     }
 }
