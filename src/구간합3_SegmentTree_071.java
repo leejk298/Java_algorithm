@@ -4,7 +4,48 @@ import java.io.*;
 public class 구간합3_SegmentTree_071 {
     static long tree[]; // 트리
 
+    public static long getSum(int S, int E) { // 구간합
+
+        long partSum = 0; // 부분합
+
+        while (S <= E) { // 역전이 아니면 반복
+            if (S % 2 == 1) { // 시작노드가 오른쪽자식노드이면 부모노드가 영향력 X => 독립노드로 설정
+                partSum += tree[S]; // 부분합 갱신
+                S++; // 왼쪽자식노드이면 오른쪽으로, 오른쪽이면 독립노드 -> 건너띄어가기
+            }
+
+            if (E % 2 == 0) { // 끝노드가 왼쪽자식노드이면 부모노드가 영향력 X => 독립노드로 설정
+                partSum += tree[E]; // 부분합 갱신
+                E--; // 오른쪽자식노드이면 왼쪽으로, 왼쪽이면 독립노드 -> 건너띄어가기
+            }
+
+            S /= 2; // 부모노드로 이동
+            E /= 2;
+        }
+
+        return partSum; // 값 리턴
+    }
+
+    public static void updateValue(int index, long val) { // 업데이트
+
+        long diff = val - tree[index]; // 변경할 값과 원래 값의 차이
+
+        while (index > 0) { // 인덱스가 유효하면
+            tree[index] += diff; // 해당 노드부터 상위 부모노드 쭉 갱신
+            index /= 2; // 부모노드로 이동
+        }
+    }
+
+    public static void setTree(int i) { // 세그먼트트리 만들기
+
+        while (i != 1) { // 루트노드가 아니면
+            tree[i / 2] += tree[i]; // 리프노드(원본데이터)로부터 상위노드 합배열 만들기
+            i--; // 인덱스 이동
+        }
+    }
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
@@ -47,42 +88,5 @@ public class 구간합3_SegmentTree_071 {
         }
 
         bf.close(); // 입력 버퍼 닫기
-    }
-
-    private static long getSum(int S, int E) { // 구간합
-        long partSum = 0; // 부분합
-
-        while (S <= E) { // 역전이 아니면 반복
-            if (S % 2 == 1) { // 시작노드가 오른쪽자식노드이면 부모노드가 영향력 X => 독립노드로 설정
-                partSum += tree[S]; // 부분합 갱신
-                S++; // 왼쪽자식노드이면 오른쪽으로, 오른쪽이면 독립노드 -> 건너띄어가기
-            }
-
-            if (E % 2 == 0) { // 끝노드가 왼쪽자식노드이면 부모노드가 영향력 X => 독립노드로 설정
-                partSum += tree[E]; // 부분합 갱신
-                E--; // 오른쪽자식노드이면 왼쪽으로, 왼쪽이면 독립노드 -> 건너띄어가기
-            }
-
-            S /= 2; // 부모노드로 이동
-            E /= 2;
-        }
-
-        return partSum; // 값 리턴
-    }
-
-    private static void updateValue(int index, long val) { // 업데이트
-        long diff = val - tree[index]; // 변경할 값과 원래 값의 차이
-
-        while (index > 0) { // 인덱스가 유효하면
-            tree[index] += diff; // 해당 노드부터 상위 부모노드 쭉 갱신
-            index /= 2; // 부모노드로 이동
-        }
-    }
-
-    private static void setTree(int i) { // 세그먼트트리 만들기
-        while (i != 1) { // 루트노드가 아니면
-            tree[i / 2] += tree[i]; // 리프노드(원본데이터)로부터 상위노드 합배열 만들기
-            i--; // 인덱스 이동
-        }
     }
 }
