@@ -9,21 +9,19 @@ public class 개인정보수집유효기간_프로그래머스 {
 
     static class Solution {
         public int[] solution(String today, String[] terms, String[] privacies) {
-            // 오늘 날짜
-            String[] tArr = today.split("\\.");
+
+            String[] tArr = today.split("\\."); // 오늘 날짜
             int y = Integer.parseInt(tArr[0]);
             int m = Integer.parseInt(tArr[1]);
             int d = Integer.parseInt(tArr[2]);
             int sum = y * 12 * 28 + m * 28 + d;
 
-            // 개인 정보
             int len = privacies.length;
             int[] answer = new int[len];
-            for(int i = 0; i < len; i++) {
+            for(int i = 0; i < len; i++) { // 개인 정보
                 String[] pArr = privacies[i].split(" ");
 
-                int plusM = 0;
-                // 유효기간
+                int plusM = 0; // 유효기간
                 for(int j = 0; j < terms.length; j++) {
                     String[] sArr = terms[j].split(" ");
 
