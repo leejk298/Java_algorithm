@@ -8,6 +8,7 @@ public class 두큐의합같게만들기_프로그래머스 {
 
     static class Solution {
         public int solution(int[] queue1, int[] queue2) {
+
             long s1 = 0, s2 = 0, sum = 0;   // 각 배열 합, 총합
             Queue<Integer> q1 = new LinkedList<>(); // 1
             Queue<Integer> q2 = new LinkedList<>(); // 2
