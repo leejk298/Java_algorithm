@@ -1,28 +1,7 @@
 import java.io.*;
 
 public class 수_정렬하기3_RadixSort_022 {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));	// 입력 버퍼
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));	// 출력 버퍼
-
-        int N = Integer.parseInt(bf.readLine());	// 크기
-        int A[] = new int[N];	// 배열
-
-        for (int i = 0; i < N; i++)	// 크기만큼
-            A[i] = Integer.parseInt(bf.readLine());	// 배열 저장
-
-        bf.close();	// 입력버퍼 닫기
-
-        Radix_Sort(A, 5); // 자릿수 5, 10000 미만이므로
-
-        for (int i = 0; i < N; i++)	// 크기만큼
-            bw.write(A[i] + "\n");	// 출력 버퍼에 쓰기
-
-        bw.flush();	// 버퍼에 있는 거 전부 출력
-        bw.close();	// 출력버퍼 닫시
-    }
-
-    private static void Radix_Sort(int[] A, int size) {	// 기수정렬 함수: O(K * N) 성능 -> K는 자릿수
+    public static void Radix_Sort(int[] A, int size) {	// 기수정렬 함수: O(K * N) 성능 -> K는 자릿수
         int out[] = new int[A.length];	// 결과배열
         int t = 1;	// 연산을 위한 자릿수 1 -> 10 -> 100 -> 1000자릿수
         int cnt = 0;	// 자리수 계산
@@ -47,5 +26,27 @@ public class 수_정렬하기3_RadixSort_022 {
             t *= 10;	// 자릿수 증가
             cnt++;	// 다음 자릿수로
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));	// 입력 버퍼
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));	// 출력 버퍼
+
+        int N = Integer.parseInt(bf.readLine());	// 크기
+        int A[] = new int[N];	// 배열
+
+        for (int i = 0; i < N; i++)	// 크기만큼
+            A[i] = Integer.parseInt(bf.readLine());	// 배열 저장
+
+        bf.close();	// 입력버퍼 닫기
+
+        Radix_Sort(A, 5); // 자릿수 5, 10000 미만이므로
+
+        for (int i = 0; i < N; i++)	// 크기만큼
+            bw.write(A[i] + "\n");	// 출력 버퍼에 쓰기
+
+        bw.flush();	// 버퍼에 있는 거 전부 출력
+        bw.close();	// 출력버퍼 닫시
     }
 }
