@@ -1,7 +1,39 @@
 import java.util.*;
 
 public class 집합표현_분리집합_050 {
+
+    public static boolean checkSame(int a, int b, int[] parent) { // 두 수가 같은지
+
+        a = find(a, parent); // find 연산
+        b = find(b, parent);
+
+        if (a == b) // 같은지 체크
+            return true;
+
+        return false;
+    }
+
+    public static void union(int a, int b, int[] parent) { // union
+
+        a = find(a, parent);
+        b = find(b, parent);
+
+        if (a != b) // 다르면
+            parent[b] = a; // 연결
+
+        // 같으면 서로 같은 집합이므로 로직 필요 x
+    }
+
+    public static int find(int a, int[] parent) { // find
+
+        if (a == parent[a]) // index와 value가 같으면
+            return a; // 대표노드가 자기자신이므로 자신 리턴
+
+        return parent[a] = find(parent[a], parent); // 현재노드에서 발견한 대표노드를 모든 노드의 대표노드로 갱신
+    }
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in); // 입력
 
         int N = sc.nextInt(); // 크기
@@ -27,32 +59,5 @@ public class 집합표현_분리집합_050 {
                     System.out.println("NO");
             }
         }
-    }
-
-    private static boolean checkSame(int a, int b, int[] parent) { // 두 수가 같은지
-        a = find(a, parent); // find 연산
-        b = find(b, parent);
-
-        if (a == b) // 같은지 체크
-            return true;
-
-        return false;
-    }
-
-    private static void union(int a, int b, int[] parent) { // union
-        a = find(a, parent);
-        b = find(b, parent);
-
-        if (a != b) // 다르면
-            parent[b] = a; // 연결
-
-        // 같으면 서로 같은 집합이므로 로직 필요 x
-    }
-
-    private static int find(int a, int[] parent) { // find
-        if (a == parent[a]) // index와 value가 같으면
-            return a; // 대표노드가 자기자신이므로 자신 리턴
-        else // 다르면
-            return parent[a] = find(parent[a], parent); // 현재노드에서 발견한 대표노드를 모든 노드의 대표노드로 갱신
     }
 }
