@@ -8,7 +8,18 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class 최솟값구하기_Deque_010 {
+    static class Node { // Node 클래스
+        // 클래스 = 멤버변수 + 멤버함수
+        public int index; // 멤버변수
+        public int value;
+
+        Node(int index, int value) { // 멤버함수, 생성자 => 클래스명과 동일 // parameter constructor
+            this.index = index;
+            this.value = value;
+        }
+    }
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); // 출력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링 저장
@@ -36,16 +47,5 @@ public class 최솟값구하기_Deque_010 {
 
         bw.flush(); // 버퍼에 저장되어있는 값 출력
         bw.close(); // 종료
-    }
-
-    static class Node { // Node 클래스
-        // 클래스 = 멤버변수 + 멤버함수
-        public int index; // 멤버변수
-        public int value;
-
-        Node(int index, int value) { // 멤버함수, 생성자 => 클래스명과 동일 // parameter constructor
-            this.index = index;
-            this.value = value;
-        }
     }
 }
