@@ -3,9 +3,51 @@ import java.io.*;
 
 public class 구간곱_SegmentTree_073 {
     static long tree[]; // 트리
-    static int mod; // 나머지 연산 수
+    static int mod; // 나머지 연산
+
+    public static long getMul(int S, int E) { // 구간곱
+
+        long mul = 1; // 1로 초기화 => 곱하기 때문에 값변화 X
+
+        while (S <= E) { // 역전이 아니면 반복
+            if (S % 2 == 1) { // 오른쪽 노드이면 독립노드 => 부모영향 X
+                mul *= tree[S] % mod; // 부분곱 저장
+                S++; // 왼쪽이면 오른쪽으로, 오른쪽이면 독립노드 다음 노드로 건너띔
+            }
+
+            if (E % 2 == 0) { // 왼쪽 노드이면 독립노드 => 부모영향 X
+                mul *= tree[E] % mod; // 부분곱 저장
+                E--; // 오른쪽이면 왼쪽으로, 왼쪽이면 독립노드 다음 노드로 건너띔
+            }
+
+            S /= 2; // 부모노드로 이동
+            E /= 2;
+        }
+
+        return mul; // 값 리턴
+    }
+
+    public static void setTree(int i) { // 세그먼트 트리 만들기, 부모노드 개인
+
+        while (i != 1) { // 루트노드가 아니면 반복
+            tree[i / 2] *= tree[i] % mod; // 부모노드 갱신
+            i--; // 인덱스 이동
+        }
+    }
+
+    public static void updateValue(int index, long value) { // 업데이트
+
+        tree[index] = value; // 값 저장
+
+        while (index > 1) { // 루트노드가 아니면 반복
+            index /= 2; // 부모노드로 이동
+            tree[index] = tree[index * 2] % mod * tree[index * 2 + 1] % mod; // 부모노드 값 갱신 => 왼 오 자식 곱
+        }
+
+    }
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
@@ -51,44 +93,5 @@ public class 구간곱_SegmentTree_073 {
         }
 
         bf.close(); // 입력 버퍼 닫기
-    }
-
-    private static long getMul(int S, int E) { // 구간곱
-        long mul = 1; // 1로 초기화 => 곱하기 때문에 값변화 X
-
-        while (S <= E) { // 역전이 아니면 반복
-            if (S % 2 == 1) { // 오른쪽 노드이면 독립노드 => 부모영향 X
-                mul *= tree[S] % mod; // 부분곱 저장
-                S++; // 왼쪽이면 오른쪽으로, 오른쪽이면 독립노드 다음 노드로 건너띔
-            }
-
-            if (E % 2 == 0) { // 왼쪽 노드이면 독립노드 => 부모영향 X
-                mul *= tree[E] % mod; // 부분곱 저장
-                E--; // 오른쪽이면 왼쪽으로, 왼쪽이면 독립노드 다음 노드로 건너띔
-            }
-
-            S /= 2; // 부모노드로 이동
-            E /= 2;
-        }
-
-        return mul; // 값 리턴
-    }
-
-    private static void setTree(int i) { // 세그먼트 트리 만들기, 부모노드 개인
-        while (i != 1) { // 루트노드가 아니면 반복
-            tree[i / 2] *= tree[i] % mod; // 부모노드 갱신
-            i--; // 인덱스 이동
-        }
-
-    }
-
-    private static void updateValue(int index, long value) { // 업데이트
-        tree[index] = value; // 값 저장
-
-        while (index > 1) { // 루트노드가 아니면 반복
-            index /= 2; // 부모노드로 이동
-            tree[index] = tree[index * 2] % mod * tree[index * 2 + 1] % mod; // 부모노드 값 갱신 => 왼 오 자식 곱
-        }
-
     }
 }
