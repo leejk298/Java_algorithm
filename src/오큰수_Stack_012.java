@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 public class 오큰수_Stack_012 {
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
 
         int N = Integer.parseInt(bf.readLine()); // 크기, 버퍼 한 줄 스트링을 정수로 파싱
