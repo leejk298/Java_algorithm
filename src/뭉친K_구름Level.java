@@ -8,37 +8,8 @@ public class 뭉친K_구름Level {
     static boolean[][] visited; // 방문배열
     static int distance;    // 거리, 크기
 
-    public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);    // 입력받기
-
-        N = sc.nextInt();   // 배열 크기
-        map = new int[N][N];    // 초기화
-        visited = new boolean[N][N];
-
-        x = sc.nextInt();   // 좌표
-        y = sc.nextInt();
-
-        for(int i = 0; i < N; i++)
-            for(int j = 0; j < N; j++)
-                map[i][j] = sc.nextInt();   // 맵 저장
-
-        int max = -1;
-        K = map[x - 1][y - 1];  // 기준값 K
-        for(int i = 0; i < N; i++) {    // 행
-            for(int j = 0; j < N; j++) {    // 열
-                if(map[i][j] == K && !visited[i][j]) {  // 기준과 같고 방문하지않았으면
-                    BFS(i, j);  // BFS 호출
-                    if(max < distance)
-                        max = distance;
-                    distance = 0;   // 초기화
-                }
-            }
-        }
-
-        System.out.print(max);	// 자기 자신 포함하여 가장 큰 구름 출력
-    }
-
     public static void BFS(int nx, int ny) {    // BFS
+
         Queue<int[]> queue = new LinkedList<>();    // 큐
 
         queue.offer(new int[] {nx, ny});    // 초기값 삽입
@@ -61,5 +32,39 @@ public class 뭉친K_구름Level {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner sc = new Scanner(System.in);    // 입력받기
+
+        N = sc.nextInt();   // 배열 크기
+        map = new int[N][N];    // 초기화
+        visited = new boolean[N][N];
+
+        x = sc.nextInt();   // 좌표
+        y = sc.nextInt();
+
+        for(int i = 0; i < N; i++)
+            for(int j = 0; j < N; j++)
+                map[i][j] = sc.nextInt();   // 맵 저장
+
+        int max = -1;
+        K = map[x - 1][y - 1];  // 기준값 K
+
+        for(int i = 0; i < N; i++) {    // 행
+            for(int j = 0; j < N; j++) {    // 열
+                if(map[i][j] == K && !visited[i][j]) {  // 기준과 같고 방문하지않았으면
+                    BFS(i, j);  // BFS 호출
+
+                    if(max < distance)
+                        max = distance;
+
+                    distance = 0;   // 초기화
+                }
+            }
+        }
+
+        System.out.print(max);	// 자기 자신 포함하여 가장 큰 구름 출력
     }
 }
