@@ -19,14 +19,14 @@ public class k번째최단경로_다익스트라_058 {
             this.w = w;
         }
 
-        // 오버라이딩
-        @Override
+        @Override   // 오버라이딩
         public int compareTo(Node V) {	// 정렬 기준
             return this.w - V.w;	// 오름차순 정렬
         }
     }
 
-    public static void init() throws IOException {
+    public static void init() throws IOException {  // 초기화
+
         bf = new BufferedReader(new InputStreamReader(System.in));	// 입력 버퍼
         bw = new BufferedWriter(new OutputStreamWriter(System.out));	// 출력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());	// 한 줄 스트링
@@ -60,7 +60,9 @@ public class k번째최단경로_다익스트라_058 {
     }
 
     public static void Dijkstra() throws IOException {
+
         PriorityQueue<Node> pq = new PriorityQueue<>();	// 우선순위 큐
+
         pq.add(new Node(1, 0));	// 출발노드 추가
         D[1].add(0);	// 최단경로 추가
 
@@ -73,7 +75,6 @@ public class k번째최단경로_다익스트라_058 {
                         D[i].add(u.w + A[u.node][i]);	// 최단경로 우선순위 큐 배열 갱신
                         pq.add(new Node(i, u.w + A[u.node][i]));	// 노드 추가
                     }
-
                     //  K와 같으면
                     else if (D[i].peek() > u.w + A[u.node][i]) {	// 새로 들어오는 노드가 해당노드보다 경로값이 작으면
                         D[i].poll();	// 제일 큰 값 삭제
