@@ -6,7 +6,40 @@ public class 불우이웃돕기_MST_066 {
     static PriorityQueue<aEdge> pq; // 엣지리스트
     static int parent[]; // 대표노드
 
+    static class aEdge implements Comparable<aEdge> { // 엣지 클래스
+        int S, E, W;
+
+        public aEdge(int S, int E, int W) { // 파라미터 생성자
+            this.S = S;
+            this.E = E;
+            this.W = W;
+        }
+
+        @Override
+        public int compareTo(aEdge E) { // 오버라이딩
+            return this.W - E.W; // 오름차순 정렬
+        }
+    }
+
+    public static void union(int a, int b) { // 합집합
+
+        a = find(a);
+        b = find(b);
+
+        if (a != b)
+            parent[b] = a;
+    }
+
+    public static int find(int a) { // find
+
+        if (a == parent[a])
+            return a;
+
+        return parent[a] = find(parent[a]);
+    }
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
 
         N = Integer.parseInt(bf.readLine()); // 노드 개수
@@ -54,35 +87,5 @@ public class 불우이웃돕기_MST_066 {
             System.out.println(sum - res); // 기부할 수 있는 총 랜선 길이 출력
         else // 아니면 -1 출력
             System.out.println(-1);
-    }
-
-    private static void union(int a, int b) { // 합집합
-        a = find(a);
-        b = find(b);
-
-        if (a != b)
-            parent[b] = a;
-    }
-
-    private static int find(int a) { // find
-        if (a == parent[a])
-            return a;
-
-        return parent[a] = find(parent[a]);
-    }
-}
-
-class aEdge implements Comparable<aEdge> { // 엣지 클래스
-    int S, E, W;
-
-    public aEdge(int S, int E, int W) { // 파라미터 생성자
-        this.S = S;
-        this.E = E;
-        this.W = W;
-    }
-
-    @Override
-    public int compareTo(aEdge E) { // 오버라이딩
-        return this.W - E.W; // 오름차순 정렬
     }
 }
