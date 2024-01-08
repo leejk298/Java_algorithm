@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class K번째수_BinarySearch_031 {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in); // 입력
 
         int N = sc.nextInt(); // 크기
