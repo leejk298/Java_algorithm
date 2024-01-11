@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 /*
 4 8
@@ -6,46 +7,35 @@ import java.util.*;
  */
 
 public class 빗물_백준 {
-    static int H, W;    // 크기
-    static int[] arr;   // 배열
 
-    public static void init() { // 초기화
+    public static void main(String[] args) throws IOException {
 
-        Scanner sc = new Scanner(System.in);    // 입력
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        H = sc.nextInt();   // 높이
-        W = sc.nextInt();   // 너비
+        int H = Integer.parseInt(st.nextToken());   // 높이
+        int W = Integer.parseInt(st.nextToken());   // 너비
 
-        // 초기화
-        arr = new int[W];
-        for(int i = 0; i < W; i++)
-            arr[i] = sc.nextInt();
-    }
+        int[] arr = new int[W]; // 입력배열
 
-    public static void printAmountRain() {  // 빗물의 양 출력
+        st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+        for(int i = 0; i < W; i++)  // 너비만큼
+            arr[i] = Integer.parseInt(st.nextToken());  // 입력배열 저장
 
-        int amount = 0; // 양
-
-        for(int i = 1; i < W - 1; i++) {    // 처음과 마지막은 빗물이 찰 수 없으므로 제외
-            int left = 0, right = 0;    // 왼, 오른쪽 가장 큰 수 찾기
+        int sum = 0;    // 빗물
+        for(int i = 1; i < W - 1; i++) {    // 처음과 마지막은 빗물이 찰 수 없음
+            int l = 0, r = 0;   // 왼, 오른쪽 인덱스
 
             for(int j = 0; j < i; j++)  // 왼쪽
-                left = Math.max(left, arr[j]);  // 가장 큰 수
+                l = Math.max(l, arr[j]);    // 최대값
 
             for(int j = i + 1; j < W; j++)  // 오른쪽
-                right = Math.max(right, arr[j]);    // 가장 큰 수
+                r = Math.max(r, arr[j]);    // 최대값
 
-            if(arr[i] < left && arr[i] < right) // 양 쪽다 현재 높이보다 크면
-                amount += Math.min(left, right) - arr[i];   // 둘 중 작은 값에서 차이만큼 더함
+            if(arr[i] < l && arr[i] < r)    // 잠기면
+                sum += Math.min(l, r) - arr[i]; // 잠기는 양 = 최소값 - 해당값
         }
 
-        System.out.println(amount); // 총 빗물의 양 출력
-    }
-
-    public static void main(String[] args) {
-
-        init(); // 초기화
-
-        printAmountRain();  // 빗물의 양 출력
+        System.out.println(sum);    // 총량 출력
     }
 }
