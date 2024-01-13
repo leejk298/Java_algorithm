@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class 원하는정수찾기_BinarySearch_029 {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in); // 입력
 
         int N = sc.nextInt(); // 크기
