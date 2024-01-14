@@ -2,28 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class 버블소트_스왑횟수세기_MergeSort_021 {
-    public static long res;
+    static long res;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 버퍼
+    public static void MergeSort(int[] A, int[] tmp, int S, int E) {
 
-        int N = Integer.parseInt(bf.readLine()); // 크기
-        int A[] = new int[N]; // 배열
-        int tmp[] = new int[N];
-
-        StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
-
-        for (int i = 0; i < N; i++) // 크기만큼
-            A[i] = Integer.parseInt(st.nextToken()); // 배열 저장
-
-        res = 0; // 스왑횟수
-
-        MergeSort(A, tmp, 0, N - 1); // 함수 호출
-
-        System.out.println(res); // 출력
-    }
-
-    private static void MergeSort(int[] A, int[] tmp, int S, int E) {
         if (E - S < 1) // 1개 될 때까지 쪼갬
             return;
 
@@ -46,9 +28,7 @@ public class 버블소트_스왑횟수세기_MergeSort_021 {
                 res = res + idx2 - k; // GT에 해당하는 idx2 - k => 이동거리: 스왑횟수
                 k++;
                 idx2++;
-            }
-
-            else {
+            } else {
                 A[k] = tmp[idx1];
                 k++;
                 idx1++;
@@ -66,5 +46,25 @@ public class 버블소트_스왑횟수세기_MergeSort_021 {
             k++;
             idx2++;
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 버퍼
+
+        int N = Integer.parseInt(bf.readLine()); // 크기
+        int A[] = new int[N]; // 배열
+        int tmp[] = new int[N];
+
+        StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
+
+        for (int i = 0; i < N; i++) // 크기만큼
+            A[i] = Integer.parseInt(st.nextToken()); // 배열 저장
+
+        res = 0; // 스왑횟수
+
+        MergeSort(A, tmp, 0, N - 1); // 함수 호출
+
+        System.out.println(res); // 출력
     }
 }
