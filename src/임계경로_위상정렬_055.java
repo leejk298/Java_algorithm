@@ -2,7 +2,18 @@ import java.util.*;
 import java.io.*;
 
 public class 임계경로_위상정렬_055 {
+    static class wNode { // wNode 클래스
+        int node; // 노드
+        int w; // 가중치
+
+        wNode(int node, int w) { // 파라미터 생성자
+            this.node = node;
+            this.w = w;
+        }
+    }
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력버퍼
 
         int N = Integer.parseInt(bf.readLine()); // 노드
@@ -37,6 +48,7 @@ public class 임계경로_위상정렬_055 {
 
         Queue<Integer> queue = new LinkedList<>(); // 큐
         queue.add(start); // 출발 도시부터 시작하여
+
         while (!queue.isEmpty()) { // 큐가 비어있지않으면
             int now = queue.poll(); // 하나 꺼내어
 
@@ -74,15 +86,5 @@ public class 임계경로_위상정렬_055 {
 
         System.out.println(res[end]); // 임계경로 값 출력
         System.out.println(cnt); // 도로 개수 출력
-    }
-}
-
-class wNode { // wNode 클래스
-    int node; // 노드
-    int w; // 가중치
-
-    wNode(int node, int w) { // 파라미터 생성자
-        this.node = node;
-        this.w = w;
     }
 }
