@@ -5,29 +5,20 @@ public class 행렬곱연산횟수_DP_094 {
     static Matrix M[]; // 행렬
     static int D[][]; // 점화식 배열
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
+    static class Matrix { // 클래스
+        // 멤버 변수
+        int row;
+        int column;
 
-        int N = Integer.parseInt(bf.readLine()); // 개수
-        M = new Matrix[N + 1]; // 초기화
-        D = new int[N + 1][N + 1];
-        for (int i = 0; i < D.length; i++) // 점화식 배열
-            for (int j = 0; j < D[i].length; j++)
-                D[i][j] = -1; // -1로 초기화
-
-        for (int i = 1; i <= N; i++) { // 개수만큼
-            StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
-
-            int row = Integer.parseInt(st.nextToken()); // 행 개수
-            int column = Integer.parseInt(st.nextToken()); // 열 개수
-
-            M[i] = new Matrix(row, column); // 생성
+        // 멤버 함수
+        Matrix(int row, int column) { // 파라미터 생성자
+            this.row = row;
+            this.column = column;
         }
-
-        System.out.println(excute(1, N)); // N개 행렬곱 최소 연산횟수 출력
     }
 
-    static int excute(int s, int e) { // 최소 연산횟수
+    public static int excute(int s, int e) { // 최소 연산횟수
+
         int res = Integer.MAX_VALUE; // 최댓값으로 설정 => 최솟값 찾기위헤
 
         if (D[s][e] != -1) // 초기화값이 아닌경우
@@ -45,16 +36,28 @@ public class 행렬곱연산횟수_DP_094 {
 
         return D[s][e] = res; // 리턴
     }
-}
 
-class Matrix { // 클래스
-    // 멤버 변수
-    int row;
-    int column;
+    public static void main(String[] args) throws IOException {
 
-    // 멤버 함수
-    Matrix(int row, int column) { // 파라미터 생성자
-        this.row = row;
-        this.column = column;
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
+
+        int N = Integer.parseInt(bf.readLine()); // 개수
+        M = new Matrix[N + 1]; // 초기화
+        D = new int[N + 1][N + 1];
+
+        for (int i = 0; i < D.length; i++) // 점화식 배열
+            for (int j = 0; j < D[i].length; j++)
+                D[i][j] = -1; // -1로 초기화
+
+        for (int i = 1; i <= N; i++) { // 개수만큼
+            StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
+
+            int row = Integer.parseInt(st.nextToken()); // 행 개수
+            int column = Integer.parseInt(st.nextToken()); // 열 개수
+
+            M[i] = new Matrix(row, column); // 생성
+        }
+
+        System.out.println(excute(1, N)); // N개 행렬곱 최소 연산횟수 출력
     }
 }
