@@ -2,18 +2,33 @@ import java.util.*;
 import java.io.*;
 
 public class 최고비용_벨만포드_060 {
-    public static void main(String[] args) throws IOException {
+    static int N, M, start, end;    // 크기, 시작, 도착점
+    static cEdge[] edges;   // 엣지배열
+    static long[] D, money; // 거리, 비용배열
+
+    static class cEdge { // Edge 클래스
+        int S, E, W; // 멤버변수
+
+        public cEdge(int S, int E, int W) { // 멤버함수, 파라미터 생성자
+            this.S = S;
+            this.E = E;
+            this.W = W;
+        }
+    }
+
+    public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
-        int N = Integer.parseInt(st.nextToken()); // 노드
-        int start = Integer.parseInt(st.nextToken()); // 출발
-        int end = Integer.parseInt(st.nextToken()); // 도착
-        int M = Integer.parseInt(st.nextToken()); // 엣지
+        N = Integer.parseInt(st.nextToken()); // 노드
+        start = Integer.parseInt(st.nextToken()); // 출발
+        end = Integer.parseInt(st.nextToken()); // 도착
+        M = Integer.parseInt(st.nextToken()); // 엣지
 
-        cEdge edges[] = new cEdge[M]; // 엣지리스트
-        long D[] = new long[N]; // 최고비용
-        long money[] = new long[N]; // 방문비용
+        edges = new cEdge[M]; // 엣지리스트
+        D = new long[N]; // 최고비용
+        money = new long[N]; // 방문비용
 
         for (int i = 0; i < N; i++) // 노드 개수만큼
             D[i] = Integer.MIN_VALUE; // 최고비용배열 => 벨만포드(최단경로) 반대로 => 전부 제일작은값으로 설정
@@ -29,10 +44,15 @@ public class 최고비용_벨만포드_060 {
         }
 
         st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
+
         for (int i = 0; i < N; i++) // 노드 개수만큼
             money[i] = Long.parseLong(st.nextToken()); // 방문비용 설정
+    }
+
+    public static void BellmanFord() {  // 벨만포드 알고리즘
 
         D[start] = money[start]; // 시작노드의 비용 갱신
+
         for (int i = 0; i < N + 100; i++) { // 양수사이클을 판단하기 위해 충분히 큰 수로 반복
             for (int j = 0; j < M; j++) { // 엣지 개수만큼
                 int nowS = edges[j].S; // 값 설정
@@ -63,14 +83,11 @@ public class 최고비용_벨만포드_060 {
         else // 이외의 경우
             System.out.println(D[end]); // 도착노드의 최고로 벌 수 있는 비용 출력
     }
-}
 
-class cEdge { // Edge 클래스
-    int S, E, W; // 멤버변수
+    public static void main(String[] args) throws IOException {
 
-    public cEdge(int S, int E, int W) { // 멤버함수, 파라미터 생성자
-        this.S = S;
-        this.E = E;
-        this.W = W;
+        init(); // 초기화
+
+        BellmanFord();  // 벨만포드 알고리즘
     }
 }
