@@ -1,12 +1,8 @@
 import java.util.*;
 
 public class 미로탈출_프로그래머스 {
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.solution(new String[]{"SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"}));
-    }
-
     static class Solution {
+        static int N, M;    // 크기
         static char[][] map;    // 입력배열
         static int[][] D;       // 거리배열
         static boolean[][] visited; // 방문배열
@@ -15,13 +11,16 @@ public class 미로탈출_프로그래머스 {
         static int[] S, L, E;   // 좌표
 
         public static void init(String[] maps) {    // 초기화
-            // 초기화
-            map = new char[maps.length][maps[0].length()];
-            visited = new boolean[maps.length][maps[0].length()];
-            D = new int[maps.length][maps[0].length()];
 
-            for (int i = 0; i < maps.length; i++) {  // 행
-                for (int j = 0; j < maps[i].length(); j++) { // 열
+            N = maps.length;
+            M = maps[0].length();
+
+            map = new char[N][M];
+            visited = new boolean[N][M];
+            D = new int[N][M];
+
+            for (int i = 0; i < N; i++) {  // 행
+                for (int j = 0; j < M; j++) { // 열
                     map[i][j] = maps[i].charAt(j);  // 입력배열 저장
 
                     if (map[i][j] == 'S')    // 시작 좌표
@@ -35,7 +34,7 @@ public class 미로탈출_프로그래머스 {
         }
 
         public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
-            return (x < 0 || x >= map.length || y < 0 || y >= map[0].length);
+            return (x < 0 || x >= N || y < 0 || y >= M);
         }
 
         public static int BFS(int[] S, int[] E) {   // BFS
@@ -72,13 +71,12 @@ public class 미로탈출_프로그래머스 {
 
         public int solution(String[] maps) {
 
-            int answer = 0; // 결과값
-
             init(maps); // 초기화
 
-            answer += BFS(S, L);    // BFS
+            int answer = BFS(S, L);    // BFS
+
             if (answer != -1) { // 레버에 도달했으면
-                visited = new boolean[maps.length][maps[0].length()];   // 방문배열 초기화, 이전 경로로 돌아가야되는 경우도 있으므로
+                visited = new boolean[N][M];   // 방문배열 초기화, 이전 경로로 돌아가야되는 경우도 있으므로
 
                 int num = BFS(L, E);    // BFS, 도착 좌표까지 비용
                 if (num == -1)  // 도달하지 못했으면
@@ -89,5 +87,10 @@ public class 미로탈출_프로그래머스 {
 
             return answer;  // 총 비용 리턴
         }
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.solution(new String[]{"SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"}));
     }
 }
