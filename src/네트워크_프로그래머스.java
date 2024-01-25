@@ -7,6 +7,11 @@ public class 네트워크_프로그래머스 {
     static class Solution {
         public static void DFS(int v, boolean[] visited, int[][] computers) {   // DFS
 
+            // 베이스케이스
+            if(visited[v])  // 방문한 적이 있으면
+                return; // 리턴
+
+            // 재귀케이스: 방문한 적이 없으면
             visited[v] = true;  // 방문 여부 갱신
 
             for(int i = 0; i < computers[v].length; i++) {  // 해당 노드에서
