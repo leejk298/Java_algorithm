@@ -2,16 +2,34 @@ import java.io.*;
 import java.util.*;
 
 public class 최소신장트리_MST_064 {
+    static int N, M;
+    static PriorityQueue<wEdge> pq;
     static int parent[]; // 대표노드
 
-    public static void main(String[] args) throws IOException {
+    static class wEdge implements Comparable<wEdge> { // 엣지 클래스 => Comparable 인터페이스 구현 => compareTo() 메소드 재정의
+        int S, E, W;
+
+        public wEdge(int S, int E, int W) {
+            this.S = S;
+            this.E = E;
+            this.W = W;
+        }
+
+        @Override
+        public int compareTo(wEdge E) { // 오버라이딩
+            return this.W - E.W; // 오름차순 정렬
+        }
+    }
+
+    public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
-        int N = Integer.parseInt(st.nextToken()); // 노드 개수
-        int M = Integer.parseInt(st.nextToken()); // 엣지 개수
+        N = Integer.parseInt(st.nextToken()); // 노드 개수
+        M = Integer.parseInt(st.nextToken()); // 엣지 개수
 
-        PriorityQueue<wEdge> pq = new PriorityQueue<>(); // 우선순위 큐 => 엣지리스트
+        pq = new PriorityQueue<>(); // 우선순위 큐 => 엣지리스트
         parent = new int[N + 1]; // 대포노드 초기화
 
         for (int i = 1; i <= N; i++) // 노드 개수만큼
@@ -26,6 +44,26 @@ public class 최소신장트리_MST_064 {
 
             pq.add(new wEdge(S, E, W)); // 엣지리스트 저장 => 가중치 오름차순 정렬
         }
+    }
+
+    public static void union(int a, int b) { // 합집합
+
+        a = find(a);
+        b = find(b);
+
+        if (a != b)
+            parent[b] = a;
+    }
+
+    public static int find(int a) { // find
+
+        if (a == parent[a])
+            return a;
+
+        return parent[a] = find(parent[a]);
+    }
+
+    public static void Kruskal() {  // 크루스칼 - MST 알고리즘
 
         int res = 0; // 최소 비용
         for (int i = 0; i < N - 1; i++) { // N - 1 번
@@ -40,33 +78,10 @@ public class 최소신장트리_MST_064 {
         System.out.println(res); // 비용 출력
     }
 
-    private static void union(int a, int b) { // 합집합
-        a = find(a);
-        b = find(b);
+    public static void main(String[] args) throws IOException {
 
-        if (a != b)
-            parent[b] = a;
-    }
+        init(); // 초기화
 
-    private static int find(int a) { // find
-        if (a == parent[a])
-            return a;
-
-        return parent[a] = find(parent[a]);
-    }
-}
-
-class wEdge implements Comparable<wEdge> { // 엣지 클래스 => Comparable 인터페이스 구현 => compareTo() 메소드 재정의
-    int S, E, W;
-
-    public wEdge(int S, int E, int W) {
-        this.S = S;
-        this.E = E;
-        this.W = W;
-    }
-
-    @Override
-    public int compareTo(wEdge E) { // 오버라이딩
-        return this.W - E.W; // 오름차순 정렬
+        Kruskal();  // 크루스칼
     }
 }
