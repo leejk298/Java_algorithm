@@ -8,19 +8,20 @@ public class 보석쇼핑_프로그래머스 {
 
     static class Solution {
         public int[] solution(String[] gems) {
-            int len = gems.length;
-            Set<String> set = new HashSet<>();
-            Map<String, Integer> map = new HashMap<>();
-            Queue<String> queue = new LinkedList<>();
 
-            for(int i = 0; i < len; i++)
-                set.add(gems[i]);
+            int len = gems.length;  // 길이
+            Set<String> set = new HashSet<>();  // 해시셋
+            Map<String, Integer> map = new HashMap<>(); // 해시맵
+            Queue<String> queue = new LinkedList<>();   // 큐
 
-            int S = 0, E = 0;
-            for(int i = 0; i < gems.length; i++) {
-                map.put(gems[i], map.getOrDefault(gems[i], 0) + 1);
+            for(int i = 0; i < len; i++)    // 길이만큼
+                set.add(gems[i]);   // 입력배열 저장
 
-                queue.add(gems[i]);
+            int S = 0, E = 0;   // 인덱스
+            for(int i = 0; i < gems.length; i++) {  // 길이만큼
+                map.put(gems[i], map.getOrDefault(gems[i], 0) + 1); // 해시맵 저장
+
+                queue.add(gems[i]); // 큐에 삽입
                 while(true) {
                     String s = queue.peek();
 
