@@ -4,6 +4,54 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class 칵테일_유클리드호제법_044 {
+    static class cNode {	// cNode 클래스
+        int b, p, q;	// 멤버 변수
+
+        public cNode(int b, int p, int q) {	// 멤버 함수 : 매개변수 생성자
+            super();	// 부모클래스에 접근
+
+            this.b = b;	// 값 설정
+            this.p = p;
+            this.q = q;
+        }
+
+        public int getB() {	// getter
+            return b;
+        }
+
+        public int getP() {
+            return p;
+        }
+
+        public int getQ() {
+            return q;
+        }
+    }
+
+    public static void DFS(int node, ArrayList<cNode>[] A, boolean[] visited, long[] V) {	// DFS
+
+        visited[node] = true;	// 방문한 배열 true로 설정
+
+        for (cNode i : A[node]) {	// 인접리스트를 순회하면서
+            int next = i.getB();	// 다음 노드
+
+            if (!visited[next]) {	// 다음 노드가 방문하지않은 노드이면
+                V[next] = V[node] * i.getQ() / i.getP();	// 노드값 갱신
+
+                DFS(next, A, visited, V);	// DFS 호출 - 재귀
+            }
+        }
+    }
+
+
+    public static long gcd(long a, long b) {	// 최대공약수
+
+        if (b == 0)
+            return a;
+
+        return gcd(b, a % b);
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);	// 입력
@@ -38,50 +86,5 @@ public class 칵테일_유클리드호제법_044 {
 
         for (int i = 0; i < N; i++)	// 크기 만큼
             System.out.print(V[i] / mgcd + " ");	// 해당 노드를 최대공약수로 나눈 노드값 출력
-    }
-
-    public static long gcd(long a, long b) {	// 최대공약수
-        if (b == 0)
-            return a;
-
-        return gcd(b, a % b);
-    }
-
-    public static void DFS(int node, ArrayList<cNode>[] A, boolean[] visited, long[] V) {	// DFS
-        visited[node] = true;	// 방문한 배열 true로 설정
-
-        for (cNode i : A[node]) {	// 인접리스트를 순회하면서
-            int next = i.getB();	// 다음 노드
-
-            if (!visited[next]) {	// 다음 노드가 방문하지않은 노드이면
-                V[next] = V[node] * i.getQ() / i.getP();	// 노드값 갱신
-
-                DFS(next, A, visited, V);	// DFS 호출 - 재귀
-            }
-        }
-    }
-}
-
-class cNode {	// cNode 클래스
-    int b, p, q;	// 멤버 변수
-
-    public cNode(int b, int p, int q) {	// 멤버 함수 : 매개변수 생성자
-        super();	// 부모클래스에 접근
-
-        this.b = b;	// 값 설정
-        this.p = p;
-        this.q = q;
-    }
-
-    public int getB() {	// getter
-        return b;
-    }
-
-    public int getP() {
-        return p;
-    }
-
-    public int getQ() {
-        return q;
     }
 }
