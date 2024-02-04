@@ -45,7 +45,6 @@ public class 효율적인해킹_Graph_047 {
                 if (!visited[i]) { // 해당 노드의 인접리스트 중에 방문하지않은 노드가 있으면
                     visited[i] = true; // 해당 노드의 방문배열 갱신
                     res[i]++; // 결과 갱신
-
                     queue.add(i); // 큐에 추가
                 }
             }
@@ -53,6 +52,7 @@ public class 효율적인해킹_Graph_047 {
     }
 
     public static void printMaxCount() {    // 최대 개수 출력
+
         int maxVal = 0; // 최대값
 
         for (int i = 1; i <= N; i++) // 노드 개수만큼
