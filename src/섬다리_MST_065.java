@@ -11,8 +11,24 @@ public class 섬다리_MST_065 {
     static ArrayList<int[]> mList; // 각각의 섬 리스트
     static ArrayList<ArrayList<int[]>> sumList; // 전체 섬 리스트
     static PriorityQueue<sEdge> pq; // 엣지리스트
+    
+    static class sEdge implements Comparable<sEdge> { // 엣지리스트 => Comparable 인터페이스 구현 => compareTo()메소드 재정의
+        int S, E, W;
 
-    public static void main(String[] args) throws IOException {
+        public sEdge(int S, int E, int W) {
+            this.S = S;
+            this.E = E;
+            this.W = W;
+        }
+
+        @Override
+        public int compareTo(sEdge E) { // 오버라이딩
+            return this.W - E.W; // 오름차순
+        }
+    }
+
+    public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
@@ -28,10 +44,16 @@ public class 섬다리_MST_065 {
                 map[i][j] = Integer.parseInt(st.nextToken()); // 값 저장
         }
 
+        // 대표노드 초기화
+        parent = new int[sNum];
+        for (int i = 0; i < parent.length; i++)
+            parent[i] = i; // 해당 인덱스로 설정
+
         // 섬 만들기
         visited = new boolean[N][M]; // 방문배열 초기화
         sNum = 1; // 섬이름 1부터 시작 => 크기: N + 1
         sumList = new ArrayList<ArrayList<int[]>>(); // 전체 섬 리스트 구현
+        
         for (int i = 0; i < N; i++) { // 행
             for (int j = 0; j < M; j++) { // 열
                 if (visited[i][j] == false && map[i][j] != 0) { // 방문하지않았고 값이있으면
@@ -41,88 +63,20 @@ public class 섬다리_MST_065 {
                 }
             }
         }
-
-        // 다리 만들기
-        pq = new PriorityQueue<>(); // 엣지리스트 구현
-        for (int i = 0; i < sumList.size(); i++) { // 전체 섬 중
-            ArrayList<int[]> now = sumList.get(i); // 섬 하나씩 꺼내어
-
-            for (int j = 0; j < now.size(); j++) { // 해당 섬의 크기만큼
-                int nowX = now.get(j)[0]; // x 좌표
-                int nowY = now.get(j)[1]; // y 좌표
-                int nowS = map[nowX][nowY]; // 해당 좌표의 값
-
-                for (int k = 0; k < 4; k++) { // 4 방향
-                    int tmpX = dx[k];
-                    int tmpY = dy[k];
-                    int length = 0; // 다리 길이
-
-                    // 좌표가 유효한 동안 반복
-                    while (nowX + tmpX >= 0 && nowX + tmpX < N && nowY + tmpY >= 0 && nowY + tmpY < M) {
-                        if (map[nowX + tmpX][nowY + tmpY] == nowS) // 같은 섬이면
-                            break; // 다리를 못만듬
-
-                        else if (map[nowX + tmpX][nowY + tmpY] != 0) { // 같은 섬이 아니고 바다도 아니면
-                            if (length > 1) // 다리 길이가 1 보다 크면 엣지리스트에 추가
-                                pq.add(new sEdge(nowS, map[nowX + tmpX][nowY + tmpY], length)); // 다리 만듬
-                            break; // 1 보다 작거나 같으면 다리 X
-                        } else // 바다인 경우
-                            length++; // 다리길이 증가
-
-                        // 해당 방향으로 DFS처럼 계속해서 다리 놓기
-                        if (tmpX < 0)
-                            tmpX--;
-                        else if (tmpX > 0)
-                            tmpX++;
-                        else if (tmpY < 0)
-                            tmpY--;
-                        else if (tmpY > 0)
-                            tmpY++;
-                    }
-                }
-            }
-        }
-
-        parent = new int[sNum]; // 대표노드 초기화
-        for (int i = 0; i < parent.length; i++)
-            parent[i] = i; // 해당 인덱스로 설정
-
-        int useEdge = 1; // 사용한 엣지 개수 => 노드 1부터 시작이므로 똑같이 맞춰줌
-        int res = 0; // 총 비용
-
-        while (!pq.isEmpty()) { // 엣지리스트가 비어있지않으면 반복
-            sEdge now = pq.poll(); // 하나 꺼내어
-
-            if (find(now.S) != find(now.E)) { // 대표노드가 다르면
-                union(now.S, now.E); // 합집합
-
-                res += now.W; // 총 비용 갱신
-                useEdge++; // 사용한 엣지 수 갱신
-            }
-        }
-
-        if (useEdge == sNum - 1) // 엣지를 N - 1 개 사용했으면 => MST 특징
-            System.out.println(res); // 출력
-        else // 아니면 - 1 출력
-            System.out.println(-1);
     }
 
-    private static void union(int a, int b) { // 합집합
-        a = find(a);
-        b = find(b);
+    public static void addNode(int i, int j, Queue<int[]> queue) { // 섬 추가
 
-        if (a != b)
-            parent[b] = a;
+        map[i][j] = sNum; // 해당 좌표에 섬이름 저장
+        visited[i][j] = true; // 방문배열 갱신
+        int tmp[] = { i, j }; // 해당 좌표
+
+        mList.add(tmp); // 하나의 섬리스트에 삽입
+        queue.add(tmp); // 큐에 삽입
     }
 
-    private static int find(int a) { // find
-        if (a == parent[a])
-            return a;
+    public static void BFS(int i, int j) { // BFS => 섬 만들기
 
-        return parent[a] = find(parent[a]);
-    }
-
-    private static void BFS(int i, int j) { // BFS => 섬 만들기
         Queue<int[]> queue = new LinkedList<>(); // 큐
         mList = new ArrayList<>(); // 하나의 섬 리스트 구현
         int start[] = { i, j }; // 시작 좌표
@@ -163,27 +117,95 @@ public class 섬다리_MST_065 {
         }
     }
 
-    private static void addNode(int i, int j, Queue<int[]> queue) { // 섬 추가
-        map[i][j] = sNum; // 해당 좌표에 섬이름 저장
-        visited[i][j] = true; // 방문배열 갱신
-        int tmp[] = { i, j }; // 해당 좌표
+    public static void makeBridge() {  // 다리 만들기
 
-        mList.add(tmp); // 하나의 섬리스트에 삽입
-        queue.add(tmp); // 큐에 삽입
+        pq = new PriorityQueue<>(); // 엣지리스트 구현
+
+        for (int i = 0; i < sumList.size(); i++) { // 전체 섬 중
+            ArrayList<int[]> now = sumList.get(i); // 섬 하나씩 꺼내어
+
+            for (int j = 0; j < now.size(); j++) { // 해당 섬의 크기만큼
+                int nowX = now.get(j)[0]; // x 좌표
+                int nowY = now.get(j)[1]; // y 좌표
+                int nowS = map[nowX][nowY]; // 해당 좌표의 값
+
+                for (int k = 0; k < 4; k++) { // 4 방향
+                    int tmpX = dx[k];
+                    int tmpY = dy[k];
+                    int length = 0; // 다리 길이
+
+                    // 좌표가 유효한 동안 반복
+                    while (nowX + tmpX >= 0 && nowX + tmpX < N && nowY + tmpY >= 0 && nowY + tmpY < M) {
+                        if (map[nowX + tmpX][nowY + tmpY] == nowS) // 같은 섬이면
+                            break; // 다리를 못만듬
+
+                        else if (map[nowX + tmpX][nowY + tmpY] != 0) { // 같은 섬이 아니고 바다도 아니면
+                            if (length > 1) // 다리 길이가 1 보다 크면 엣지리스트에 추가
+                                pq.add(new sEdge(nowS, map[nowX + tmpX][nowY + tmpY], length)); // 다리 만듬
+                            break; // 1 보다 작거나 같으면 다리 X
+                        } else // 바다인 경우
+                            length++; // 다리길이 증가
+
+                        // 해당 방향으로 DFS처럼 계속해서 다리 놓기
+                        if (tmpX < 0)
+                            tmpX--;
+                        else if (tmpX > 0)
+                            tmpX++;
+                        else if (tmpY < 0)
+                            tmpY--;
+                        else if (tmpY > 0)
+                            tmpY++;
+                    }
+                }
+            }
+        }
     }
-}
 
-class sEdge implements Comparable<sEdge> { // 엣지리스트 => Comparable 인터페이스 구현 => compareTo()메소드 재정의
-    int S, E, W;
+    public static int find(int a) { // find
 
-    public sEdge(int S, int E, int W) {
-        this.S = S;
-        this.E = E;
-        this.W = W;
+        if (a == parent[a])
+            return a;
+
+        return parent[a] = find(parent[a]);
     }
 
-    @Override
-    public int compareTo(sEdge E) { // 오버라이딩
-        return this.W - E.W; // 오름차순
+    public static void union(int a, int b) { // 합집합
+
+        a = find(a);
+        b = find(b);
+
+        if (a != b)
+            parent[b] = a;
+    }
+
+    public static void Kruskal() {  // 크루스칼, MST 알고리즘
+
+        int useEdge = 1; // 사용한 엣지 개수 => 노드 1부터 시작이므로 똑같이 맞춰줌
+        int res = 0; // 총 비용
+
+        while (!pq.isEmpty()) { // 엣지리스트가 비어있지않으면 반복
+            sEdge now = pq.poll(); // 하나 꺼내어
+
+            if (find(now.S) != find(now.E)) { // 대표노드가 다르면
+                union(now.S, now.E); // 합집합
+
+                res += now.W; // 총 비용 갱신
+                useEdge++; // 사용한 엣지 수 갱신
+            }
+        }
+
+        if (useEdge == sNum - 1) // 엣지를 N - 1 개 사용했으면 => MST 특징
+            System.out.println(res); // 출력
+        else // 아니면 - 1 출력
+            System.out.println(-1);
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        init(); // 초기화
+
+        makeBridge();   // 다리 만들기
+
+        Kruskal();  // 최단경로
     }
 }
