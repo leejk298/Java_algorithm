@@ -8,29 +8,34 @@ public class 인사고과_프로그래머스 {
 
     static class Solution {
         public int solution(int[][] scores) {
-            int answer = 1; // 등수 1등부터
-            int wScore = scores[0][0] + scores[0][1];   // 원호 점수
-            int[] w = {scores[0][0], scores[0][1]};     // 1차 배열로
 
-            // 정렬: 근무태도 내림, 동료평가 오름차순 => 둘 다 같은 걸로 정렬하면 비교할 수 없으므로
-            Arrays.sort(scores, (o1, o2) -> o1[0] == o2[0] ? o1[1] - o2[1] : o2[0] - o1[0]);
+            int answer = 1; // 순위
+            int wanhoScore = scores[0][0] + scores[0][1];   // 완호 점수 총합
+            int[] w = {scores[0][0], scores[0][1]}; // 완호 점수 배열
 
-            int max = Integer.MIN_VALUE;
-            for(int i = 0; i < scores.length; i++) {
-                if(max < scores[i][1]) {
-                    max = scores[i][1];
-                } else if(max > scores[i][1]) { // 작으면
-                    if(scores[i][0] == w[0] && scores[i][1] == w[1])    // 원호와 같으면 -1
+            Arrays.sort(scores, (o1, o2) -> {   // 하나를 기준으로 => 근무태도
+                if(o1[0] == o2[0])  // 근무태도가 같으면
+                    return o1[1] - o2[1];   // 동료평가 오름차순으로
+
+                return o2[0] - o1[0];   // 근무태도가 다르면 근무태도 내림차순 정렬
+            });
+
+            int max = -1;   // 기준값
+            for(int[] score : scores) { // 입력배열 순회
+                if(max < score[1])  // 기준값보다 크면
+                    max = score[1]; // 갱신
+                else if(max > score[1]) {   // 작으면
+                    if(score[0] == w[0] && score[1] == w[1])    // 완호인지 체크
                         return -1;
-
-                    continue;   // 다음 반복으로
+                    else    // 완호가 아니면
+                        continue;   // 다음 사람으로 => 이미 오름차순 정렬했으므로 순위 체크 x
                 }
 
-                if(scores[i][0] + scores[i][1] > wScore)    // 원호보다 높으면
-                    answer++;   // 등수 + 1
+                if(score[0] + score[1] > wanhoScore)    // 갱신이 된 경우에는 완호의 점수보다 크면
+                    answer++;   // 완호 순위 갱신
             }
 
-            return answer;
+            return answer;  // 완호 순위 리턴
         }
     }
 }
