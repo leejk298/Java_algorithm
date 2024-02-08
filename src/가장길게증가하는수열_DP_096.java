@@ -8,7 +8,7 @@ public class 가장길게증가하는수열_DP_096 {
     static int D[]; // 길이
     static int res[]; // 결과
 
-    public static void main(String[] args) throws IOException {
+    public static void init() throws IOException {  // 초기화
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
 
@@ -22,6 +22,25 @@ public class 가장길게증가하는수열_DP_096 {
 
         for (int i = 1; i <= N; i++) // 개수만큼
             A[i] = Integer.parseInt(st.nextToken()); // 수열 저장
+    }
+
+    public static int binarySearch(int l, int r, int now) { // 이진 탐색
+
+        int mid; // 중간값
+
+        while (l < r) { // 역전이 일어나지않을 때까지 반복
+            mid = (l + r) / 2;
+
+            if (B[mid] < now) // 중간값보다 크면
+                l = mid + 1; // left 갱신 => GT
+            else // 중간값보다 작으면
+                r = mid; // right 갱신 => LT
+        }
+
+        return l; // 역전이 일어났으므로 맞는 위치(left) 리턴
+    }
+
+    public static void printMaxCount() {    // 최대 길이의 수열 출력
 
         int index; // 위치
         B[++maxLength] = A[1]; // 한 개 받고
@@ -53,22 +72,12 @@ public class 가장길게증가하는수열_DP_096 {
 
         for (int i = 1; i <= maxLength; i++) // 결과 출력
             System.out.print(res[i] + " ");
-        System.out.println();
     }
 
-    private static int binarySearch(int l, int r, int now) { // 이진 탐색
+    public static void main(String[] args) throws IOException {
 
-        int mid; // 중간값
+        init(); // 초기화
 
-        while (l < r) { // 역전이 일어나지않을 때까지 반복
-            mid = (l + r) / 2;
-
-            if (B[mid] < now) // 중간값보다 크면
-                l = mid + 1; // left 갱신 => GT
-            else // 중간값보다 작으면
-                r = mid; // right 갱신 => LT
-        }
-
-        return l; // 역전이 일어났으므로 맞는 위치(left) 리턴
+        printMaxCount();    // 최대 길이 수열 출력
     }
 }
