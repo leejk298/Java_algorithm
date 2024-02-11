@@ -2,15 +2,33 @@ import java.util.*;
 import java.io.*;
 
 public class 최소비용_다익스트라_057 {
-    public static ArrayList<kNode>[] A; // 인접리스트
-    public static boolean visited[]; // 방문배열
-    public static int D[]; // 최단경로배열
+    static int N, M;    // 크기
+    static int start, end;  // 출발, 도착점
+    static ArrayList<kNode>[] A; // 인접리스트
+    static boolean visited[]; // 방문배열
+    static int D[]; // 최단경로배열
 
-    public static void main(String[] args) throws IOException {
+    static class kNode implements Comparable<kNode> { // kNode 클래스
+        int node;
+        int w;
+
+        kNode(int node, int w) {
+            this.node = node;
+            this.w = w;
+        }
+
+        @Override
+        public int compareTo(kNode v) { // 오버라이딩
+            return w - v.w;	// 오름차순 정렬
+        }
+    }
+
+    public static void init() throws IOException {  // 초기화
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력버퍼
 
-        int N = Integer.parseInt(bf.readLine()); // 노드
-        int M = Integer.parseInt(bf.readLine()); // 엣지
+        N = Integer.parseInt(bf.readLine()); // 노드
+        M = Integer.parseInt(bf.readLine()); // 엣지
 
         A = new ArrayList[N + 1]; // 인접리스트 선언
         visited = new boolean[N + 1]; // 방문배열 선언
@@ -33,13 +51,12 @@ public class 최소비용_다익스트라_057 {
 
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
-        int start = Integer.parseInt(st.nextToken()); // 출발노드
-        int end = Integer.parseInt(st.nextToken()); // 도착노드
-
-        System.out.println(dijkstra_cost(start, end)); // 다익스트라 함수 호출
+        start = Integer.parseInt(st.nextToken()); // 출발노드
+        end = Integer.parseInt(st.nextToken()); // 도착노드
     }
 
-    private static int dijkstra_cost(int start, int end) { // 다익스트라 함수
+    public static void dijkstra_cost(int start, int end) { // 다익스트라 함수
+
         PriorityQueue<kNode> pq = new PriorityQueue<>(); // 우선순위 큐 => Comparable 클래스 구현 => compareTo 메소드 재정의
         pq.add(new kNode(start, 0)); // 출발노드 큐에 삽입
         D[start] = 0; // 최단경로배열 갱신
@@ -60,21 +77,13 @@ public class 최소비용_다익스트라_057 {
             }
         }
 
-        return D[end]; // 도착노드까지의 최소비용 리턴
-    }
-}
-
-class kNode implements Comparable<kNode> { // kNode 클래스
-    int node;
-    int w;
-
-    kNode(int node, int w) {
-        this.node = node;
-        this.w = w;
+        System.out.println(D[end]); // 도착노드까지의 최소비용 리턴
     }
 
-    @Override
-    public int compareTo(kNode v) { // 오버라이딩
-        return w - v.w;	// 오름차순 정렬
+    public static void main(String[] args) throws IOException {
+
+        init(); // 초기화
+
+        dijkstra_cost(start, end); // 다익스트라 함수 호출
     }
 }
