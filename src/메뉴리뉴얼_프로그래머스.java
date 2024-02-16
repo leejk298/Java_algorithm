@@ -17,16 +17,16 @@ public class 메뉴리뉴얼_프로그래머스 {
                 combination(s + str.charAt(i), str.substring(i + 1), count - 1);    // 재귀콜
             }
         }
+
         public String[] solution(String[] orders, int[] course) {
 
-            // 초기화
-            hashMap = new HashMap<>();
-            list = new ArrayList<>();
+            hashMap = new HashMap<>();  // 해시맵
+            list = new ArrayList<>();   // 결과리스트
 
             for(int i = 0; i < orders.length; i++) {    // 문자열 하나씩
                 char[] ch = orders[i].toCharArray();    // 문자로 바꿔서 정렬
-
                 Arrays.sort(ch);
+
                 orders[i] = String.valueOf(ch);         // 다시 문자열로
             }
 
