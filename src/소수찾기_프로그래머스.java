@@ -7,15 +7,24 @@ public class 소수찾기_프로그래머스 {
     }
 
     static class Solution {
+        static int answer;
         static boolean[] visited;   // 방문배열
         static List<Integer> list;  // 결과리스트
 
+        public static void init() { // 초기화
+
+            answer = 0; // 결과값
+            visited = new boolean[7];   // 최대 7자리이므로, 소수도 7자리까지 가능
+            list = new ArrayList<>();   // 결과리스트
+        }
+
         public static void DFS(int length, String t, String s) {    // DFS
 
-            // 베이스 케이스
-            if (length == t.length()) {  // 길이가 똑같으면
+            if (length == t.length()) {  // 베이스케이스: 길이가 똑같으면
                 if (!list.contains(Integer.parseInt(t))) // 결과리스트에 포함되어있지 않으면
                     list.add(Integer.parseInt(t));  // 삽입
+
+                return;
             }
 
             // 재귀 케이스: 길이가 다르면
@@ -47,10 +56,7 @@ public class 소수찾기_프로그래머스 {
 
         public int solution(String numbers) {
 
-            // 초기화
-            int answer = 0; // 결과값
-            visited = new boolean[7];   // 최대 7자리이므로, 소수도 7자리까지 가능
-            list = new ArrayList<>();   // 결과리스트
+            init(); // 초기화
 
             for (int i = 0; i < numbers.length(); i++)  // 입력 문자열 길이만큼
                 DFS(i + 1, "", numbers);    // 길이 1부터 최대 길이까지, 빈 문자열 넘김
