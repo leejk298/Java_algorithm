@@ -9,27 +9,23 @@ public class 귤고르기_프로그래머스 {
     static class Solution {
         public int solution(int k, int[] tangerine) {
 
-            Map<Integer, Integer> hashMap = new HashMap<>();    // 해시맵
-
+            Map<Integer,Integer> hashMap = new HashMap<>(); // 해시맵
             for(int t : tangerine)  // 입력배열 순회
                 hashMap.put(t, hashMap.getOrDefault(t, 0) + 1); // 해시맵 저장
 
-            List<Integer> list = new ArrayList<>(); // 리스트
-            for(int key : hashMap.keySet()) // 키 값 순회
-                list.add(hashMap.get(key)); // 밸류 값 리스트에 저장
-
+            List<Integer> list = new ArrayList<>(hashMap.values()); // 리스트, 해시맵의 밸류값으로
             Collections.sort(list, Collections.reverseOrder()); // 내림차순 정렬
 
-            int sum = 0, answer = 0;    // 총 합, 결과값
+            int count = 0, sum = 0; // 개수, 합
             for(int i : list) { // 리스트 순회
-                sum += i;   // 총합 갱신
-                answer++;   // 가짓수
+                sum += i;   // 개수 합
+                count++;    // 종류 개수 카운트
 
-                if(sum >= k)    // 필요 개수 이상이면
+                if(sum >= k)    // 합이 k 이상이면
                     break;  // for 종료
             }
 
-            return answer;  // 결과값 리턴
+            return count;   // 종류 개수 리턴
         }
     }
 }
