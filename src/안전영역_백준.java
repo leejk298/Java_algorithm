@@ -23,10 +23,9 @@ public class 안전영역_백준 {
 
         N = Integer.parseInt(bf.readLine());    // 크기
 
-        // 초기화
-        count = 0;
-        maxHeight = 0;
-        map = new int[N][N];
+        count = 0;  // 최대 영역 개수
+        maxHeight = 0;  // 최대 높이
+        map = new int[N][N];    // 입력배열
 
         for(int i = 0; i < N; i++) {    // 행
             StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
@@ -39,7 +38,6 @@ public class 안전영역_백준 {
     }
 
     public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
-
         return (x < 0 || x >= N || y < 0 || y >= N);
     }
 
@@ -70,8 +68,7 @@ public class 안전영역_백준 {
 
     public static void findMaxArea() {  // 최대 영역 찾기
 
-        // 0부터 시작하는 이유는 높이가 1인 영역도 검사하기 위해
-        for(int h = 0; h <= maxHeight; h++) {   // 높이 만큼
+        for(int h = 0; h <= maxHeight; h++) {   // 높이 만큼, 0부터 시작하는 이유: 높이가 1인 영역도 검사하기 위해
             int cnt = 0;    // 개수
             visited = new boolean[N][N];    // 방문배열 초기화
 
