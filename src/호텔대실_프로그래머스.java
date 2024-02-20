@@ -9,54 +9,55 @@ public class 호텔대실_프로그래머스 {
 
     static class Solution {
         static int[][] time;    // 입력배열
-        public int getTime(String s) {  // 시간 얻기
 
-            String[] tmp = s.split(":");    // : 기준으로 나눔
+        public static int getTime(String t) {   // 시간 가져오기
 
-            int h = Integer.parseInt(tmp[0]);   // 시간
-            int m = Integer.parseInt(tmp[1]);   // 분
+            String[] str = t.split(":");    // :을 기준으로 문자열 나누기
+
+            int h = Integer.parseInt(str[0]);   // 시간
+            int m = Integer.parseInt(str[1]);   // 분
 
             return h * 60 + m;  // 총 시간 리턴
         }
 
-        public void init(String[][] book_time) {    // 초기화
-            time = new int[book_time.length][2];    // 입력배열
+        public static void init(String[][] book_time) {  // 초기화
 
-            for(int i = 0; i < book_time.length; i++) { // 크기만큼
-                time[i][0] = getTime(book_time[i][0]);   // 시작
-                time[i][1] = getTime(book_time[i][1]) + 10;    // 끝 + 10분(청소)
+            time = new int[book_time.length][2];    // 입력배열 초기화
+
+            for(int i = 0; i < time.length; i++) {  // 길이만큼
+                time[i][0] = getTime(book_time[i][0]);  // 입실시간
+                time[i][1] = getTime(book_time[i][1]) + 10; // 퇴실시간 + 청소시간
             }
 
-            Arrays.sort(time, (o1, o2) -> { // 정렬
-                if(o1[0] == o2[0])  // 시작시간이 같으면
-                    return o1[1] - o2[1];   // 종료시간이 빠른 순으로 오름차순 정렬
+            Arrays.sort(time, (o1, o2) -> { // 입실, 퇴실시간 기준으로 오름차순 정렬
+                if(o1[0] == o2[0])
+                    return o1[1] - o2[1];
 
-                return o1[0] - o2[0];   // 다르면 시작시간이 빠른 순으로 오름차순 정렬
+                return o1[0] - o2[0];
             });
         }
 
-        public static int countHotel() {    // 호텔 객실 개수
+        public static int countHotelRoom() {    // 최소한의 방 개수
 
             PriorityQueue<Integer> pq = new PriorityQueue<>();  // 우선순위 큐
 
-            pq.offer(time[0][1]);   // 가장 우선순위인 객실 하나 배정
+            pq.offer(time[0][1]);   // 처음 손님 퇴실시간 저장
 
-            for(int i = 1; i < time.length; i++) {  // N - 1 만큼
-                if((pq.peek()) <= time[i][0]){  // 이전 객실 종료시간보다 현재 객실 시작시간이 크거나 같으면
-                    pq.poll();  // 이전 객실 종료
-                    pq.add(time[i][1]); // 현재 객실 삽입
-                }else   // 작으면
-                    pq.add(time[i][1]); // 객실 하나 더 배정
+            for(int i = 1; i < time.length; i++) {  // 다음 손님부터 끝까지
+                if(pq.peek() <= time[i][0]) // 현재와 비교하여 다음 손님의 입실시간이 더 늦으면
+                    pq.poll();  // 현재 방 사용 가능하므로 꺼내기
+
+                pq.offer(time[i][1]);   // 다음 손님 퇴실시간 저장
             }
 
-            return pq.size();   // 객실 개수 리턴
+            return pq.size();   // 방의 개수 리턴
         }
 
         public int solution(String[][] book_time) {
 
             init(book_time);    // 초기화
 
-            return countHotel();    // 객실 개수 리턴
+            return countHotelRoom();    // 최소한의 방 개수 리턴
         }
     }
 }
