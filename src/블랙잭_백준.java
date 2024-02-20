@@ -27,20 +27,20 @@ public class 블랙잭_백준 {
 
     public static void printCloseCardSum() {    // M에 가장 가까운 숫자 출력
 
-        int sum = 0, res = 0;   // 합, 결과값
+        int sum = 0, max = 0;   // 합, 결과값
 
         for (int i = 0; i < N - 2; i++) {   // 첫 번째 카드
             for (int j = i + 1; j < N - 1; j++) {   // 두 번째 카드
                 for (int k = j + 1; k < N; k++) {   // 세 번째 카드
-                    sum = arr[i] + arr[j] + arr[k]; // 합
+                    sum = arr[i] + arr[j] + arr[k]; // 총 합
 
-                    if(sum <= M && res < sum)   // M보다 크지않고 가장 가까운 수
-                        res = sum;  // 저장
+                    if(sum <= M)    // 경계값 이하이면
+                        max = Math.max(max, sum);   // 최대값
                 }
             }
         }
 
-        System.out.println(res);    // 출력
+        System.out.println(max);    // 출력
     }
 
     public static void main(String[] args) throws IOException {
