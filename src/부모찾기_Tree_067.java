@@ -1,12 +1,13 @@
 import java.util.*;
 
 public class 부모찾기_Tree_067 {
-    static int N; // 노드
+    static int N; // 개수
     static ArrayList<Integer>[] tree; // 트리
     static boolean visited[]; // 방문배열
-    static int res[]; // 부모배열
+    static int res[]; // 결과배열
 
-    public static void main(String[] args) {
+    public static void init() { // 초기화
+
         Scanner sc = new Scanner(System.in); // 입력
 
         N = sc.nextInt(); // 노드 개수
@@ -25,14 +26,10 @@ public class 부모찾기_Tree_067 {
             tree[a].add(b); // 양방향 => 트리를 그래프처럼 표현가능
             tree[b].add(a);
         }
-
-        DFS(1); // 루트노드인 1번 노드부터 DFS 수행
-
-        for (int i = 2; i <= N; i++) // 노드 2번부터 해당노드의 부모노드 출력
-            System.out.println(res[i]);
     }
 
-    private static void DFS(int v) { // DFS
+    public static void DFS(int v) { // DFS
+
         visited[v] = true; // 방문배열 갱신
 
         for (int i : tree[v]) { // 해당노드의 인접노드들을 탐색하여
@@ -41,5 +38,20 @@ public class 부모찾기_Tree_067 {
                 DFS(i); // 해당자식노드로 DFS 수행
             }
         }
+    }
+
+    public static void printParent() {  // 부모노드 출력
+
+        for (int i = 2; i <= N; i++) // 루트를 제외하고 2번 노드부터
+            System.out.println(res[i]); // 부모노드 출력
+    }
+
+    public static void main(String[] args) {
+
+        init(); // 초기화
+
+        DFS(1); // 루트노드인 1번 노드부터 DFS 수행
+
+        printParent();  // 부모노드 출력
     }
 }
