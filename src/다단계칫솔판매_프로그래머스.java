@@ -4,7 +4,7 @@ public class 다단계칫솔판매_프로그래머스 {
     static class Solution {
         class Employee {    // 판매원 클래스
             String name;    // 이름
-            Employee parent;    // 부모
+            Employee parent; // 부모
             int profit; // 이득
 
             public Employee(String name, Employee parent, int profit) { // 파라미터 생성자
@@ -14,6 +14,7 @@ public class 다단계칫솔판매_프로그래머스 {
             }
 
             public void distribute(int profit) {    // 이득 분배
+
                 int parentProfit = profit / 10; // 부모 이득
                 this.profit += profit - parentProfit;   // 자신 이득
 
