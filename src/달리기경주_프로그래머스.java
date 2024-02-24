@@ -1,8 +1,13 @@
 import java.util.*;
 
 public class 달리기경주_프로그래머스 {
-    static class Solution {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(Arrays.toString(solution.solution(new String[]{"mumu", "soe", "poe", "kai", "mine"},
+                new String[]{"kai", "kai", "mine", "mine"})));
+    }
 
+    static class Solution {
         public String[] solution(String[] players, String[] callings) {
 
             Map<String, Integer> hashMap = new HashMap<>(); // 해시맵
@@ -23,11 +28,5 @@ public class 달리기경주_프로그래머스 {
 
             return players; // 결과배열 리턴
         }
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(Arrays.toString(solution.solution(new String[]{"mumu", "soe", "poe", "kai", "mine"},
-                new String[]{"kai", "kai", "mine", "mine"})));
     }
 }
