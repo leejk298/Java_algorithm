@@ -40,34 +40,29 @@ public class 알파벳_백준 {
         return (x < 0 || x >= N || y < 0 || y >= M);
     }
 
-    public static void DFS(int count, int x, int y) {   // DFS, 브루트포스
+    public static void DFS(int x, int y, int count) {   // DFS, 백트래킹
 
-        if (visited[map[x][y]]) {   // 종료조건: 방문한 적이 있으면
-            max = Math.max(max, count); // 최대값 저장
+       visited[map[x][y]] = true;   // 방문
+       max = Math.max(max, count);  // 최대값 갱신
 
-            return; // 함수 리턴, 완전 탐색하기 위해
-        }
+       for(int i = 0; i < 4; i++) { // 4방향
+           int tmpX = x + dx[i], tmpY = y + dy[i];  // 다음좌표
 
-        // 방문한 적이 없으면
-        visited[map[x][y]] = true;  // 방문
+           if(isNotValidPos(tmpX, tmpY))    // 유효한지
+               continue;
 
-        for (int i = 0; i < 4; i++) {   // 4방향
-            int tmpX = x + dx[i], tmpY = y + dy[i]; // 다음 좌표
-
-            if (isNotValidPos(tmpX, tmpY))  // 유효한지
-                continue;
-
-            DFS(count + 1, tmpX, tmpY); // DFS, 재귀콜
-        }
-
-        visited[map[x][y]] = false; // 리턴되면 방문여부 갱신
+           if(!visited[map[tmpX][tmpY]]) {  // 방문한 적이 없으면
+               DFS(tmpX, tmpY, count + 1);  // DFS, 재귀콜
+               visited[map[tmpX][tmpY]] = false;    // 리턴되면 방문여부 갱신
+           }
+       }
     }
 
     public static void main(String[] args) throws IOException {
 
         init(); // 초기화
 
-        DFS(0, 0, 0);   // DFS, 브루트포스
+        DFS(0, 0, 1);   // DFS, 백트래킹
 
         System.out.println(max);    // 최대값 출력
     }
