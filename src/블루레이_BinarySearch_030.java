@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class 블루레이_BinarySearch_030 {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in); // 입력
 
         int N = sc.nextInt(); // 크기
@@ -20,8 +21,7 @@ public class 블루레이_BinarySearch_030 {
 
         while (S <= E) {
             int mid = (S + E) / 2; // 중앙값
-            int sum = 0;
-            int cnt = 0;
+            int sum = 0, cnt = 0;
 
             for (int i = 0; i < N; i++) { // 크기만큼
                 if (sum + A[i] > mid) { // 중앙값보다 크면 짜르기
