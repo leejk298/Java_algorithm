@@ -12,11 +12,10 @@ public class 리프노드_Tree_068 {
 
         N = sc.nextInt(); // 노드 개수
         count = 0;
-
         tree = new ArrayList[N]; // 초기화, 0번부터 시작 => 크기: N
         visited = new boolean[N];
-
         root = 0; // 루트노드
+
         for (int i = 0; i < N; i++) // 노드 개수만큼
             tree[i] = new ArrayList<>(); // 트리 구현
 
@@ -36,8 +35,8 @@ public class 리프노드_Tree_068 {
     public static void DFS(int v) { // DFS
 
         visited[v] = true; // 방문배열 갱신
-
         int cNode = 0; // 자식노드 개수
+
         for (int i : tree[v]) { // 해당노드의 인접노드(=자식노드) 탐색
             if (!visited[i] && i != deleteNode) { // 방문하지않았고 삭제할 노드가 아니면
                 cNode++; // 해당노드의 자식노드 개수 카운트
@@ -53,7 +52,6 @@ public class 리프노드_Tree_068 {
 
         if (deleteNode == root) // 삭제할 노드가 루트노드이면
             System.out.println(0); // 0 출력 => 리프노드가 없으므로
-
         else { // 루트노드가 아니면
             DFS(root); // 루트노드로 DFS 수행
             System.out.println(count); // 리프노드 개수 출력
