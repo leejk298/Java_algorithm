@@ -3,6 +3,15 @@ import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 public class 최대공약수_유클리드호제법_043 {
+
+    public static long gcd(long a, long b) {	// 최대공약수 함수
+
+        if (b == 0)	// 베이스케이스
+            return a;	// 최대공약수 리턴
+        // 재귀케이스
+        return gcd(b, a % b);	// 재귀콜
+    }
+
     public static void main(String[] args) throws Exception {
 
         Scanner sc = new Scanner(System.in);	// 입력
@@ -21,13 +30,5 @@ public class 최대공약수_유클리드호제법_043 {
 
         bw.flush();	// 출력 버퍼에 있는 값 출력
         bw.close();	// 출력 버퍼 닫기
-    }
-
-    private static long gcd(long a, long b) {	// 최대공약수 함수
-        if (b == 0)	// 베이스케이스
-            return a;	// 최대공약수 리턴
-
-        // 재귀케이스
-        return gcd(b, a % b);	// 재귀콜
     }
 }
