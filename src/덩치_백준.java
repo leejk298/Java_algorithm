@@ -17,38 +17,40 @@ public class 덩치_백준 {
     public static void init() throws IOException {  // 초기화
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        N = Integer.parseInt(bf.readLine());    // 크기
+        N = Integer.parseInt(st.nextToken());   // 크기
 
-        // 초기화
-        arr = new int[N][2];
-        for(int i = 0; i < N; i++) {    // 행
-            StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+        arr = new int[N][2];    // 입력배열
+        for (int i = 0; i < N; i++) {   // 크기만큼
+            st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-            arr[i][0] = Integer.parseInt(st.nextToken());   // 몸무게
-            arr[i][1] = Integer.parseInt(st.nextToken());   // 키
+            int w = Integer.parseInt(st.nextToken());   // 몸무게
+            int h = Integer.parseInt(st.nextToken());   // 키
+
+            arr[i] = new int[]{w, h};   // 입력배열 저장
         }
     }
 
     public static void printRank() {    // 순위 출력
 
-        StringBuilder sb = new StringBuilder(); // 결과 문자열
+        StringBuilder sb = new StringBuilder(); // 결과문자열
 
-        for(int i = 0; i < N; i++) {    // 크기만큼
+        for (int i = 0; i < N; i++) {   // 크기만큼
             int rank = 1;   // 순위 1부터
 
-            for(int j = 0; j < N; j++) {    // 비교
-                if(i == j)  // 같은 것은 건너뛰기
-                    continue;
+            for (int j = 0; j < N; j++) {   // 비교 대상
+                if (i == j) // 같으면
+                    continue;   // 건너뛰기
 
-                if(arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1])  // 둘 다 작으면
-                    rank++; // 순위를 높임
+                if (arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1]) // 몸무게, 키가 다 작으면
+                    rank++; // 후순위로
             }
 
-            sb.append(rank + " ");  // 해당 순위 추가
+            sb.append(rank + " ");  // 순위 저장
         }
 
-        System.out.println(sb); // 총 순위 출력
+        System.out.println(sb); // 결과문자열 출력
     }
 
     public static void main(String[] args) throws IOException {
