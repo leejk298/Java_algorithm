@@ -11,32 +11,27 @@ import java.io.*;
  */
 
 public class N번째큰수_백준 {
-    static int N;   // 크기
-    static PriorityQueue<Integer> pq;   // 우선순위 큐
-
-    public static void init() throws IOException {  // 초기화
-
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
-
-        N = Integer.parseInt(bf.readLine());    // 크기
-
-        pq = new PriorityQueue<>(Collections.reverseOrder());   // 우선순위 큐, 최대힙: 정렬 보장 x
-
-        // 초기화
-        for(int i = 0; i < N; i++) {    // 행
-            StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
-
-            for(int j = 0; j < N; j++)  // 열
-                pq.add(Integer.parseInt(st.nextToken()));   // 우선순위 큐에 삽입
-        }
-    }
-
     public static void main(String[] args) throws IOException {
 
-        init(); // 초기화
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        while(N-- > 1)  // N - 1번
-            pq.poll();  // 삭제 연산
+        int N = Integer.parseInt(st.nextToken());   // 크기
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());    // 우선순위 큐, 내림차순 정렬
+
+        for (int i = 0; i < N; i++) {   // 크기
+            st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
+            for (int j = 0; j < N; j++) {   // 크기
+                int num = Integer.parseInt(st.nextToken()); // 숫자
+
+                pq.offer(num);  // 우선순위 큐에 삽입
+            }
+        }
+
+        for (int i = 1; i < N; i++) // N - 1 만큼
+            pq.poll();  // 우선순위 큐에서 삭제
 
         System.out.println(pq.peek());  // N번째 큰 수 출력
     }
