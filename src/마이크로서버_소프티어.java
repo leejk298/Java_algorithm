@@ -4,6 +4,7 @@ import java.io.*;
 
 public class 마이크로서버_소프티어 {
     public static void main(String args[]) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 
         int T = Integer.parseInt(bf.readLine());
@@ -39,7 +40,6 @@ public class 마이크로서버_소프티어 {
 
                 E--;    // 공통
             }
-
 
             // +2 한 이유는 1개라도 있으면 할당해줘야하고 3의 배수여도 문제없음
             servers += (count300 + 2) / 3;  // 300이 있으면 할당 필요
