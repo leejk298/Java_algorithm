@@ -33,7 +33,7 @@ public class 특정거리의도시찾기_Graph_046 {
         }
     }
 
-    public static void BFS(int v, ArrayList<Integer>[] A, int[] visited) { // BFS
+    public static void BFS(int v) { // BFS
 
         Queue<Integer> queue = new LinkedList<>(); // 큐로 구현
 
@@ -53,7 +53,7 @@ public class 특정거리의도시찾기_Graph_046 {
         }
     }
 
-    public static void printShortestCity() {
+    public static void printShortestPath() {    // 최단경로 출력
 
         for (int i = 1; i <= N; i++) // 노드 개수만큼
             if (visited[i] == K) // 방문 배열의 값이 찾는 최단경로이면
@@ -61,7 +61,6 @@ public class 특정거리의도시찾기_Graph_046 {
 
         if (res.isEmpty()) // 결과 리스트가 비어있으면
             System.out.println(-1); // -1 출력
-
         else { // 비어있지 않으면
             Collections.sort(res); // 결과 리스트 정렬 => 오름차순 출력 위해
 
@@ -72,10 +71,10 @@ public class 특정거리의도시찾기_Graph_046 {
 
     public static void main(String[] args) {
 
-        init();
+        init(); // 초기화
 
-        BFS(X, A, visited); // BFS 수행 - 최단경로 탐색
+        BFS(X); // 시작점 X로 BFS
 
-        printShortestCity();
+        printShortestPath();    // 최단경로 출력
     }
 }
