@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 /*
 10 15
@@ -6,53 +7,42 @@ import java.util.*;
  */
 
 public class 부분합_백준 {
-    static int N, S, length;    // 크기, 결과
-    static int[] arr;   // 입력배열
+    public static void main(String[] args) throws IOException {
 
-    public static void init() { // 초기화
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-        Scanner sc = new Scanner(System.in);    // 입력
+        int N = Integer.parseInt(st.nextToken());   // 크기
+        int S = Integer.parseInt(st.nextToken());   // 합
 
-        N = sc.nextInt();   // 크기
-        S = sc.nextInt();   // 합
-        length = 100001;    // 최대값
+        int[] arr = new int[N]; // 입력배열 초기화
 
-        // 초기화
-        arr = new int[N];
-        for(int i = 0; i < N; i++)
-            arr[i] = sc.nextInt();
-    }
+        st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-    public static void printShortestLength() {  // 최소 길이 출력
+        for (int i = 0; i < N; i++) // 크기만큼
+            arr[i] = Integer.parseInt(st.nextToken());  // 입력배열 저장
 
-        int sum = 0, l = 0, r = 0;  // 구간합, 투포인터
+        int res = 100001;   // 길이 최대값, 100000 + 1
 
-        while(true) {
-            if(sum >= S) {  // 합 이상이면
-                sum -= arr[l];  // 왼쪽 포인터 하나 빼고
-                length = Math.min(length, r - l);   // 길이 저장
-                l++;    // 왼쪽 포인터 이동
-            }
+        int s = 0, e = 0, sum = 0;  // 인덱스, 구간합
+        while (true) {
+            if(sum >= S) {  // 구간합이 주어진 합보다 크거나 같으면
+                sum -= arr[s];  // 구간합 갱신
+                res = Math.min(res, e - s); // 길이 저장
 
-            else if(r == N) // 도달하면 while 종료
-                break;
+                s++;    // 시작인덱스 갱신
+            } else if(e == N) { // 끝인덱스가 N에 도달하면
+                break;  // while 종료
+            } else {    // 끝에 도달하지 않았고 합보다 작으면
+                sum += arr[e];  // 구간합 갱신
 
-            else {  // 도달하지 않았고, 합 미만이면
-                sum += arr[r];  // 오른쪽 포인터 하나 더하고
-                r++;    // 오른쪽 포인터 이동
+                e++;    // 끝인덱스 갱신
             }
         }
 
-        if(length == 100001)    // 만족하는 길이가 없으면
-            System.out.println(0);  // 0
-        else    // 최소 길이
-            System.out.println(length); // 출력
-    }
-
-    public static void main(String[] args) {
-
-        init(); // 초기화
-
-        printShortestLength();  // 최소 길이 출력
+        if (res == 100001)  // 초기값 그대로이면 같은 값이 없는 것이므로
+            System.out.println(0);  // 0 출력
+        else    // 아니면
+            System.out.println(res);    // 구간합 최소 길이 출력
     }
 }
