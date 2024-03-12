@@ -18,6 +18,7 @@ public class 벽부수고이동_백준 {
 
     static class Node { // 노드 클래스
         int x, y, z, d;
+
         public Node(int x, int y, int z, int d) {   // 파라미터 생성자
             this.x = x; // 좌표
             this.y = y;
@@ -34,14 +35,13 @@ public class 벽부수고이동_백준 {
         N = Integer.parseInt(st.nextToken());   // 행
         M = Integer.parseInt(st.nextToken());   // 열
 
-        // 초기화
-        map = new int[N][M];
-        visited = new boolean[2][N][M];
+        map = new int[N][M];    // 입력배열
+        visited = new boolean[2][N][M]; // 방문배열, 0: 찬스 x, 1: 찬스 o
 
-        for(int i = 0; i < N; i++) {    // 행
+        for (int i = 0; i < N; i++) {    // 행
             char[] ch = bf.readLine().toCharArray();    // 문자배열
 
-            for(int j = 0; j < M; j++)  // 열
+            for (int j = 0; j < M; j++)  // 열
                 map[i][j] = ch[j] - '0';    // 입력배열 저장
         }
     }
@@ -57,24 +57,30 @@ public class 벽부수고이동_백준 {
         queue.offer(new Node(x, y, z, d));  // 시작점 큐에 삽입
         visited[z][x][y] = true;    // 방문여부 갱신
 
-        while(!queue.isEmpty()) {   // 큐가 비어있지 않으면
+        while (!queue.isEmpty()) {   // 큐가 비어있지 않으면
             Node now = queue.poll();    // 하나 꺼내어
 
             int nowX = now.x, nowY = now.y, nowZ = now.z, nowD = now.d; // 현재 노드값
-            if(nowX == N - 1 && nowY == M - 1)  // 도착점에 도달하면
+
+            if (nowX == N - 1 && nowY == M - 1)  // 도착점에 도달하면
                 return nowD;    // 현재 객체의 거리값 출력
 
-            for(int i = 0; i < 4; i++) {    // 4방향
+            for (int i = 0; i < 4; i++) {    // 4방향
                 int tmpX = nowX + dx[i], tmpY = nowY + dy[i];   // 다음 좌표
-                if(isNotValidPos(tmpX, tmpY) || visited[nowZ][tmpX][tmpY])  // 유효한지
+
+                if (isNotValidPos(tmpX, tmpY))  // 유효한지
                     continue;
 
-                if(map[tmpX][tmpY] == 0) {  // 거리이면
-                    visited[nowZ][tmpX][tmpY] = true;   // 방문 가능
-                    queue.offer(new Node(tmpX, tmpY, nowZ, nowD + 1));  // 거리 + 1
-                } else if(nowZ == 1) {  // 벽이고 허물 수 있으면
-                    visited[nowZ - 1][tmpX][tmpY] = true;   // 방문 가능, 찬스 - 1
-                    queue.offer(new Node(tmpX, tmpY, nowZ - 1, nowD + 1));  // 찬스 - 1, 거리 + 1
+                if (map[tmpX][tmpY] == 0) {  // 거리이면
+                    if (!visited[nowZ][tmpX][tmpY]) {   // 방문 가능하면
+                        visited[nowZ][tmpX][tmpY] = true;   // 방문
+                        queue.offer(new Node(tmpX, tmpY, nowZ, nowD + 1));  // 거리 + 1
+                    }
+                } else if (nowZ == 1) {  // 벽이고 허물 수 있으면
+                    if (!visited[nowZ - 1][tmpX][tmpY]) {   // 방문 가능하면
+                        visited[nowZ - 1][tmpX][tmpY] = true;   // 방문, 찬스 - 1
+                        queue.offer(new Node(tmpX, tmpY, nowZ - 1, nowD + 1));  // 찬스 - 1, 거리 + 1
+                    }
                 }
             }
         }
