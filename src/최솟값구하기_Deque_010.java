@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class 최솟값구하기_Deque_010 {
+
     static class Node { // Node 클래스
         // 클래스 = 멤버변수 + 멤버함수
         public int index; // 멤버변수
@@ -18,6 +19,7 @@ public class 최솟값구하기_Deque_010 {
             this.value = value;
         }
     }
+
     public static void main(String[] args) throws IOException {
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
