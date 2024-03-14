@@ -20,25 +20,25 @@ public class 빙산_백준 {
 
     public static void init() throws IOException { // 초기화
 
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(bf.readLine());
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
         N = Integer.parseInt(st.nextToken());   // 행
         M = Integer.parseInt(st.nextToken());   // 열
 
-        // 초기화
-        map = new int[N][M];
-        for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(bf.readLine());
+        map = new int[N][M];    // 입력배열 초기화
 
-            for (int j = 0; j < M; j++)
-                map[i][j] = Integer.parseInt(st.nextToken());
+        for (int i = 0; i < N; i++) {   // 행
+            st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
+            for (int j = 0; j < M; j++) //열
+                map[i][j] = Integer.parseInt(st.nextToken());   // 입력배열 저장
         }
     }
 
     public static void countZero() {    // 0 개수 세기
 
-        copy = new int[N][M];   // 초기화
+        copy = new int[N][M];   // 복사배열 초기화
 
         for (int i = 0; i < N; i++) {    // 행
             for (int j = 0; j < M; j++) {    // 열
@@ -60,8 +60,8 @@ public class 빙산_백준 {
             }
         }
 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
+        for (int i = 0; i < N; i++) {   // 행
+            for (int j = 0; j < M; j++) {   // 열
                 if (copy[i][j] != 0) {   // 0이 아니면
                     map[i][j] -= copy[i][j];    // 갱신
 
@@ -130,11 +130,11 @@ public class 빙산_백준 {
             if (findNum() != 1) {    // 빙산 개수가 1개가 아니면
                 if (findNum() == 0)    // 0개이면 다 없어진 경우이므로
                     year = 0;   // 0
-                break;  // 반복문 종료
+                break;  // while 종료
             }
         }
 
-        return year;    // 리턴
+        return year; // 리턴
     }
 
     public static void main(String[] args) throws IOException {
