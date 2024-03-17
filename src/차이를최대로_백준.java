@@ -18,10 +18,9 @@ public class 차이를최대로_백준 {
         N = Integer.parseInt(bf.readLine());    // 크기
         max = Integer.MIN_VALUE;    // 결과값
 
-        // 초기화
-        arr = new int[N];
-        A = new int[N];
-        visited = new boolean[N];
+        arr = new int[N];   // 입력배열
+        A = new int[N];     // 결과배열
+        visited = new boolean[N];   // 방문배열
 
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
@@ -48,7 +47,9 @@ public class 차이를최대로_백준 {
             if(!visited[i]) {   // 방문한 적이 없으면
                 visited[i] = true;  // 방문
                 A[depth] = arr[i];  // 결과배열 저장
+
                 DFS(depth + 1); // 재귀콜
+
                 visited[i] = false; // 리턴되면 방문 여부 갱신
             }
         }
