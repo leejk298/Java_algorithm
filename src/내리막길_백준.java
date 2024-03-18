@@ -23,9 +23,8 @@ public class 내리막길_백준 {
         N = Integer.parseInt(st.nextToken());   // 행
         M = Integer.parseInt(st.nextToken());   // 열
 
-        // 초기화
-        map = new int[N][M];
-        dp = new int[N][M];
+        map = new int[N][M];    // 입력배열
+        dp = new int[N][M];     // dp 배열
 
         for (int i = 0; i < N; i++) {   // 행
             st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
@@ -38,7 +37,6 @@ public class 내리막길_백준 {
     }
 
     public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
-
         return (x < 0 || x >= N || y < 0 || y >= M);
     }
 
