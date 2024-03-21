@@ -26,9 +26,9 @@ public class 네트워크연결_백준 {
         int s, e, w;    // 시작, 도착, 가중치
 
         public Edge(int s, int e, int w) {  // 파라미터 생성자
-            this.s = s;
-            this.e = e;
-            this.w = w;
+            this.s = s; // 시작점
+            this.e = e; // 도착점
+            this.w = w; // 가중치
         }
 
         @Override
@@ -41,14 +41,15 @@ public class 네트워크연결_백준 {
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
         N = Integer.parseInt(st.nextToken());   // 정점 개수
 
         st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
         M = Integer.parseInt(st.nextToken());   // 엣지 개수
 
-        // 초기화
-        pq = new PriorityQueue<>();
-        parent = new int[N + 1];
+        pq = new PriorityQueue<>(); // 우선순위 큐 구현
+        parent = new int[N + 1];    // 대표노드 초기화
 
         for(int i = 1; i <= N; i++) // 정점 개수만큼
             parent[i] = i;  // 부모배열 저장
@@ -66,11 +67,10 @@ public class 네트워크연결_백준 {
 
     public static int find(int a) { // find()
 
-        // 베이스 케이스
-        if(a == parent[a])  // 초기화 상태이면
+        if(a == parent[a])  // 베이스케이스: 초기화 상태이면
             return a;   // 그대로
 
-        // 다르면 부모배열도 갱신 후 리턴
+        // 재귀케이스: 다르면 부모배열도 갱신 후 리턴
         return parent[a] = find(parent[a]);
     }
 
