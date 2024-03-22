@@ -18,12 +18,12 @@ public class 숨바꼭질_백준 {
         visited = new int[100001];  // 초기화
     }
 
-    public static int BFS() {   // BFS
+    public static int BFS(int v) {   // BFS
 
         Queue<Integer> queue = new LinkedList<>();  // 큐
 
-        queue.offer(N); // 시작점 큐에 삽입
-        visited[N] = 1; // 시작점 1부터 시작
+        queue.offer(v); // 시작점 큐에 삽입
+        visited[v] = 1; // 시작점 1부터 시작
 
         while(!queue.isEmpty()) {   // 큐가 비어있지 않으면
             int now = queue.poll(); // 하나 꺼내어
@@ -58,6 +58,6 @@ public class 숨바꼭질_백준 {
         if(N >= K)  // 시작이 도착보다 크거나 같으면
             System.out.println(N - K);  // -1 연산만 가능하므로 빼기
         else    // 도착이 크면
-            System.out.println(BFS());  // BFS
+            System.out.println(BFS(N));  // BFS
     }
 }
