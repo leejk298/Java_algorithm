@@ -17,11 +17,9 @@ public class 이진검색트리_백준 {
     static Node root;   // 루트 노드
 
     static class Node { // 노드 클래스
-        // 멤버 변수
         int v;  // 데이터
         Node l, r;  // 자식 노드
 
-        // 멤버 함수
         public Node(int v) {    // 파라미터 생성자
             this.v = v;
         }
@@ -42,13 +40,12 @@ public class 이진검색트리_백준 {
         }
     }
 
-    public static void postOrder(Node node) {   // 후위순회
+    public static void postOrder(Node node) {   // 후위순회 - 왼 오 자
 
-        // 베이스 케이스
-        if(node == null)    // 리프노드면
+        if(node == null)    // 베이스케이스: 리프노드의 자식이면
             return; // 리턴
 
-        // 재귀케이스
+        // 재귀케이스: 리프노드의 자식이 아니면
         postOrder(node.l);  // 왼
         postOrder(node.r);  // 오
         System.out.println(node.v); // 자
@@ -60,7 +57,6 @@ public class 이진검색트리_백준 {
 
         root = new Node(Integer.parseInt(bf.readLine()));   // 루트 노드 생성
 
-        // 트리 생성
         while(true) {
             String str = bf.readLine(); // 한 줄 스트링
 
