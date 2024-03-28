@@ -7,7 +7,25 @@ public class 최소공통부분문자열_DP_090 {
     static char B[]; // 문자열 2
     static ArrayList<Character> P; // LCS 저장리스트
 
+    public static void getText(int r, int c) { // 문자열 구하기
+
+        if (r == 0 || c == 0) // 베이스케이스: 둘 중 하나의 길이가 0이 되면 종료
+            return;
+
+        // 재귀케이스: 둘 중 하나의 길이가 0이 아니면
+        if (A[r - 1] == B[c - 1]) { // 같은 문자이면
+            P.add(A[r - 1]); // 리스트에 저장
+            getText(r - 1, c - 1); // 문자열 둘 다 다음 문자로 => 대각선 이동
+        } else { // 다른 문자이면
+            if (DP[r - 1][c] > DP[r][c - 1]) // 왼쪽이 크면 => 문자열 A의 LCS 길이값이 크면
+                getText(r - 1, c); // 왼쪽으로 이동
+            else // 위쪽이 크면 => 문자열 B의 LCS 길이값이 크면
+                getText(r, c - 1); // 위쪽으로 이동
+        }
+    }
+
     public static void main(String[] args) throws IOException {
+
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
 
         A = bf.readLine().toCharArray(); // 문자 배열로 저장
@@ -28,24 +46,10 @@ public class 최소공통부분문자열_DP_090 {
         System.out.println(DP[A.length][B.length]); // LCS 길이 출력
 
         getText(A.length, B.length); // LCS 문자열 구하기
+
         for (int i = P.size() - 1; i >= 0; i--) // 리스트 크기만큼, 역행 => 뒤에서부터 탐색하여 추가하였으므로
             System.out.print(P.get(i)); // 불러와서 출력
+
         System.out.println(); // 개행문자 출력
-    }
-
-    private static void getText(int r, int c) { // 문자열 구하기
-        if (r == 0 || c == 0) // 베이스케이스: 둘 중 하나의 길이가 0이 되면 종료
-            return;
-
-        // 재귀케이스
-        if (A[r - 1] == B[c - 1]) { // 같은 문자이면
-            P.add(A[r - 1]); // 리스트에 저장
-            getText(r - 1, c - 1); // 문자열 둘 다 다음 문자로 => 대각선 이동
-        } else { // 다른 문자이면
-            if (DP[r - 1][c] > DP[r][c - 1]) // 왼쪽이 크면 => 문자열 A의 LCS 길이값이 크면
-                getText(r - 1, c); // 왼쪽으로 이동
-            else // 위쪽이 크면 => 문자열 B의 LCS 길이값이 크면
-                getText(r, c - 1); // 위쪽으로 이동
-        }
     }
 }
