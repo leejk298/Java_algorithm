@@ -9,7 +9,6 @@ import java.io.*;
  */
 
 public class 트럭주차_백준 {
-
     public static void main(String[] args) throws IOException {
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
@@ -20,8 +19,8 @@ public class 트럭주차_백준 {
         int C = Integer.parseInt(st.nextToken());   // 세 대
 
         int[] arr = new int[101];   // 초기화
-        int min = 0, max = 0;   // 시간
 
+        int min = 0, max = 0;   // 시간
         for (int i = 0; i < 3; i++) {   // 3개 만큼
             st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
