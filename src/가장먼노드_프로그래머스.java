@@ -49,20 +49,26 @@ public class 가장먼노드_프로그래머스 {
             }
         }
 
+        public static int getAnswer(int n) {    // 결과값
+
+            Arrays.sort(visited);   // 방문겸 거리배열 정렬
+
+            int answer = 0, max = visited[n];   // 가장 먼 노드의 거리
+
+            for (int i : visited)    // 순회
+                if (i == max)    // 최대 거리이면
+                    answer++;   // 개수 카운트
+
+            return answer;  // 결과값 리턴
+        }
+
         public int solution(int n, int[][] edge) {
 
             init(n, edge);  // 초기화
 
             BFS(1); // 1번 노드로 BFS => 거리배열
 
-            Arrays.sort(visited);   // 방문겸 거리배열 정렬
-
-            int answer = 0, max = visited[n];   // 가장 먼 노드의 거리
-            for (int i : visited)    // 순회
-                if (i == max)    // 최대 거리이면
-                    answer++;   // 개수 카운트
-
-            return answer;  // 총 개수 리턴
+            return getAnswer(n);  // 총 개수 리턴
         }
     }
 }
