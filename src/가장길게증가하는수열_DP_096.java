@@ -3,22 +3,21 @@ import java.io.*;
 
 public class 가장길게증가하는수열_DP_096 {
     static int N, maxLength; // 개수, 최대길이
-    static int B[]; // 맞는 위치
-    static int A[]; // 수열
-    static int D[]; // 길이
-    static int res[]; // 결과
+    static int[] A, B, D, res;  // 배열
 
     public static void init() throws IOException {  // 초기화
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
-        N = Integer.parseInt(bf.readLine()); // 개수
+        N = Integer.parseInt(st.nextToken()); // 크기
+
         A = new int[N + 1]; // 초기화, 크기: N 포함 => N + 1
         B = new int[N + 1];
         D = new int[N + 1];
         res = new int[N + 1];
 
-        StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
+        st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
         for (int i = 1; i <= N; i++) // 개수만큼
             A[i] = Integer.parseInt(st.nextToken()); // 수열 저장
@@ -27,7 +26,6 @@ public class 가장길게증가하는수열_DP_096 {
     public static int binarySearch(int l, int r, int now) { // 이진 탐색
 
         int mid; // 중간값
-
         while (l < r) { // 역전이 일어나지않을 때까지 반복
             mid = (l + r) / 2;
 
@@ -42,10 +40,10 @@ public class 가장길게증가하는수열_DP_096 {
 
     public static void printMaxCount() {    // 최대 길이의 수열 출력
 
-        int index; // 위치
         B[++maxLength] = A[1]; // 한 개 받고
         D[1] = 1; // 길이 1 저장
 
+        int index; // 위치
         for (int i = 2; i <= N; i++) { // 2부터 N까지
             if (B[maxLength] < A[i]) { // 다음 수열의 크기가 크면
                 B[++maxLength] = A[i]; // 맞는 위치 배열에 저장
