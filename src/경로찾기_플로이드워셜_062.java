@@ -3,18 +3,18 @@ import java.util.*;
 
 public class 경로찾기_플로이드워셜_062 {
     public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
 
-        int N = Integer.parseInt(bf.readLine()); // 노드
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
+        StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
+
+        int N = Integer.parseInt(st.nextToken()); // 노드 개수
 
         int A[][] = new int[N + 1][N + 1]; // 인접행렬
-
         for (int i = 1; i <= N; i++) { // 노드 개수만큼
-            StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
+            st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
-            for (int j = 1; j <= N; j++) { // 2차 배열
+            for (int j = 1; j <= N; j++) // 2차 배열
                 A[i][j] = Integer.parseInt(st.nextToken()); // 인접행렬 구현
-            }
         }
 
         // 플로이드워셜 알고리즘 로직
@@ -25,10 +25,8 @@ public class 경로찾기_플로이드워셜_062 {
                         A[i][j] = 1; // 출발 -> 도착으로 가는 길이 있다 (가중치 X)
 
         for (int i = 1; i <= N; i++) { // 인접행렬 출력
-            for (int j = 1; j <= N; j++) {
+            for (int j = 1; j <= N; j++)
                 System.out.print(A[i][j] + " ");
-            }
-
             System.out.println(); // 개행문자
         }
     }
