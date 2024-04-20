@@ -11,32 +11,31 @@ kiki
  */
 
 public class 배부른마라토너_백준 {
-    static int N;
-    static Map<String, Integer> hashMap;
 
     public static void main(String[] args) throws IOException {
 
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
 
-        N = Integer.parseInt(bf.readLine());
+        int N = Integer.parseInt(bf.readLine());    // 크기
 
-        hashMap = new HashMap<>();
-        for(int i = 0; i < N; i++) {
-            String str = bf.readLine();
+        Map<String, Integer> hashMap = new HashMap<>(); // 해시맵
 
-            hashMap.put(str, hashMap.getOrDefault(str, 0) + 1);
+        for (int i = 0; i < N; i++) {   // 크기만큼
+            String str = bf.readLine(); // 문자열
+
+            hashMap.put(str, hashMap.getOrDefault(str, 0) + 1); // 해시맵 구현
         }
 
-        for(int i = 1; i < N; i++) {
-            String str = bf.readLine();
+        for (int i = 1; i < N; i++) {   // 1 ~ N
+            String str = bf.readLine(); // 문자열
 
-            if(hashMap.get(str) == 1)
-                hashMap.remove(str);
-            else
-                hashMap.put(str, hashMap.get(str) - 1);
+            if (hashMap.get(str) == 1)  // 하나만 있으면
+                hashMap.remove(str);    // 삭제
+            else    // 하나 초과이면
+                hashMap.put(str, hashMap.get(str) - 1); //  하나 줄이기
         }
 
-        for(String str : hashMap.keySet())
-            System.out.println(str);
+        for (String str : hashMap.keySet()) // 키값
+            System.out.println(str);    // 출력
     }
 }
