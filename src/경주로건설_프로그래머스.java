@@ -13,6 +13,25 @@ public class 경주로건설_프로그래머스 {
         static int[] dx = {-1, 1, 0, 0};    // 4방향
         static int[] dy = {0, 0, -1, 1};
 
+        static class Node { // 내부 클래스
+            int x, y, dir, c;   // 멤버변수
+
+            public Node(int x, int y, int dir, int c) { // 파라미터 생성자
+                this.x = x; // 좌표
+                this.y = y;
+                this.dir = dir; // 방향
+                this.c = c; // 비용
+            }
+        }
+
+        public static void init(int[][] board) {   // 초기화
+
+            N = board.length;  // 배열 크기
+            map = board;    // 최소비용배열
+            visited = new boolean[N][N][4]; // 방문배열
+            cost = Integer.MAX_VALUE;   // 최대값으로 설정
+        }
+
         public static void BFS(int x, int y, int dir, int c) {  // BFS
 
             Queue<Node> queue = new LinkedList<>(); // 큐
@@ -57,26 +76,12 @@ public class 경주로건설_프로그래머스 {
         }
 
         public int solution(int[][] board) {
-            // 초기화
-            N = board.length;  // 배열 크기
-            map = board;    // 최소비용배열
-            visited = new boolean[N][N][4]; // 방문배열
-            cost = Integer.MAX_VALUE;   // 최대값으로 설정
+
+            init(board);    // 초기화
 
             BFS(0, 0, -1, 0);   // BFS
 
             return cost;    // 최소비용 출력
-        }
-
-        static class Node { // 내부 클래스
-            int x, y, dir, c;
-
-            public Node(int x, int y, int dir, int c) {
-                this.x = x;
-                this.y = y;
-                this.dir = dir;
-                this.c = c;
-            }
         }
     }
 }
