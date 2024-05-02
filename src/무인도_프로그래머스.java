@@ -7,92 +7,83 @@ public class 무인도_프로그래머스 {
     }
 
     static class Solution {
+        static int N, M, sum;   // 크기, 결과값
         static char[][] map;    // 입력배열
         static boolean[][] visited; // 방문배열
-        static int sum; // 총합
-        static List<Integer> list;  // 결과리스트
         static int[] dx = {-1, 1, 0, 0};    // 4방향
         static int[] dy = {0, 0, -1, 1};
+        static List<Integer> list;  // 결과리슽트
 
         public static void init(String[] maps) {    // 초기화
 
-            map = new char[maps.length][maps[0].length()];  // 입력배열
-            visited = new boolean[maps.length][maps[0].length()];   // 방문배열
-            list = new ArrayList<>();   // 결과리스트
-            sum = 0;    // 개수 초기화
+            N = maps.length;    // 행
+            M = maps[0].length();   // 열
+            sum = 0;    // 결과값
 
-            for (int i = 0; i < maps.length; i++)    // 행
+            map = new char[N][M];   // 입력배열
+            visited = new boolean[N][M];    // 방문배열
+            list = new ArrayList<>();   // 결과리스트
+
+            for (int i = 0; i < N; i++) // 크기만큼
                 map[i] = maps[i].toCharArray(); // 입력배열 저장
         }
 
         public static boolean isNotValidPos(int x, int y) { // 좌표가 유효한지
-            return (x < 0 || x >= map.length || y < 0 || y >= map[0].length);
+            return (x < 0 || x >= N || y < 0 || y >= M);
         }
 
         public static void BFS(int x, int y) {  // BFS
 
             Queue<int[]> queue = new LinkedList<>();    // 큐
 
-            queue.offer(new int[]{x, y});  // 큐에 시작점 삽입
-            visited[x][y] = true;   // 방문 여부 갱신
-            sum += map[x][y] - '0'; // 합 갱신
+            queue.offer(new int[]{x, y});   // 큐에 시작점 삽입
+            visited[x][y] = true;   // 시작점 방문
+            sum += map[x][y] - '0';  // 결과값 갱신
 
-            while (!queue.isEmpty()) {   // 큐가 비어있지 않으면
+            while (!queue.isEmpty()) {  // 큐가 비어있지 않으면
                 int[] now = queue.poll();   // 하나 꺼내어
 
                 int nowX = now[0], nowY = now[1];   // 현재 좌표
-                for (int i = 0; i < 4; i++) {    // 4방향
+                for (int i = 0; i < 4; i++) {   // 4방향
                     int tmpX = nowX + dx[i], tmpY = nowY + dy[i];   // 다음 좌표
 
-                    // 유효하지 않거나 방문했거나 바다인 경우, 건너뛰기
-                    if (isNotValidPos(tmpX, tmpY) || visited[tmpX][tmpY] || map[tmpX][tmpY] == 'X')
+                    if (isNotValidPos(tmpX, tmpY) || visited[tmpX][tmpY])   // 유효한지
                         continue;
 
-                    sum += map[tmpX][tmpY] - '0';   // 숫자이면 합 갱신
-                    visited[tmpX][tmpY] = true; // 방문 여부 갱신
-                    queue.offer(new int[]{tmpX, tmpY});    // 큐에 삽입
-                }
-            }
-        }
-
-        public static void findIsland() {   // 섬 찾기
-
-            for (int i = 0; i < map.length; i++) {   // 행
-                for (int j = 0; j < map[i].length; j++) {    // 열
-                    if (map[i][j] != 'X' && !visited[i][j]) {    // X가 아니면서 방문한 적이 없으면
-                        BFS(i, j);  // BFS
-
-                        list.add(sum);  // 연결요소의 총 합 저장
-                        sum = 0;    // 합 초기화
+                    if (map[tmpX][tmpY] != 'X') {   // X가 아니면
+                        visited[tmpX][tmpY] = true; // 방문
+                        sum += map[tmpX][tmpY] - '0';   // 결과값 갱신
+                        queue.offer(new int[]{tmpX, tmpY}); // 큐에 삽입
                     }
                 }
             }
         }
 
-        public static int[] findResult() {  // 결과배열 저장
+        public static void findArea() { // 영역 찾기
 
-            if (list.size() > 0) {   // 리스트가 존재하면
-                int[] answer = new int[list.size()];    // 결과배열 선언
-
-                for (int i = 0; i < list.size(); i++)    // 크기만큼
-                    answer[i] = list.get(i);    // 저장
-
-                Arrays.sort(answer);    // 오름차순 정렬
-
-                return answer;  // 결과배열 리턴
+            for (int i = 0; i < N; i++) {   // 행
+                for (int j = 0; j < M; j++) {   // 열
+                    if (!visited[i][j] && map[i][j] != 'X') {   // 방문한 적이 없고 X가 아니면
+                        BFS(i, j);  // BFS
+                        list.add(sum);  // 리스트에 결과값 삽입
+                        sum = 0;    // 결과값 초기화
+                    }
+                }
             }
-
-            // 존재하지 않으면
-            return new int[]{-1};  // -1 리턴
         }
 
         public int[] solution(String[] maps) {
 
             init(maps); // 초기화
 
-            findIsland();   // 섬 찾기
+            findArea(); // 영역 찾기
 
-            return findResult();    // 결과배열 리턴
+            if (list.size() == 0)   // 영역이 없으면
+                return new int[]{-1};   // -1 리턴
+            // 영역이 있으면
+            Collections.sort(list); // 리스트 정렬
+
+            return list.stream().mapToInt(i -> i).toArray();    // 배열로 리턴
         }
     }
 }
