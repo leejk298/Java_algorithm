@@ -74,8 +74,10 @@ public class 석유시추_프로그래머스 {
             }
 
             int[] oilSum = new int[M];  // 각 열에 해당하는 석유량
+
             for (int j = 0; j < M; j++) {   // 열
                 Set<Integer> hashSet = new HashSet<>(); // 섬 id 집합
+
                 for (int i = 0; i < N; i++) // 행
                     if (map[i][j] == 1) // 석유가 있으면
                         hashSet.add(id[i][j]);  // 해당하는 id를 집합에 저장, 중복제거
@@ -85,6 +87,7 @@ public class 석유시추_프로그래머스 {
             }
 
             int answer = 0; // 결과값
+
             for (int i = 0; i < M; i++) // 열만큼
                 answer = Math.max(answer, oilSum[i]);   // 최대값
 
