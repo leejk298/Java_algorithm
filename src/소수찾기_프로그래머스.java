@@ -7,7 +7,7 @@ public class 소수찾기_프로그래머스 {
     }
 
     static class Solution {
-        static int answer;
+        static int answer;  // 결과값
         static boolean[] visited;   // 방문배열
         static List<Integer> list;  // 결과리스트
 
@@ -54,9 +54,7 @@ public class 소수찾기_프로그래머스 {
             return true;    // 다 통과하면 true
         }
 
-        public int solution(String numbers) {
-
-            init(); // 초기화
+        public static void findNumber(String numbers) { // 소수 찾기
 
             for (int i = 0; i < numbers.length(); i++)  // 입력 문자열 길이만큼
                 DFS(i + 1, "", numbers);    // 길이 1부터 최대 길이까지, 빈 문자열 넘김
@@ -64,6 +62,13 @@ public class 소수찾기_프로그래머스 {
             for (int i : list)  // 결과리스트 순회하여
                 if (isPrime(i)) // 하나씩 소수 판별
                     answer++;   // 소수이면 개수 카운트
+        }
+
+        public int solution(String numbers) {
+
+            init(); // 초기화
+
+            findNumber(numbers);    // 소수 찾기
 
             return answer;  // 개수 리턴
         }
