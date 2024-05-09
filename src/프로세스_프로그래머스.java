@@ -1,14 +1,12 @@
 import java.util.*;
 
 public class 프로세스_프로그래머스 {
-
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.solution(new int[]{1, 1, 9, 1, 1, 1}, 0));
     }
 
     static class Solution {
-
         public int solution(int[] priorities, int location) {
 
             PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> { // 정렬
@@ -27,6 +25,7 @@ public class 프로세스_프로그래머스 {
                     if (now[1] == priorities[i]) {  // 현재 프로세스가 제일 높으면
                         if (location == i)  // 정해진 순위가 맞으면
                             return answer;  // 결과값 리턴
+
                         else {  // 아니면
                             answer++;  // 순위 갱신
                             pq.poll();  // 해당 프로세스 제거
