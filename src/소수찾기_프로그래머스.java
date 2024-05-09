@@ -24,7 +24,7 @@ public class 소수찾기_프로그래머스 {
                 if (!list.contains(Integer.parseInt(t))) // 결과리스트에 포함되어있지 않으면
                     list.add(Integer.parseInt(t));  // 삽입
 
-                return;
+                return; // 완전 탐색하기 위해 리턴
             }
 
             // 재귀 케이스: 길이가 다르면
