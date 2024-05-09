@@ -1,6 +1,11 @@
 import java.util.*;
 
 public class 미로탈출_프로그래머스 {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.solution(new String[]{"SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"}));
+    }
+
     static class Solution {
         static int N, M;    // 크기
         static char[][] map;    // 입력배열
@@ -49,6 +54,7 @@ public class 미로탈출_프로그래머스 {
                 int[] now = queue.poll();   // 하나 꺼내어
 
                 int nowX = now[0], nowY = now[1];   // 현재 좌표
+
                 if (nowX == E[0] && nowY == E[1])    // 도착하면
                     return D[nowX][nowY];   // 거리값 리턴
 
@@ -79,6 +85,7 @@ public class 미로탈출_프로그래머스 {
                 visited = new boolean[N][M];   // 방문배열 초기화, 이전 경로로 돌아가야되는 경우도 있으므로
 
                 int num = BFS(L, E);    // BFS, 도착 좌표까지 비용
+
                 if (num == -1)  // 도달하지 못했으면
                     answer = -1;    // -1
                 else    // 도달하면
@@ -87,10 +94,5 @@ public class 미로탈출_프로그래머스 {
 
             return answer;  // 총 비용 리턴
         }
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.solution(new String[]{"SOOOL", "XXXXO", "OOOOO", "OXXXX", "OOOOE"}));
     }
 }
