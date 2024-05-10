@@ -1,7 +1,15 @@
 import java.util.*;
 
 public class 과제진행하기_프로그래머스 {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(Arrays.toString(solution.solution(new String[][]{{"science", "12:40", "50"}, {"music", "12:20", "40"}, {"history", "14:00", "30"}, {"computer", "12:30", "100"}})));
+    }
+
     static class Solution {
+        static List<String> answer; // 결과리스트
+        PriorityQueue<Task> pq; // 우선순위 큐
+
         static class Task { // 과제 클래스
             String name;    // 과목
             int start;      // 시작 시간
@@ -19,10 +27,10 @@ public class 과제진행하기_프로그래머스 {
             }
         }
 
-        public String[] solution(String[][] plans) {
+        public void init(String[][] plans) {    // 초기화
 
-            List<String> answer = new ArrayList<>();    // 결과리스트
-            PriorityQueue<Task> pq = new PriorityQueue<>((o1, o2) -> (o1.start - o2.start));    // 우선순위 큐 => 시작 시간을 기준으로 오름차순 정렬
+            answer = new ArrayList<>();    // 결과리스트
+            pq = new PriorityQueue<>((o1, o2) -> (o1.start - o2.start));    // 우선순위 큐 => 시작 시간을 기준으로 오름차순 정렬
 
             for (String[] plan : plans) {    // 입력배열 순회
                 String name = plan[0], time = plan[1], play = plan[2];  // 과목, 시작 시간, 걸리는 시간
@@ -36,8 +44,12 @@ public class 과제진행하기_프로그래머스 {
 
                 pq.offer(new Task(name, start, playTime));  // 우선순위 큐에 삽입
             }
+        }
+
+        public void printPlan() {   // 과제 출력
 
             Stack<Task> remains = new Stack<>();    // 나머지 과제
+
             while (!pq.isEmpty()) {  // 우선순위 큐가 비어있지 않으면
                 Task now = pq.poll();   // 하나 꺼내어, 현재 과제
 
@@ -45,6 +57,7 @@ public class 과제진행하기_프로그래머스 {
                 int nowStart = now.start, nowPlayTime = now.playTime;   // 시작 시간, 걸리는 시간
 
                 int currentTime = nowStart; // 현재 시각
+
                 if (!pq.isEmpty()) { // 새로운 과제가 더 있으면
                     Task next = pq.peek();  // 새로운 과제
 
@@ -61,15 +74,18 @@ public class 과제진행하기_프로그래머스 {
                             } else {    // 없으면
                                 int remainTime = remain.playTime - (next.start - currentTime);  // 남는 시간
                                 remains.push(new Task(remain.name, remainTime));    // 나머지 과제 스택에 저장
+
                                 break;  // while 종료
                             }
                         }
+
                     } else if (currentTime + nowPlayTime == next.start) {   // 딱 맞춰 끝내면
                         answer.add(nowName);    // 결과리스트에 저장
                     } else {    // 끝내지 못하면
                         int remainTime = nowPlayTime - (next.start - currentTime);  // 남는 시간
                         remains.push(new Task(nowName, remainTime));    // 나머지 과제 스택에 저장
                     }
+
                 } else {    // 새로운 과제가 없으면
                     if (!remains.isEmpty()) { // 남아있는 과제가 있으면
                         answer.add(nowName);    // 현재 과제 저장 후
@@ -78,20 +94,22 @@ public class 과제진행하기_프로그래머스 {
                             Task remain = remains.pop();    // 하나씩 꺼내서 => 최근에 멈춘 과제부터
                             answer.add(remain.name);    // 결과리스트에 저장
                         }
+
                     } else {    // 남아있는 과제가 없으면
                         currentTime += nowPlayTime; // 현재 시각 갱신
                         answer.add(nowName);    // 현재 과제 저장
                     }
                 }
             }
+        }
 
+        public String[] solution(String[][] plans) {
+
+            init(plans);    // 초기화
+
+            printPlan();    // 과제 출력
 
             return answer.stream().toArray(String[]::new);    // 리스트를 배열로 변환 후 리턴
         }
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(Arrays.toString(solution.solution(new String[][]{{"science", "12:40", "50"}, {"music", "12:20", "40"}, {"history", "14:00", "30"}, {"computer", "12:30", "100"}})));
     }
 }
