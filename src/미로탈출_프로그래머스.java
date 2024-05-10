@@ -17,12 +17,12 @@ public class 미로탈출_프로그래머스 {
 
         public static void init(String[] maps) {    // 초기화
 
-            N = maps.length;
-            M = maps[0].length();
+            N = maps.length;    // 행
+            M = maps[0].length();   // 열
 
-            map = new char[N][M];
-            visited = new boolean[N][M];
-            D = new int[N][M];
+            map = new char[N][M];   // 입력배열
+            visited = new boolean[N][M];    // 방문배열
+            D = new int[N][M];  // 거리배열
 
             for (int i = 0; i < N; i++) {  // 행
                 for (int j = 0; j < M; j++) { // 열
@@ -75,9 +75,7 @@ public class 미로탈출_프로그래머스 {
             return -1;  // 여기 도달하면 도착하지 못한 것이므로 -1 리턴
         }
 
-        public int solution(String[] maps) {
-
-            init(maps); // 초기화
+        public static int getAnswer() { // 결과값 구하기
 
             int answer = BFS(S, L);    // BFS
 
@@ -92,7 +90,14 @@ public class 미로탈출_프로그래머스 {
                     answer += num;  // 총 비용 갱신
             }
 
-            return answer;  // 총 비용 리턴
+            return answer;  // 결과값 리턴
+        }
+
+        public int solution(String[] maps) {
+
+            init(maps); // 초기화
+
+            return getAnswer();  // 총 비용 리턴
         }
     }
 }
