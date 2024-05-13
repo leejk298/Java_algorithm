@@ -5,7 +5,7 @@ public class 기지국설치_프로그래머스 {
     }
 
     static class Solution {
-        public static int findCount(int S, int E, int w) { // 개수 찾기 함수
+        static int findCount(int S, int E, int w) { // 개수 찾기 함수
 
             int count = (E - S + 1) / (2 * w + 1);  // 몫
 
@@ -17,16 +17,16 @@ public class 기지국설치_프로그래머스 {
 
         public int solution(int n, int[] stations, int w) {
 
-            int answer = 0;
-            int S = 1;  // 시작
+            int answer = 0, S = 1;  // 결과값, 시작 인덱스
 
-            for (int i = 0; i < stations.length; i++) {
+            for (int i = 0; i < stations.length; i++) { // 길이만큼
                 if (S < stations[i] - w) {   // 범위에 벗어나면
-                    int E = stations[i] - w - 1;    // 끝
+                    int E = stations[i] - w - 1;    // 끝 인덱스
+
                     answer += findCount(S, E, w);   // 개수 찾기
                 }
 
-                S = stations[i] + w + 1;    // 시작 범위 갱신
+                S = stations[i] + w + 1;    // 시작 인덱스 갱신
             }
 
             if (S - 1 < n)   // 반복문 끝나고 숫자가 남으면
