@@ -21,6 +21,7 @@ public class 인사고과_프로그래머스 {
             });
 
             int max = -1;   // 기준값
+
             for (int[] score : scores) { // 입력배열 순회
                 if (max < score[1])  // 기준값보다 크면
                     max = score[1]; // 갱신
