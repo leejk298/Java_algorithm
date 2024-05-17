@@ -13,6 +13,7 @@ public class 섬연결하기_프로그래머스 {
         public static void init(int n, int[][] costs) { // 초기화
 
             parent = new int[n];    // 초기화
+
             for (int i = 0; i < n; i++) // 개수만큼
                 parent[i] = i;  // 대표노드 설정
 
