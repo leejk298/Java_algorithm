@@ -1,16 +1,14 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class 좋은수_투포인터_008 {
     public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 버퍼 입력받기
 
-        int N = Integer.parseInt(bf.readLine()); // 크기, 한 줄 스트링 -> 정수로 파싱
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in)); // 입력 버퍼
+
+        int N = Integer.parseInt(bf.readLine()); // 크기
         int A[] = new int[N]; // 배열 크기 N
-        int cnt = 0;
+        int cnt = 0;    // 개수
 
         StringTokenizer st = new StringTokenizer(bf.readLine()); // 한 줄 스트링
 
@@ -21,33 +19,26 @@ public class 좋은수_투포인터_008 {
 
         for (int k = 0; k < N; k++) { // N 만큼
             int find = A[k]; // 찾아야할 숫자
+
             int i = 0, j = N - 1; // 인덱스 초기화
-
             while (i < j) { // 역전되면 탈출
-                if (A[i] + A[j] == find) // 찾았을 때
-                {
+                if (A[i] + A[j] == find) { // 찾았을 때
                     // 인덱스로 같은 수인지 체크 -> 이해하기
-                    if (i != k && j != k) // 다른 수면
-                    {
+                    if (i != k && j != k) {// 다른 수면
                         cnt++;
-                        break;
-                    }
 
-                    else if (i == k) // 하나라도 같으면
+                        break;
+                    } else if (i == k) // 하나라도 같으면
                         i++;
                     else if (j == k)
                         j--;
-                }
-
-                else if (A[i] + A[j] < find) // 작으면 i 하나 증가 -> j를 더 키울 수 없으므로
+                } else if (A[i] + A[j] < find) // 작으면 i 하나 증가 -> j를 더 키울 수 없으므로
                     i++;
-
                 else // 크면 j 하나 감소
                     j--;
             }
         }
 
-        System.out.println(cnt);
-        bf.close();
+        System.out.println(cnt);    // 개수 출력
     }
 }
