@@ -90,9 +90,9 @@ public class 쉬운최단거리_백준 {
 
         StringBuilder sb = new StringBuilder(); // 결과 문자열 초기화
 
-        for(int i = 0; i < N; i++) {    // 행
-            for(int j = 0; j < M; j++) {    // 열
-                if(map[i][j] == 1 && !visited[i][j])    // 땅인데 방문한 적이 없으면
+        for (int i = 0; i < N; i++) {    // 행
+            for (int j = 0; j < M; j++) {    // 열
+                if (map[i][j] == 1 && !visited[i][j])    // 땅인데 방문한 적이 없으면
                     sb.append(-1 + " ");    // -1 출력
                 else    // 그렇지 않으면
                     sb.append(D[i][j] + " ");   // 해당 거리값 출력
