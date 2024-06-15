@@ -8,7 +8,6 @@ import java.io.*;
  */
 
 public class 대칭차집합_백준 {
-
     public static void main(String[] args) throws IOException {
 
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));   // 입력 버퍼
@@ -20,11 +19,13 @@ public class 대칭차집합_백준 {
         Set<Integer> set = new HashSet<>(); // 해시셋
 
         st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
-        for(int i = 0; i < N; i++)  // 집합 A
+
+        for (int i = 0; i < N; i++)  // 집합 A
             set.add(Integer.parseInt(st.nextToken()));  // 해시셋에 추가
 
         st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
-        for(int i = 0; i < M; i++)  // 집합 B
+
+        for (int i = 0; i < M; i++)  // 집합 B
             set.add(Integer.parseInt(st.nextToken()));  // 해시셋에 추가
 
         int sum = N + M;    // 총 개수
