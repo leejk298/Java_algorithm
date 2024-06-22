@@ -41,11 +41,9 @@ public class 경로찾기_백준 {
                         map[i][j] = 1;  // 도달 가능
 
         // 도달가능한 경로 출력
-
         for (int i = 0; i < N; i++) {    // 행
             for (int j = 0; j < N; j++)   // 열
                 System.out.print(map[i][j] + " ");  // 1이면 도달 가능
-
             System.out.println();   // 개행문자 출력
         }
     }
