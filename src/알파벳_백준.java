@@ -24,9 +24,8 @@ public class 알파벳_백준 {
         M = Integer.parseInt(st.nextToken());   // 열
         max = 0;    // 결과값
 
-        // 초기화
-        map = new int[N][M];
-        visited = new boolean[26];
+        map = new int[N][M];    // 입력배열
+        visited = new boolean[26];  // 방문배열, 알파벳 개수
 
         for (int i = 0; i < N; i++) {   // 행
             String str = bf.readLine(); // 한 줄 스트링
@@ -42,20 +41,20 @@ public class 알파벳_백준 {
 
     public static void DFS(int x, int y, int count) {   // DFS, 백트래킹
 
-       visited[map[x][y]] = true;   // 방문
-       max = Math.max(max, count);  // 최대값 갱신
+        visited[map[x][y]] = true;   // 방문
+        max = Math.max(max, count);  // 최대값 갱신
 
-       for(int i = 0; i < 4; i++) { // 4방향
-           int tmpX = x + dx[i], tmpY = y + dy[i];  // 다음좌표
+        for (int i = 0; i < 4; i++) { // 4방향
+            int tmpX = x + dx[i], tmpY = y + dy[i];  // 다음좌표
 
-           if(isNotValidPos(tmpX, tmpY))    // 유효한지
-               continue;
+            if (isNotValidPos(tmpX, tmpY))    // 유효한지
+                continue;
 
-           if(!visited[map[tmpX][tmpY]]) {  // 방문한 적이 없으면
-               DFS(tmpX, tmpY, count + 1);  // DFS, 재귀콜
-               visited[map[tmpX][tmpY]] = false;    // 리턴되면 방문여부 갱신
-           }
-       }
+            if (!visited[map[tmpX][tmpY]]) {  // 방문한 적이 없으면
+                DFS(tmpX, tmpY, count + 1);  // DFS, 재귀콜
+                visited[map[tmpX][tmpY]] = false;    // 리턴되면 방문여부 갱신
+            }
+        }
     }
 
     public static void main(String[] args) throws IOException {
