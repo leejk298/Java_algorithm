@@ -26,14 +26,13 @@ public class 음식물피하기_백준 {
         M = Integer.parseInt(st.nextToken());   // 열
         K = Integer.parseInt(st.nextToken());   // 좌표 개수
 
-        // 초기화
-        map = new int[N][M];
-        visited = new boolean[N][M];
+        map = new int[N][M];    // 입력배열
+        visited = new boolean[N][M];    // 방문배열
 
         for (int i = 0; i < K; i++) {   // 개수만큼
             st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
-            int x = Integer.parseInt(st.nextToken());   // x
+            int x = Integer.parseInt(st.nextToken());   // 좌표 x
             int y = Integer.parseInt(st.nextToken());   // y
 
             map[x - 1][y - 1] = 1;  // 해당 좌표에 1 저장
@@ -56,6 +55,7 @@ public class 음식물피하기_백준 {
             int[] now = queue.poll();   // 하나 꺼내어
 
             int nowX = now[0], nowY = now[1];   // 현재 좌표
+
             for (int i = 0; i < 4; i++) {   // 4방향
                 int tmpX = nowX + dx[i], tmpY = nowY + dy[i];   // 다음 좌표
 
