@@ -13,13 +13,12 @@ public class 연산자끼워넣기_백준 {
 
         N = sc.nextInt();   // 크기
 
-        // 초기화
-        number = new int[N];
-        max = Integer.MIN_VALUE;
-        min = Integer.MAX_VALUE;
-        operator = new int[4];
+        number = new int[N];    // 피연산자
+        max = Integer.MIN_VALUE;    // 최대값
+        min = Integer.MAX_VALUE;    // 최소값
+        operator = new int[4];  // 연산자
 
-        for (int i = 0; i < N; i++)
+        for (int i = 0; i < N; i++) // 크기만큼
             number[i] = sc.nextInt();   // 피연산자 저장
 
         for (int i = 0; i < 4; i++)
@@ -62,11 +61,11 @@ public class 연산자끼워넣기_백준 {
 
     public static void main(String[] args) {
 
-        init();
+        init(); // 초기화
 
-        BackTracking(number[0], 1);
+        BackTracking(number[0], 1); // DFS, 백트래킹
 
-        System.out.println(max);
-        System.out.println(min);
+        System.out.println(max);    // 최대값
+        System.out.println(min);    // 최소값 출력
     }
 }
