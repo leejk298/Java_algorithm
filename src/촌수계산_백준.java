@@ -26,20 +26,19 @@ public class 촌수계산_백준 {
         N = Integer.parseInt(bf.readLine());    // 정점 개수
         res = -1;   // 결과값, 도달하지 못하면 -1 출력
 
-        // 초기화
-        A = new ArrayList[N + 1];
-        visited = new boolean[N + 1];
+        A = new ArrayList[N + 1];   // 인접리스트
+        visited = new boolean[N + 1];   // 방문배열
 
-        for(int i = 1; i <= N; i++) // 정점 개수만큼
+        for (int i = 1; i <= N; i++) // 정점 개수만큼
             A[i] = new ArrayList<>();   // 인접리스트 구현
 
         StringTokenizer st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
         S = Integer.parseInt(st.nextToken());   // 시작
         E = Integer.parseInt(st.nextToken());   // 도착
-
         M = Integer.parseInt(bf.readLine());    // 엣지 개수
-        for(int i = 0; i < M; i++) {    // 엣지 개수만큼
+
+        for (int i = 0; i < M; i++) {    // 엣지 개수만큼
             st = new StringTokenizer(bf.readLine());    // 한 줄 스트링
 
             int start = Integer.parseInt(st.nextToken());   // 시작
@@ -52,22 +51,22 @@ public class 촌수계산_백준 {
 
     public static void DFS(int depth, int v) {  // DFS
 
-        if(visited[v])  // 방문한 적이 있으면
+        if (visited[v])  // 베이스케이스: 방문한 적이 있으면
             return; // 리턴
 
-        // 없으면
+        // 재귀케이스: 없으면
         visited[v] = true;  // 방문
 
-        if(v == E) {    // 도착점 도달하면
+        if (v == E) {    // 도착점 도달하면
             res = depth;    // 몇 촌인지 저장
 
             return; // 리턴
         }
 
-        for(int i = 0; i < A[v].size(); i++) {  // 인접리스트 개수만큼
+        for (int i = 0; i < A[v].size(); i++) {  // 인접리스트 개수만큼
             int next = A[v].get(i); // 다음 노드
 
-            if(!visited[next])  // 방문한 적이 없으면
+            if (!visited[next])  // 방문한 적이 없으면
                 DFS(depth + 1, next);   // DFS
         }
     }
